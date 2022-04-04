@@ -1,0 +1,36 @@
+=============================================================================
+        This version is not official, use it at your own risks.
+        To get the original and official FLTK version, look at
+        http://www.fltk.org.
+
+                O'ksi'D ( http://oksid.ch )
+=============================================================================
+
+The FLTK-UTF8 library is based on the FLTK 1.1.X library.
+
+These directories contain other libraries :
+	zlib : http://www.gzip.org/zlib/
+	png : http://www.libpng.org/pub/png/libpng.html
+	jpeg : http://www.ijg.org/
+	
+Added features :
+
+	- Full Unicode UTF-8 input and string displaying.
+	- WIN32 GDI and PostScript printing.
+	- File "URL" drag'n'drop ( Text drag'n'drop removed ).
+	- int type for widget position and size ( was short ).
+	- misc. portable UTF-8 compatible file system functions ( fl_open, ... )
+	- Fl_Tree, a simple tree widget
+	- new test programs: utf8, tree, scribble
+	- Fl_Table (http://seriss.com/people/erco/Fl_Table/)
+
+Not yet supported features :
+	- Mac OS X
+	- Mac OS 9 
+
+Outdated and unsupported features :
+	- DJGPP 32bit MS-DOS port
+	- 16bit MS-DOS port using Watcom compiler and NanoX (Microwindows)
+	- Linux Microwindows port
+
+

@@ -1,12 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-11-12 13:14+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-05-21 14:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,133 +16,134 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gui.cpp:119
+#: ../gui.cpp:141
 msgid "File"
 msgstr ""
 
-#: ../gui.cpp:120
+#: ../gui.cpp:142
 msgid "Rescan Directory"
 msgstr ""
 
-#: ../gui.cpp:122
+#: ../gui.cpp:144
 msgid "New Directory ..."
 msgstr ""
 
-#: ../gui.cpp:124
-msgid "Preferences"
-msgstr ""
-
-#: ../gui.cpp:126
+#: ../gui.cpp:146
 msgid "Exit"
 msgstr ""
 
-#: ../gui.cpp:131
+#: ../gui.cpp:151
 msgid "View"
 msgstr ""
 
-#: ../gui.cpp:132
+#: ../gui.cpp:152
 msgid "Sort by Name"
 msgstr ""
 
-#: ../gui.cpp:135
+#: ../gui.cpp:155
 msgid "Sort by File Type"
 msgstr ""
 
-#: ../gui.cpp:138
+#: ../gui.cpp:158
 msgid "Sort by Size"
 msgstr ""
 
-#: ../gui.cpp:141
+#: ../gui.cpp:161
 msgid "Icon View"
 msgstr ""
 
-#: ../gui.cpp:144
+#: ../gui.cpp:164
+msgid "Tree View"
+msgstr ""
+
+#: ../gui.cpp:167
 msgid "Detailed View"
 msgstr ""
 
-#: ../gui.cpp:147
+#: ../gui.cpp:170
 msgid "Show Hidden Files"
 msgstr ""
 
-#: ../gui.cpp:153
+#: ../gui.cpp:176
 msgid "Help"
 msgstr ""
 
-#: ../gui.cpp:154
+#: ../gui.cpp:177
 msgid "About"
 msgstr ""
 
-#: ../gui.cpp:156
+#: ../gui.cpp:179
 msgid "Online Help"
 msgstr ""
 
-#: ../gui.cpp:171
+#: ../gui.cpp:194
 msgid "Move"
 msgstr ""
 
-#: ../gui.cpp:172
+#: ../gui.cpp:195
 msgid "Link"
 msgstr ""
 
-#: ../gui.cpp:173
+#: ../gui.cpp:196
 msgid "Copy"
 msgstr ""
 
-#: ../gui.cpp:175
+#: ../gui.cpp:198
 msgid "Abort drag..."
 msgstr ""
 
-#: ../callbacks.cpp:219
+#: ../callbacks.cpp:307
 msgid "New Directory :"
 msgstr ""
 
-#: ../callbacks.cpp:227 ../callbacks.cpp:283
-msgid "Not yet Implemented."
-msgstr ""
-
-#: ../callbacks.cpp:276
+#: ../callbacks.cpp:403
 msgid ""
-"  flfm - Copyright (c) 2000 O'ksi'D\n"
-"This application is a GPL free software.\n"
-"        http://oksid.ch"
+"  flfm - Copyright (c) 2000-2002 O'ksi'D\n"
+"This application is an Open Source  software.\n"
+"        http://www.oksid.ch"
 msgstr ""
 
-#: ../callbacks.cpp:337
+#: ../callbacks.cpp:491
+#, c-format
+msgid "Open \"%s\" with :"
+msgstr ""
+
+#: ../callbacks.cpp:496
 #, c-format
 msgid "Open \"%s%s\" with :"
 msgstr ""
 
-#: ../IconCanvas.cpp:381
+#: ../IconCanvas.cpp:399
 #, c-format
 msgid " %d selected files  /  %ld kb"
 msgstr ""
 
-#: ../IconCanvas.cpp:384
+#: ../IconCanvas.cpp:402
 #, c-format
 msgid " %d files  /  %ld kb"
 msgstr ""
 
-#: ../BigIcon.cpp:136 ../BigIcon.cpp:145
+#: ../BigIcon.cpp:153 ../BigIcon.cpp:162
 msgid "Open"
 msgstr ""
 
-#: ../BigIcon.cpp:137 ../BigIcon.cpp:142 ../BigIcon.cpp:147 ../BigIcon.cpp:150
+#: ../BigIcon.cpp:154 ../BigIcon.cpp:159 ../BigIcon.cpp:164 ../BigIcon.cpp:167
 msgid "Delete"
 msgstr ""
 
-#: ../BigIcon.cpp:138 ../BigIcon.cpp:143 ../BigIcon.cpp:148 ../BigIcon.cpp:151
+#: ../BigIcon.cpp:155 ../BigIcon.cpp:160 ../BigIcon.cpp:165 ../BigIcon.cpp:168
 msgid "Properties"
 msgstr ""
 
-#: ../BigIcon.cpp:140
+#: ../BigIcon.cpp:157
 msgid "Execute"
 msgstr ""
 
-#: ../BigIcon.cpp:141 ../BigIcon.cpp:146
+#: ../BigIcon.cpp:158 ../BigIcon.cpp:163
 msgid "Open with..."
 msgstr ""
 
-#: ../SmallIcon.cpp:226
+#: ../SmallIcon.cpp:240
 #, c-format
 msgid "%s    %s / %s  (%s)  %ld bytes"
 msgstr ""

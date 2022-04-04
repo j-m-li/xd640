@@ -1,12 +1,4 @@
 #!/usr/bin/make -f
-# -*- makefile -*- made with the aid of dh_make, by Craig Small
-# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
-# This version is for a hypothetical package that builds an
-# architecture-dependant package, as well as an architecture-independant
-# package.
-
-# Uncomment this to turn on verbose mode. 
-#export DH_VERBOSE=1
 
 CONFIGURE_FLAGS := --prefix=/usr --sysconfdir=/etc --enable-debug --mandir=/usr/share/man --enable-shared --disable-gl
 

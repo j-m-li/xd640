@@ -1,0 +1,205 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2004-02-19 12:51+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../gui.cpp:114
+msgid "File"
+msgstr "ファイル"
+
+#: ../gui.cpp:116
+msgid "New ..."
+msgstr "新規 ..."
+
+#: ../gui.cpp:117
+msgid "Open ..."
+msgstr "開く ..."
+
+#. mnu->add(_("Import RTF"), 0, (Fl_Callback*)cb_import, 0, 0);
+#: ../gui.cpp:120
+msgid "Save"
+msgstr "保存"
+
+#: ../gui.cpp:121
+msgid "Save as ..."
+msgstr ""
+
+#: ../gui.cpp:122
+msgid "Export RTF"
+msgstr "RTF をエクスポート"
+
+#: ../gui.cpp:124
+msgid "Print ..."
+msgstr "印刷 ..."
+
+#: ../gui.cpp:126
+msgid "Preferences"
+msgstr "設定"
+
+#: ../gui.cpp:129
+msgid "Page Setup"
+msgstr "ページ設定"
+
+#: ../gui.cpp:131
+msgid "Font Setup"
+msgstr "フォント設定"
+
+#: ../gui.cpp:136
+msgid "Quit"
+msgstr "終了"
+
+#: ../gui.cpp:141
+msgid "Edit"
+msgstr "編集"
+
+#: ../gui.cpp:143
+msgid "切り取り"
+msgstr ""
+
+#: ../gui.cpp:144
+msgid "コピー"
+msgstr ""
+
+#: ../gui.cpp:145
+msgid "貼り付け"
+msgstr ""
+
+#: ../gui.cpp:147
+msgid "Find..."
+msgstr "検索..."
+
+#: ../gui.cpp:149
+msgid "Zoom"
+msgstr "拡大"
+
+#: ../gui.cpp:152
+#, c-format
+msgid "100%"
+msgstr ""
+
+#: ../gui.cpp:155
+#, c-format
+msgid "150%"
+msgstr ""
+
+#: ../gui.cpp:157
+#, c-format
+msgid "200%"
+msgstr ""
+
+#: ../gui.cpp:159
+#, c-format
+msgid "300%"
+msgstr ""
+
+#: ../gui.cpp:166
+msgid "Tools"
+msgstr "ツール"
+
+#: ../gui.cpp:168
+msgid "Tabs"
+msgstr "タブ"
+
+#: ../gui.cpp:170
+msgid "Insert HTML File"
+msgstr "HTMLファイルを挿入"
+
+#: ../gui.cpp:172
+msgid "Insert Picture"
+msgstr "画像を挿入"
+
+#.
+#. mnu->add(_("Mailing"), 0,
+#. (Fl_Callback*)cb_mailing, 0, 0);
+#. mnu->add(_("Insert Mailing Tag"), 0,
+#. (Fl_Callback*)cb_tag, 0, 0);
+#.
+#: ../gui.cpp:180
+msgid "Insert page break"
+msgstr "階ページを挿入"
+
+#: ../gui.cpp:182 ../gui.cpp:350
+msgid "Spelling"
+msgstr "つづり"
+
+#: ../gui.cpp:184
+msgid "Spell"
+msgstr "スペル"
+
+#: ../gui.cpp:186
+msgid "Set Language"
+msgstr "言語を設定"
+
+#: ../gui.cpp:190
+msgid "Virtual keyboard"
+msgstr "仮想キーボード"
+
+#: ../gui.cpp:195
+msgid "Help"
+msgstr "ヘルプ"
+
+#: ../gui.cpp:197
+msgid "About"
+msgstr "詳細"
+
+#: ../gui.cpp:198
+msgid "Online Help"
+msgstr "オンラインヘルプ"
+
+#: ../gui.cpp:280
+msgid "Cannot open file..."
+msgstr "ファイルを開けません..."
+
+#: ../gui.cpp:302 ../gui.cpp:368
+msgid "Delete"
+msgstr "削除"
+
+#: ../gui.cpp:303
+msgid "Export"
+msgstr "エクスポート"
+
+#: ../gui.cpp:304
+msgid "Table Menu"
+msgstr "テーブルメニュー"
+
+#: ../gui.cpp:306
+msgid "Really delete table ?"
+msgstr "テーブルを削除しますか?"
+
+#: ../gui.cpp:351
+msgid "Text Menu"
+msgstr "テキストメニュー"
+
+#: ../gui.cpp:369
+msgid "Image Menu"
+msgstr "画像メニュー"
+
+#: ../callbacks.cpp:60
+msgid "File modified. Save it ?"
+msgstr "ファイルは更新されています。保存しますか?"
+
+#: ../callbacks.cpp:143
+msgid "You must set Zoom to 100% before printing."
+msgstr "印刷前に100%へ拡大しなければなりません。"
+
+#: ../callbacks.cpp:261
+msgid "Tag Value :"
+msgstr "タグ値 :"
+
+#: ../callbacks.cpp:361
+msgid ""
+"  flwriter - Copyright (c) 2000-2003 O'ksi'D\n"
+"This application is an Open Source software.\n"
+"             http://www.oksid.ch"
+msgstr ""

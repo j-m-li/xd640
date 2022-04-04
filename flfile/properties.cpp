@@ -1,27 +1,43 @@
 /******************************************************************************
- *   "$Id: properties.cpp,v 1.1 2000/08/05 19:11:22 nickasil Exp $"
- *
- *   This file is part of the FLE project.
+ *   "$Id:  $"
  *
  *                 Copyright (c) 2000  O'ksi'D
  *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *                      All rights reserved.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
+
+
 #include "properties.h"
 
 #include <libintl.h>
@@ -232,28 +248,28 @@ int Properties::setup(char **lst, int nb, int mode)
 								_("User"));
 	file_user_lab->align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE);
 	file_user_lab->color((Fl_Color)47);
-	file_user_read = new Xd6CheckButton(110, 70, 70, 20, _("Read")); 
-	file_user_write = new Xd6CheckButton(180, 70, 70, 20, _("Write")); 
-	file_user_exec = new Xd6CheckButton(250, 70, 70, 20, _("Exec")); 
-	file_uid = new Xd6CheckButton(320, 70, 70, 20, _("Set UID")); 
+	file_user_read = new Fl_Check_Button(110, 70, 70, 20, _("Read")); 
+	file_user_write = new Fl_Check_Button(180, 70, 70, 20, _("Write")); 
+	file_user_exec = new Fl_Check_Button(250, 70, 70, 20, _("Exec")); 
+	file_uid = new Fl_Check_Button(320, 70, 70, 20, _("Set UID")); 
 	
 	Fl_Box *file_grp_lab = new Fl_Box(FL_FLAT_BOX,10, 90, 90, 20, 
 								_("Group"));
 	file_grp_lab->align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE);
 	file_grp_lab->color((Fl_Color)47);
-	file_group_read = new Xd6CheckButton(110, 90, 70, 20, _("Read")); 
-	file_group_write = new Xd6CheckButton(180, 90, 70, 20, _("Write")); 
-	file_group_exec = new Xd6CheckButton(250, 90, 70, 20, _("Exec")); 
-	file_gid = new Xd6CheckButton(320, 90, 70, 20, _("Set GID")); 
+	file_group_read = new Fl_Check_Button(110, 90, 70, 20, _("Read")); 
+	file_group_write = new Fl_Check_Button(180, 90, 70, 20, _("Write")); 
+	file_group_exec = new Fl_Check_Button(250, 90, 70, 20, _("Exec")); 
+	file_gid = new Fl_Check_Button(320, 90, 70, 20, _("Set GID")); 
 
 	Fl_Box * file_other_lab = new Fl_Box(FL_FLAT_BOX,10, 110, 90, 20, 
 								_("Other"));
 	file_other_lab->align(FL_ALIGN_RIGHT|FL_ALIGN_INSIDE);
 	file_other_lab->color((Fl_Color)47);
-	file_other_read = new Xd6CheckButton(110, 110, 70, 20, _("Read")); 
-	file_other_write = new Xd6CheckButton(180, 110, 70, 20, _("Write")); 
-	file_other_exec = new Xd6CheckButton(250, 110, 70, 20, _("Exec")); 
-	file_sticky = new Xd6CheckButton(320, 110, 70, 20, _("Sticky")); 
+	file_other_read = new Fl_Check_Button(110, 110, 70, 20, _("Read")); 
+	file_other_write = new Fl_Check_Button(180, 110, 70, 20, _("Write")); 
+	file_other_exec = new Fl_Check_Button(250, 110, 70, 20, _("Exec")); 
+	file_sticky = new Fl_Check_Button(320, 110, 70, 20, _("Sticky")); 
 
 	Fl_Box * file_ownership = new Fl_Box(FL_FLAT_BOX, 10, 150, 180, 20, 
 							_("File ownership")); 

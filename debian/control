@@ -1,10 +1,10 @@
-Source: xd640-core
+Source: xd640
 Section: main
 Priority: optional
 Maintainer: Jean-Marc Lienher <oksid@bluewin.ch>
 Standards-Version: 3.1.0
 
-Package: xd640-core
+Package: xd640
 Section: x11
 Architecture: any
 Depends: libfltk-utf8

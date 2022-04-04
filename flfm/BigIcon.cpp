@@ -1,27 +1,42 @@
 /******************************************************************************
- *   "$Id: $"
- *
- *   This file is part of the FLE project. 
+ *   "$Id:  $"
  *
  *                 Copyright (c) 2000  O'ksi'D
  *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *                      All rights reserved.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
+
 
 #include "BigIcon.h"
 #include "callbacks.h"
@@ -78,6 +93,8 @@ Xd6IconWindow *BigIcon::drag_window = NULL;
 #include "xpm/pipe.xpm"
 #include "xpm/socket.xpm"
 #include "xpm/unknown.xpm"
+
+Fl_Widget *BigIcon::drag_widget = NULL;
 
 BigIcon::BigIcon(int X, int Y, int W, int H) : 
 	Fl_Menu_Button(X, Y, W, H)
@@ -179,7 +196,9 @@ void BigIcon::create_drag_window()
 		&drag_window->pix, &drag_window->mask);
 */
 	drag_window->end();
-	drag_window->position(10000, 10000);
+	drag_window->show();
+	drag_window->handle(FL_HIDE);
+	drag_window->position(100, 100);
 }
 
 void reset_selection()
@@ -188,10 +207,11 @@ void reset_selection()
         Fl_Widget*const* a;
         BigIcon *b;
 
-        if (!gui || !gui->icon_can || !gui->icon_can->group) return;
+        if (!gui || !gui->icon_can || 
+		!((IconCanvas*)gui->icon_can)->group) return;
 
-        a = gui->icon_can->group->array();
-        i = gui->icon_can->group->children();
+        a = ((IconCanvas*)gui->icon_can)->group->array();
+        i = ((IconCanvas*)gui->icon_can)->group->children();
 
         while (i > 0) {
                 i--;
@@ -200,7 +220,7 @@ void reset_selection()
                         b->selected = 0;
                 }
         }
-	gui->icon_can->group->redraw();
+	((IconCanvas*)gui->icon_can)->group->redraw();
 }
 
 static Fl_Pixmap *get_pixmap_by_name(const char *name) 
@@ -316,7 +336,8 @@ void BigIcon::set_data(struct file_info *fi)
 		create_menus();
 	}
 	if (!drag_window) {
-		window()->begin();
+	//	window()->begin();
+		window()->end();
 		create_drag_window();
 		((Fl_Group*)parent())->begin();
 	}
@@ -398,10 +419,12 @@ int BigIcon::handle(int e)
 	static int dragging = 0;
 	static char *buffer = NULL;
 	static Window last_window = 0;
+	
+	printf("Big %d\n", e);
 
 	if (e == FL_PUSH) {
 		if (!is_inside()) {
-			gui->icon_can->update_status();
+			((IconCanvas*)gui->icon_can)->update_status();
 			return 0;
 		}
 		if (Fl::event_state() & (FL_BUTTON1 | FL_BUTTON3) &&
@@ -411,7 +434,7 @@ int BigIcon::handle(int e)
 			reset_selection();
 		}
 		selected = 1;
-		gui->icon_can->update_status();
+		((IconCanvas*)gui->icon_can)->update_status();
 		if (menu() && Fl::event_state() & FL_BUTTON3) {
 			Fl::event_clicks(0);
 			popup();
@@ -458,19 +481,23 @@ int BigIcon::handle(int e)
 			drag_window->show();
 			free(buffer);
 			buffer = get_selected_urls();
-			Fl::selection(*this, buffer, strlen(buffer));
+			Fl::copy(buffer, strlen(buffer), 0);
 			if (Fl::event_state() & FL_BUTTON1) {
 				fl_XdndActionCopy = XdndActionCopy;
 			} else {
 				fl_XdndActionCopy = XdndActionAsk;
 			}
+			drag_widget = this;
 			Fl::dnd();
+			drag_widget = NULL;
 			fl_XdndActionCopy = XdndActionCopy;
+			drag_window->handle(FL_HIDE);
 			XUnmapWindow(fl_display, drag_window->win);
-			dragging = 0;
 			reset_selection();
+			dragging = 0;
 			return 1;
 		} else if (dragging) {
+/*
 			if (fl_dnd_target_window != last_window) {
 				Fl::first_window()->cursor((Fl_Cursor)21);	
 				last_window = fl_dnd_target_window;
@@ -489,17 +516,21 @@ int BigIcon::handle(int e)
 						cursor((Fl_Cursor)18);
 				}
 			}
-			drag_window->position(Fl::event_x_root() + 2,
-				Fl::event_y_root() + 2);
+*/
 		}
 		return 0;
 	case FL_RELEASE:
+		return 1;
+	case FL_DND_LEAVE:
+		//Fl::first_window()->cursor((Fl_Cursor)21);
 		return 1;
 	case 0:
 		if (!(Fl::event_state() & (FL_BUTTON1|FL_BUTTON2|FL_BUTTON2))) {
 			return 0;
 		}
 		if (!dragging) return 0;
+		drag_window->position(Fl::event_x_root() + 2,
+				Fl::event_y_root() + 2);
 		if (fl_xevent->type == ClientMessage) {
 			XClientMessageEvent message = fl_xevent->xclient;
 			if (message.message_type == fl_XdndStatus) {

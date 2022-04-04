@@ -1,26 +1,43 @@
-/******************************************************************************* *   $Id: properties.h,v 1.1 2000/08/05 19:11:22 nickasil Exp $
- *
- *   This file is part of the FLE project. 
+/******************************************************************************
+ *   "$Id:  $"
  *
  *                 Copyright (c) 2000  O'ksi'D
  *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *                      All rights reserved.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
  *
- *   Author : Jean-Marc Lienher <nickasil@linuxave.net>
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
+
+
 #ifndef properties_h
 #define properties_h
 #include <FL/Fl.H>
@@ -37,7 +54,7 @@
 #include <stdlib.h>
 #include <FL/Fl_Return_Button.H>
 #include <FL/Fl_Multiline_Output.H>
-#include "xd640/Xd6CheckButton.h"
+#include "FL/Fl_Check_Button.H"
 #include <time.h>
 #include <errno.h>
 #include <sys/stat.h>
@@ -49,7 +66,9 @@
 #include <string.h>
 #include <pwd.h>
 #include <grp.h>
+#ifndef __USE_XOPEN_EXTENDED
 #define __USE_XOPEN_EXTENDED
+#endif
 #include <ftw.h>
 
 class Properties : public Fl_Window {
@@ -87,18 +106,18 @@ public:
 	Fl_Output *nb_files;
 	Fl_Output *total_size;
 
-	Xd6CheckButton *file_user_read;
-	Xd6CheckButton *file_user_write;
-	Xd6CheckButton *file_user_exec;
-	Xd6CheckButton *file_uid;
-	Xd6CheckButton *file_group_read;
-	Xd6CheckButton *file_group_write;
-	Xd6CheckButton *file_group_exec;
-	Xd6CheckButton *file_gid;
-	Xd6CheckButton *file_other_read;
-	Xd6CheckButton *file_other_write;
-	Xd6CheckButton *file_other_exec;
-	Xd6CheckButton *file_sticky;
+	Fl_Check_Button *file_user_read;
+	Fl_Check_Button *file_user_write;
+	Fl_Check_Button *file_user_exec;
+	Fl_Check_Button *file_uid;
+	Fl_Check_Button *file_group_read;
+	Fl_Check_Button *file_group_write;
+	Fl_Check_Button *file_group_exec;
+	Fl_Check_Button *file_gid;
+	Fl_Check_Button *file_other_read;
+	Fl_Check_Button *file_other_write;
+	Fl_Check_Button *file_other_exec;
+	Fl_Check_Button *file_sticky;
 	Fl_Input *file_owner;
 	Fl_Input *file_group;
 

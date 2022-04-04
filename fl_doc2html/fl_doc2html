@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "<html><head></head><body><pre>" > "$2"
+antiword -w 70 -m UTF-8.txt "$1" >> "$2"
+echo "</pre></body></html>" >> "$2"
+
+

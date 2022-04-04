@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-08-04 15:58+0200\n"
+"POT-Creation-Date: 2003-08-25 14:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,32 +14,32 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gui.cpp:88
+#: ../gui.cpp:103
 msgid "File"
 msgstr ""
 
-#: ../gui.cpp:90
+#: ../gui.cpp:105
 msgid "New ..."
 msgstr ""
 
-#: ../gui.cpp:91
+#: ../gui.cpp:106
 msgid "Open ..."
 msgstr ""
 
-#: ../gui.cpp:92
+#: ../gui.cpp:107
 msgid "Save"
 msgstr ""
 
-#: ../gui.cpp:93
+#: ../gui.cpp:108
 msgid "Save as ..."
 msgstr ""
 
-#: ../gui.cpp:95
+#: ../gui.cpp:110
 msgid "Exit"
 msgstr ""
 
 #. FL_MENU_TOGGLE
-#: ../gui.cpp:101
+#: ../gui.cpp:116
 msgid "Edit"
 msgstr ""
 
@@ -49,25 +49,25 @@ msgstr ""
 #. mnu->add(_("Paste"), 0, (Fl_Callback*)cb_paste, 0,
 #. FL_MENU_DIVIDER);
 #.
-#: ../gui.cpp:109
+#: ../gui.cpp:124
 msgid "Find..."
 msgstr ""
 
-#: ../gui.cpp:115
+#: ../gui.cpp:130
 msgid "Help"
 msgstr ""
 
-#: ../gui.cpp:117
+#: ../gui.cpp:132
 msgid "About"
 msgstr ""
 
-#: ../callbacks.cpp:111
+#: ../callbacks.cpp:126
 msgid ""
 "  flnotepad - Copyright (c) 2001 O'ksi'D\n"
-"This application is a GPL free software.\n"
+"This application is an Open Source software.\n"
 "        http://oksid.ch"
 msgstr ""
 
-#: ../callbacks.cpp:119
+#: ../callbacks.cpp:134
 msgid "Not yet Implemented."
 msgstr ""

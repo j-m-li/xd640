@@ -1,0 +1,4 @@
+#!/bin/sh
+
+gnuhtml2latex -s "$1" > "$2"
+

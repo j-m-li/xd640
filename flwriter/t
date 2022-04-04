@@ -1,0 +1,60 @@
+  PID TTY      STAT   TIME COMMAND
+    1 ?        S      0:04 init
+    2 ?        SW     0:00 [migration/0]
+    3 ?        SWN    0:00 [ksoftirqd/0]
+    4 ?        SW<    0:00 [events/0]
+    5 ?        SW     0:00 [khubd]
+    6 ?        SW     0:00 [pdflush]
+    7 ?        SW     0:07 [pdflush]
+    8 ?        SW     0:00 [kswapd0]
+    9 ?        SW<    0:00 [aio/0]
+   10 ?        SW     0:00 [kseriod]
+  119 ?        S      0:00 /sbin/portmap
+  198 ?        S      0:00 /sbin/syslogd
+  201 ?        S      0:00 /sbin/klogd
+  205 ?        S      0:00 /sbin/rpc.statd
+  237 ?        S      0:00 /usr/sbin/inetd
+  240 ?        S      0:00 /usr/sbin/cupsd
+  243 ?        S      0:00 /usr/sbin/nmbd -D
+  251 ?        S      0:00 /usr/sbin/smbd -D
+  279 ?        S      0:00 /usr/sbin/sshd
+  283 ?        S      0:01 /usr/bin/X11/xfs -daemon
+  293 ?        S      0:00 /usr/sbin/atd
+  296 ?        S      0:00 /usr/sbin/cron
+  321 ?        SW     0:00 [scsi_eh_0]
+  326 ?        SW     0:00 [scsi_eh_1]
+  332 tty1     S      0:00 -bash
+  333 tty2     S      0:00 /sbin/getty 38400 tty2
+  334 tty3     S      0:00 /sbin/getty 38400 tty3
+  335 tty4     S      0:00 /sbin/getty 38400 tty4
+  336 tty5     S      0:00 /sbin/getty 38400 tty5
+  337 tty6     S      0:00 /sbin/getty 38400 tty6
+  338 tty1     S      0:00 /bin/sh /usr/bin/X11/startx
+  345 tty1     S      0:00 xinit /usr/X11R6/lib/X11/xinit/xinitrc -- /usr/X11R6/lib/X11/xinit/xserverrc
+  346 ?        S<     2:47 /usr/bin/X11/X -dpi 100 -nolisten tcp
+  349 tty1     S      0:00 x-session-manager
+  374 ?        S      0:00 /usr/bin/ssh-agent x-session-manager
+  377 tty1     S      0:00 flclock -g +1+180
+  378 tty1     S      0:00 xterm -ls -sb -sl 1000 -geometry -0-0 -bg black -fg gray
+  379 tty1     S      0:00 fllauncher
+  380 pts/0    S      0:00 -bash
+  381 tty1     S      0:00 fldesk
+  399 tty1     S      0:00 xterm -ls -sb -sl 1000 -bg black -fg gray
+  400 pts/3    S      0:00 -bash
+  459 pts/3    S      0:19 /usr/lib/mozilla/mozilla-bin
+  469 pts/3    S      0:00 /usr/lib/mozilla/mozilla-bin
+  470 pts/3    S      0:00 /usr/lib/mozilla/mozilla-bin
+  471 pts/3    S      0:00 /usr/lib/mozilla/mozilla-bin
+  473 pts/3    S      0:00 /usr/lib/mozilla/mozilla-bin
+  499 pts/0    S      0:00 vi Xd6HtmlPrint.cpp
+  509 pts/3    S      0:00 /usr/lib/mozilla/mozilla-bin
+  728 tty1     S      0:00 fllauncher
+  729 tty1     S      0:00 xterm -ls -sb -sl 1000 -bg black -fg gray
+  730 pts/1    S      0:00 -bash
+  846 pts/3    S      0:00 kghostview PLRM.pdf
+  848 pts/3    S      0:01 gs -sDEVICE=x11 -dTextAlphaBits=4 -dGraphicsAlphaBits=2 -dMaxBitmap=10000000 -dNOPLATFONTS -dNOPAUSE -dQUIET -dSAFER -
+  851 tty1     S      0:00 fllauncher
+  852 tty1     S      0:00 xterm -ls -sb -sl 1000 -bg black -fg gray
+  853 pts/2    S      0:00 -bash
+  903 pts/2    S      0:00 ./flwriter ../../at.html
+  934 pts/1    R      0:00 ps ax

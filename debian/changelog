@@ -1,3 +1,39 @@
+xd640 (0.3.0-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Sat, 21 Feb 2004 15:22:45 +0100
+
+xd640 (0.1.2-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Thu, 26 Aug 2003 15:22:45 +0100
+
+xd640 (0.1.1-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Thu, 27 Feb 2003 15:22:45 +0100
+
+xd640 (0.1.0-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Mon, 24 Feb 2003 15:22:45 +0100
+
+xd640-core (0.0.14-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Tue, 4 Feb 2003 15:22:45 +0100
+
+xd640-core (0.0.13-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Mon, 9 Dec 2002 15:22:45 +0100
+
 xd640-core (0.0.12-2) frozen unstable; urgency=low
 
   * New upstream

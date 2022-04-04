@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-11-11 18:20+0100\n"
+"POT-Creation-Date: 2004-02-19 12:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,185 +14,192 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gui.cpp:93
+#: ../gui.cpp:114
 msgid "File"
 msgstr ""
 
-#: ../gui.cpp:95
+#: ../gui.cpp:116
 msgid "New ..."
 msgstr ""
 
-#: ../gui.cpp:96
+#: ../gui.cpp:117
 msgid "Open ..."
 msgstr ""
 
-#: ../gui.cpp:98
-msgid "Import RTF"
-msgstr ""
-
-#: ../gui.cpp:99
+#. mnu->add(_("Import RTF"), 0, (Fl_Callback*)cb_import, 0, 0);
+#: ../gui.cpp:120
 msgid "Save"
 msgstr ""
 
-#: ../gui.cpp:100
+#: ../gui.cpp:121
 msgid "Save as ..."
 msgstr ""
 
-#: ../gui.cpp:101
+#: ../gui.cpp:122
 msgid "Export RTF"
 msgstr ""
 
-#: ../gui.cpp:103
+#: ../gui.cpp:124
 msgid "Print ..."
 msgstr ""
 
-#: ../gui.cpp:105
+#: ../gui.cpp:126
 msgid "Preferences"
 msgstr ""
 
-#: ../gui.cpp:108
+#: ../gui.cpp:129
 msgid "Page Setup"
 msgstr ""
 
-#: ../gui.cpp:110
+#: ../gui.cpp:131
 msgid "Font Setup"
 msgstr ""
 
-#: ../gui.cpp:115
+#: ../gui.cpp:136
 msgid "Quit"
 msgstr ""
 
-#: ../gui.cpp:120
+#: ../gui.cpp:141
 msgid "Edit"
 msgstr ""
 
-#: ../gui.cpp:122
+#: ../gui.cpp:143
 msgid "Cut"
 msgstr ""
 
-#: ../gui.cpp:123
+#: ../gui.cpp:144
 msgid "Copy"
 msgstr ""
 
-#: ../gui.cpp:124
+#: ../gui.cpp:145
 msgid "Paste"
 msgstr ""
 
-#: ../gui.cpp:126
+#: ../gui.cpp:147
 msgid "Find..."
 msgstr ""
 
-#: ../gui.cpp:128
+#: ../gui.cpp:149
 msgid "Zoom"
 msgstr ""
 
-#: ../gui.cpp:131
+#: ../gui.cpp:152
 #, c-format
 msgid "100%"
 msgstr ""
 
-#: ../gui.cpp:134
+#: ../gui.cpp:155
 #, c-format
 msgid "150%"
 msgstr ""
 
-#: ../gui.cpp:136
+#: ../gui.cpp:157
 #, c-format
 msgid "200%"
 msgstr ""
 
-#: ../gui.cpp:138
+#: ../gui.cpp:159
 #, c-format
 msgid "300%"
 msgstr ""
 
-#: ../gui.cpp:145
+#: ../gui.cpp:166
 msgid "Tools"
 msgstr ""
 
-#: ../gui.cpp:147
+#: ../gui.cpp:168
 msgid "Tabs"
 msgstr ""
 
-#: ../gui.cpp:149
+#: ../gui.cpp:170
 msgid "Insert HTML File"
 msgstr ""
 
-#: ../gui.cpp:151
+#: ../gui.cpp:172
 msgid "Insert Picture"
 msgstr ""
 
-#: ../gui.cpp:153
-msgid "Mailing"
-msgstr ""
-
-#: ../gui.cpp:155
-msgid "Insert Mailing Tag"
-msgstr ""
-
-#: ../gui.cpp:157
+#.
+#. mnu->add(_("Mailing"), 0,
+#. (Fl_Callback*)cb_mailing, 0, 0);
+#. mnu->add(_("Insert Mailing Tag"), 0,
+#. (Fl_Callback*)cb_tag, 0, 0);
+#.
+#: ../gui.cpp:180
 msgid "Insert page break"
 msgstr ""
 
-#: ../gui.cpp:159
-msgid "Spell checker"
+#: ../gui.cpp:182 ../gui.cpp:350
+msgid "Spelling"
 msgstr ""
 
-#: ../gui.cpp:161
+#: ../gui.cpp:184
+msgid "Spell"
+msgstr ""
+
+#: ../gui.cpp:186
+msgid "Set Language"
+msgstr ""
+
+#: ../gui.cpp:190
 msgid "Virtual keyboard"
 msgstr ""
 
-#: ../gui.cpp:166
+#: ../gui.cpp:195
 msgid "Help"
 msgstr ""
 
-#: ../gui.cpp:168
+#: ../gui.cpp:197
 msgid "About"
 msgstr ""
 
-#: ../gui.cpp:169
+#: ../gui.cpp:198
 msgid "Online Help"
 msgstr ""
 
-#: ../gui.cpp:250
+#: ../gui.cpp:280
 msgid "Cannot open file..."
 msgstr ""
 
-#: ../gui.cpp:272 ../gui.cpp:307
+#: ../gui.cpp:302 ../gui.cpp:368
 msgid "Delete"
 msgstr ""
 
-#: ../gui.cpp:273
+#: ../gui.cpp:303
 msgid "Export"
 msgstr ""
 
-#: ../gui.cpp:274
+#: ../gui.cpp:304
 msgid "Table Menu"
 msgstr ""
 
-#: ../gui.cpp:277
+#: ../gui.cpp:306
 msgid "Really delete table ?"
 msgstr ""
 
-#: ../gui.cpp:308
+#: ../gui.cpp:351
+msgid "Text Menu"
+msgstr ""
+
+#: ../gui.cpp:369
 msgid "Image Menu"
 msgstr ""
 
-#: ../callbacks.cpp:45
+#: ../callbacks.cpp:60
 msgid "File modified. Save it ?"
 msgstr ""
 
-#: ../callbacks.cpp:127
+#: ../callbacks.cpp:143
 msgid "You must set Zoom to 100% before printing."
 msgstr ""
 
-#: ../callbacks.cpp:238
+#: ../callbacks.cpp:261
 msgid "Tag Value :"
 msgstr ""
 
-#: ../callbacks.cpp:288
+#: ../callbacks.cpp:361
 msgid ""
-"  flwriter - Copyright (c) 2000-2002 O'ksi'D\n"
-"This application is a GPL free software.\n"
-"        http://oksid.ch"
+"  flwriter - Copyright (c) 2000-2003 O'ksi'D\n"
+"This application is an Open Source software.\n"
+"             http://www.oksid.ch"
 msgstr ""

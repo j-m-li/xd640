@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-11-12 12:44+0100\n"
+"POT-Creation-Date: 2003-08-25 14:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,39 +14,39 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../fldesk.cpp:66 ../fldesk.cpp:71
+#: ../fldesk.cpp:81 ../fldesk.cpp:86
 #, c-format
 msgid "Link_[%d]"
 msgstr ""
 
-#: ../icon.cpp:250
+#: ../icon.cpp:278
 msgid ">Unknown<"
 msgstr ""
 
-#: ../icon.cpp:674
+#: ../icon.cpp:700
 msgid "Mount"
 msgstr ""
 
-#: ../icon.cpp:675
+#: ../icon.cpp:701
 msgid "Unmount"
 msgstr ""
 
-#: ../icon.cpp:676 ../icon.cpp:684 ../icon.cpp:687
+#: ../icon.cpp:702 ../icon.cpp:710 ../icon.cpp:713
 msgid "Open"
 msgstr ""
 
-#: ../icon.cpp:677 ../icon.cpp:681 ../icon.cpp:688
+#: ../icon.cpp:703 ../icon.cpp:707 ../icon.cpp:714
 msgid "Edit icon"
 msgstr ""
 
-#: ../icon.cpp:678 ../icon.cpp:682 ../icon.cpp:689
+#: ../icon.cpp:704 ../icon.cpp:708 ../icon.cpp:715
 msgid "Remove icon"
 msgstr ""
 
-#: ../icon.cpp:680
+#: ../icon.cpp:706
 msgid "Execute"
 msgstr ""
 
-#: ../icon.cpp:685
+#: ../icon.cpp:711
 msgid "Empty trash"
 msgstr ""

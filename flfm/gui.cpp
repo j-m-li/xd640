@@ -1,30 +1,46 @@
 /******************************************************************************
- *   "$Id: gui.cpp,v 1.1 2000/08/05 19:11:21 nickasil Exp $"
- *
- *   This file is part of the FLE project. 
+ *   "$Id:  $"
  *
  *                 Copyright (c) 2000  O'ksi'D
  *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *                      All rights reserved.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
 
+
 #include "gui.h"
 #include "callbacks.h"
+#include "BigIcon.h"
 #include <libintl.h>
 
 #define _(String) gettext((String))
@@ -33,6 +49,7 @@ int GUI::dnd_action = 0;
 extern Fl_Widget *fl_selection_requestor;
 extern Atom fl_XdndSelection;
 extern Window fl_dnd_target_window;
+extern int (*fl_local_grab)(int);
 
 GUI::GUI(int X, int Y, int W, int H) : Fl_Window(W, H)
 {
@@ -54,6 +71,7 @@ GUI::GUI(int X, int Y, int W, int H) : Fl_Window(W, H)
 	StatesValues.sort_name = 1;
 	StatesValues.view_icon = 1;
 	StatesValues.view_detail = 0;
+	StatesValues.view_tree = 0;
 	StatesValues.show_hide = 0;
 	StatesValues.url = 0;
 	StatesValues.newurl = 0;
@@ -98,7 +116,11 @@ void GUI::create_layout()
 
 	loc_inp = new Location(0, 25, 240 + dw, 27);
 
-	icon_can = new IconCanvas(0, 52, 241 + dw, 119 + dh);
+	if (StatesValues.view_tree) {
+		icon_can = new IconTree(0, 52, 241 + dw, 119 + dh);
+	} else {
+		icon_can = new IconCanvas(0, 52, 241 + dw, 119 + dh);
+	}
 	icon_can->end();
 	resizable(icon_can);
 
@@ -120,8 +142,6 @@ void GUI::create_menu()
 	mnu->add(_("Rescan Directory"), 0, (Fl_Callback*)cb_rescan, 
 		0, 0);
 	mnu->add(_("New Directory ..."), 0, (Fl_Callback*)cb_newdir, 
-		0, 0);
-	mnu->add(_("Preferences"), FL_ALT+'p', (Fl_Callback*)cb_pref, 
 		0, FL_MENU_DIVIDER);
 	l = mnu->add(_("Exit"), FL_ALT+'x', (Fl_Callback*)cb_exit, 
 		0, 0);
@@ -141,11 +161,14 @@ void GUI::create_menu()
 	l = mnu->add(_("Icon View"), 0, (Fl_Callback*)cb_sort, 
 		(void *)4, FL_MENU_RADIO);
 	if (StatesValues.view_icon) mnu[l].set();
+	l = mnu->add(_("Tree View"), 0, (Fl_Callback*)cb_sort, 
+		(void *)5, FL_MENU_RADIO);
+	if (StatesValues.view_tree) mnu[l].set();
 	l = mnu->add(_("Detailed View"), 0, (Fl_Callback*)cb_sort, 
-		(void *)5, FL_MENU_RADIO|FL_MENU_DIVIDER);
+		(void *)6, FL_MENU_RADIO|FL_MENU_DIVIDER);
 	if (StatesValues.view_detail) mnu[l].set();
 	l = mnu->add(_("Show Hidden Files"), 0, (Fl_Callback*)cb_sort, 
-		(void *)6, FL_MENU_TOGGLE);
+		(void *)7, FL_MENU_TOGGLE);
 	if (StatesValues.show_hide) mnu[l].set();
 	mnu[i].flags = FL_SUBMENU;
 	mnu[l + 2].text = NULL;
@@ -180,6 +203,7 @@ int GUI::handle(int e)
 {
 	static int beenhere = 0;
 	int a = DND_COPY;
+	int (*og)(int);
 	int ret;
 	if (!beenhere) {
 		// see setup_crap() in Fl_cutpaste.cxx (I've wasted 4 hours 
@@ -187,23 +211,59 @@ int GUI::handle(int e)
 		beenhere = 1;
 		Fl::selection(*this, " ", 1);
 	}
+	printf( "e %d\n", e);
 	switch(e) {
 	case FL_DND_ENTER:
 		dnd_action = 0;
 		dnd_target = NULL;
+		Fl::focus_ = this;
 		return 1;
 	case FL_DND_DRAG:
-		if (fl_dnd_target_window != fl_xid(this)) {
-		  	fl_dnd_action = fl_xevent->xclient.data.l[4];
-		} else {
+
+//		if (fl_dnd_target_window != fl_xid(this)) {
+//		  	fl_dnd_action = fl_xevent->xclient.data.l[4];
+//		} else {
 			if (Fl::event_state() & FL_BUTTON1) {
 		  		fl_dnd_action = XdndActionCopy;
 			} else {
 				fl_dnd_action = XdndActionAsk;
 			}
+//		}
+		if (BigIcon::drag_window) {
+			BigIcon::drag_window->position(Fl::event_x_root() + 2,
+                                Fl::event_y_root() + 2);
 		}
+
 		Fl::focus_ = this;
 		ret = dnd_move();
+		if (StatesValues.view_tree) {
+			ret = 0;
+			((IconTree*)icon_can)->handle(e);
+			int n = ((IconTree*)icon_can)->get_selection();
+			if (n >= 0 && (((IconTree*)icon_can)->item_flags(n) & 
+				IconTree::FLAG_FOLDER) && 
+				n != ((IconTree*)icon_can)->dragging) 
+			{
+				ret = 1;
+			}	
+		}
+		fl_local_grab = 0;
+		Fl::belowmouse(this);
+		fl_local_grab = og;
+			if (Fl::belowmouse_ == BigIcon::drag_widget ||
+				(Fl::belowmouse_ && BigIcon::drag_widget ==
+				Fl::belowmouse_->parent())) 
+			{
+				 Fl::first_window()->
+					cursor((Fl_Cursor)21);
+			} else if (fl_XdndActionCopy == XdndActionAsk) {
+				Fl::first_window()->
+					cursor((Fl_Cursor)47);
+			} else {
+				Fl::first_window()->
+					cursor((Fl_Cursor)18);
+			}
+		Fl::focus_ = this;
 		Fl::belowmouse_ = this;
 		return ret;
 	case FL_DND_LEAVE:
@@ -221,7 +281,17 @@ int GUI::handle(int e)
 		} else if (fl_dnd_action == XdndActionLink) {
 			a = DND_LINK;
 		}
-		cursor(FL_CURSOR_DEFAULT);
+		//cursor(FL_CURSOR_DEFAULT);
+		if (StatesValues.view_tree) {
+			ret = 0;
+			((IconTree*)icon_can)->handle(e);
+			int n = ((IconTree*)icon_can)->get_selection();
+			if (n >= 0 && (((IconTree*)icon_can)->item_flags(n) & 
+				IconTree::FLAG_FOLDER)) 
+			{
+				ret = 1;
+			}
+		}	
 		dnd_release(a);
 		Fl::focus_ = this;
 		Fl::belowmouse_ = this;
@@ -232,8 +302,14 @@ int GUI::handle(int e)
 			Fl::belowmouse_ = dnd_target;
 			cb_move_link_copy(NULL, (void*)dnd_action);
 			dnd_target = NULL;
+			if (StatesValues.view_tree) {
+				((IconTree*)icon_can)->handle(e);
+			}
 			return 1;
 		}
+		break;
+	case FL_HIDE:
+		exit(0);
 		break;
 	default:
 		break;
@@ -253,6 +329,7 @@ int GUI::dnd_move()
 	Fl_Window::handle(FL_ENTER);
 	if (icon_can->contains(Fl::belowmouse()) ||
 		loc_inp == Fl::belowmouse() ||
+		(StatesValues.view_tree && (Fl::belowmouse() == icon_can)) ||
 		loc_inp->contains(Fl::belowmouse()))
 	{
 		return 1;
@@ -269,7 +346,9 @@ int GUI::dnd_release(int a)
 {
 	dnd_action = a;
 	if (a == DND_ASK) {
-		if (icon_can->contains(Fl::belowmouse())) {
+		if (icon_can->contains(Fl::belowmouse()) ||
+		   (StatesValues.view_tree && (Fl::belowmouse() == icon_can))) 
+		{
 			dnd_action = 0;
 			dnd_menu->resize(Fl::event_x(), Fl::event_y(), 0, 0);
 			Fl::check();

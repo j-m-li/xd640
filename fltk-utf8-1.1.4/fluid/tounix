@@ -1,0 +1,24 @@
+#!/bin/sh -f
+#
+# shell script convert the dos style crlf on each line to just lf
+# run this script before tring to compile under unix/linux
+#
+# execute by:
+#    chmod 755 TOUNIX ; ./TOUNIX
+# or
+#    sh TOUNIX
+#
+
+list="$*"
+echo $list
+
+for f in $list; do
+   echo $f
+   /bin/rm -f nocr.tmp
+   tr -d \\r < $f > nocr.tmp ; cp nocr.tmp $f
+done
+/bin/rm -f nocr.tmp
+
+#
+# The End!
+#

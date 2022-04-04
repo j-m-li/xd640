@@ -1,0 +1,259 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2003-08-25 14:54+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../copy.cpp:68
+msgid "Copying :"
+msgstr "コピー中 :"
+
+#. *****************************************************************
+#: ../copy.cpp:76 ../link.cpp:74 ../main.cpp:245 ../move.cpp:65
+#: ../properties.cpp:191 ../properties.cpp:286 ../unlink.cpp:73
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: ../copy.cpp:151
+#, c-format
+msgid ""
+"file \"%s\" already exists,\n"
+"do you want to overwrite it ?"
+msgstr ""
+"ファイル \"%s\" は既に存在します。＼n"
+"上書きしますか?"
+
+#: ../copy.cpp:249 ../copy.cpp:300
+#, c-format
+msgid ""
+"Cannot copy non-regular file \n"
+"\"%s\"."
+msgstr ""
+"通常でないファイルはコピーできません。＼n"
+"\"%s\"."
+
+#: ../link.cpp:98
+#, c-format
+msgid ""
+"Do you really want to LINK\n"
+"\"%s\" to \n"
+"\"%s\" ?"
+msgstr ""
+"\"%s\" から＼n"
+"\"%s\" へリンクしますか?"
+
+#: ../main.cpp:61
+msgid ""
+"Usage : flfile [OPTION] [TARGET]\n"
+"\n"
+"  --exec\t\texecute TARGET url\n"
+"  --delete\t\tdelete urls passed to the standard input\n"
+"  --copy\t\tcopy urls passed to the standard \n"
+"\t\t\t \tinput to TARGET directory url\n"
+"  --move\t\tmove urls passed to the standard\n"
+" \t\t\t \tinput to TARGET directory url\n"
+"  --link\t\tsymlink urls passed to the standard\n"
+" \t\t\t \tinput to TARGET directory url\n"
+"  --properties\t\tdisplay properties of urls passed\n"
+"\t\t\t \tto the standard input\n"
+"  --help\t\tdisplay this help and exit\n"
+msgstr ""
+
+#: ../main.cpp:242
+msgid "No"
+msgstr "いいえ"
+
+#: ../main.cpp:243 ../unlink.cpp:91
+msgid "Yes"
+msgstr "はい"
+
+#: ../main.cpp:244 ../properties.cpp:288
+msgid "OK"
+msgstr "OK"
+
+#: ../main.cpp:249
+msgid "flfile cannot run as \"root\" !\n"
+msgstr "flfile は \"root\" で実行することはできません!\n"
+
+#: ../main.cpp:255
+msgid "flfile cannot run with privileges !\n"
+msgstr "flfile はこの権限では実行できません!\n"
+
+#: ../move.cpp:85
+msgid ""
+"Destination file exists.\n"
+"Please, delete it before."
+msgstr ""
+"移動先にファイルが存在します。＼n"
+"削除してから行ってください。"
+
+#: ../move.cpp:93
+msgid ""
+"Cannot move files between diffrent filesystems.\n"
+"Please use copy and delete."
+msgstr ""
+"個となるファイルシステム間でファイルの移動はできません。＼n"
+"コピーおよび削除を行ってください。"
+
+#: ../properties.cpp:78
+#, c-format
+msgid "%ld Bytes"
+msgstr "%ld バイト"
+
+#: ../properties.cpp:195
+msgid "Nb selected files:"
+msgstr "選択されているファイルはありません"
+
+#: ../properties.cpp:197
+#, c-format
+msgid "%d files"
+msgstr "%d 個のファイル"
+
+#: ../properties.cpp:201
+msgid "Total size:"
+msgstr "全体のサイズ"
+
+#. *****************************************************************
+#: ../properties.cpp:212
+msgid "Statistics"
+msgstr "統計"
+
+#: ../properties.cpp:213
+msgid "Full Name:"
+msgstr "完全な名称:"
+
+#: ../properties.cpp:215
+msgid "File Name:"
+msgstr "ファイル名:"
+
+#: ../properties.cpp:217
+msgid "File Type:"
+msgstr "ファイルタイプ:"
+
+#: ../properties.cpp:219
+msgid "File Size:"
+msgstr "ファイルサイズ:"
+
+#: ../properties.cpp:223
+msgid "File Created on:"
+msgstr "ファイル作成:"
+
+#: ../properties.cpp:226
+msgid "File Modified on:"
+msgstr "ファイル修正:"
+
+#: ../properties.cpp:229
+msgid "File Accessed on:"
+msgstr "ファイル参照:"
+
+#: ../properties.cpp:233
+msgid "Content:"
+msgstr "コンテンツ:"
+
+#. *****************************************************************
+#: ../properties.cpp:240
+msgid "Permissions"
+msgstr "権限"
+
+#: ../properties.cpp:243
+msgid "File Permissions"
+msgstr "ファイル権限"
+
+#: ../properties.cpp:248
+msgid "User"
+msgstr "ユーザ"
+
+#: ../properties.cpp:251 ../properties.cpp:260 ../properties.cpp:269
+msgid "Read"
+msgstr "読み込み"
+
+#: ../properties.cpp:252 ../properties.cpp:261 ../properties.cpp:270
+msgid "Write"
+msgstr "書き込み"
+
+#: ../properties.cpp:253 ../properties.cpp:262 ../properties.cpp:271
+msgid "Exec"
+msgstr "実行"
+
+#: ../properties.cpp:254
+msgid "Set UID"
+msgstr "UIDを設定"
+
+#: ../properties.cpp:257 ../properties.cpp:279
+msgid "Group"
+msgstr "グループ"
+
+#: ../properties.cpp:263
+msgid "Set GID"
+msgstr "GIDを設定"
+
+#: ../properties.cpp:266
+msgid "Other"
+msgstr "その他"
+
+#: ../properties.cpp:272
+msgid "Sticky"
+msgstr "保守的"
+
+#: ../properties.cpp:275
+msgid "File ownership"
+msgstr "ファイル所有"
+
+#: ../properties.cpp:278
+msgid "Owner"
+msgstr "オーナー"
+
+#: ../properties.cpp:343
+#, c-format
+msgid "Do you really want to change permissions on \"%s\"?"
+msgstr "\"%s\" のパーミッションを修正しますか?"
+
+#: ../properties.cpp:358
+#, c-format
+msgid "Do you really want to change group from \"%s\" to \"%s\"?"
+msgstr "\"%s\" から \"%s\" へグループを修正しますか?"
+
+#: ../properties.cpp:382
+#, c-format
+msgid "Do you really want to change owner from \"%s\" to \"%s\"?"
+msgstr "\"%s\" から \"%s\" へオーナーを修正しますか?"
+
+#: ../properties.cpp:406
+#, c-format
+msgid "Do you really want to rename \"%s\" to \"%s\"?"
+msgstr "\"%s\" から \"%s\" へリネームしますか?"
+
+#: ../unlink.cpp:65
+msgid "Deleting :"
+msgstr "削除中 :"
+
+#: ../unlink.cpp:89
+#, c-format
+msgid ""
+"Do you really want to DELETE\n"
+"\"%s\" ?"
+msgstr ""
+"\"%s\"\n"
+"を削除しますか?"
+
+#: ../unlink.cpp:90 ../unlink.cpp:108 ../unlink.cpp:115
+msgid "Abort"
+msgstr "中断"
+
+#: ../unlink.cpp:91
+msgid "Yes to all"
+msgstr "すべてはい"
+
+#: ../unlink.cpp:108 ../unlink.cpp:116
+msgid "Continue"
+msgstr "続ける"

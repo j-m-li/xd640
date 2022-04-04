@@ -1,0 +1,205 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2004-02-19 12:26+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../gui.cpp:114
+msgid "File"
+msgstr ""
+
+#: ../gui.cpp:116
+msgid "New ..."
+msgstr ""
+
+#: ../gui.cpp:117
+msgid "Open ..."
+msgstr ""
+
+#. mnu->add(_("Import RTF"), 0, (Fl_Callback*)cb_import, 0, 0);
+#: ../gui.cpp:120
+msgid "Save"
+msgstr ""
+
+#: ../gui.cpp:121
+msgid "Save as ..."
+msgstr ""
+
+#: ../gui.cpp:122
+msgid "Export RTF"
+msgstr ""
+
+#: ../gui.cpp:124
+msgid "Print ..."
+msgstr ""
+
+#: ../gui.cpp:126
+msgid "Preferences"
+msgstr ""
+
+#: ../gui.cpp:129
+msgid "Page Setup"
+msgstr ""
+
+#: ../gui.cpp:131
+msgid "Font Setup"
+msgstr ""
+
+#: ../gui.cpp:136
+msgid "Quit"
+msgstr ""
+
+#: ../gui.cpp:141
+msgid "Edit"
+msgstr ""
+
+#: ../gui.cpp:143
+msgid "Cut"
+msgstr ""
+
+#: ../gui.cpp:144
+msgid "Copy"
+msgstr ""
+
+#: ../gui.cpp:145
+msgid "Paste"
+msgstr ""
+
+#: ../gui.cpp:147
+msgid "Find..."
+msgstr ""
+
+#: ../gui.cpp:149
+msgid "Zoom"
+msgstr ""
+
+#: ../gui.cpp:152
+#, c-format
+msgid "100%"
+msgstr ""
+
+#: ../gui.cpp:155
+#, c-format
+msgid "150%"
+msgstr ""
+
+#: ../gui.cpp:157
+#, c-format
+msgid "200%"
+msgstr ""
+
+#: ../gui.cpp:159
+#, c-format
+msgid "300%"
+msgstr ""
+
+#: ../gui.cpp:166
+msgid "Tools"
+msgstr ""
+
+#: ../gui.cpp:168
+msgid "Tabs"
+msgstr ""
+
+#: ../gui.cpp:170
+msgid "Insert HTML File"
+msgstr ""
+
+#: ../gui.cpp:172
+msgid "Insert Picture"
+msgstr ""
+
+#.
+#. mnu->add(_("Mailing"), 0,
+#. (Fl_Callback*)cb_mailing, 0, 0);
+#. mnu->add(_("Insert Mailing Tag"), 0,
+#. (Fl_Callback*)cb_tag, 0, 0);
+#.
+#: ../gui.cpp:180
+msgid "Insert page break"
+msgstr ""
+
+#: ../gui.cpp:182 ../gui.cpp:350
+msgid "Spelling"
+msgstr ""
+
+#: ../gui.cpp:184
+msgid "Spell"
+msgstr ""
+
+#: ../gui.cpp:186
+msgid "Set Language"
+msgstr ""
+
+#: ../gui.cpp:190
+msgid "Virtual keyboard"
+msgstr ""
+
+#: ../gui.cpp:195
+msgid "Help"
+msgstr "HelpMe"
+
+#: ../gui.cpp:197
+msgid "About"
+msgstr ""
+
+#: ../gui.cpp:198
+msgid "Online Help"
+msgstr ""
+
+#: ../gui.cpp:280
+msgid "Cannot open file..."
+msgstr ""
+
+#: ../gui.cpp:302 ../gui.cpp:368
+msgid "Delete"
+msgstr ""
+
+#: ../gui.cpp:303
+msgid "Export"
+msgstr ""
+
+#: ../gui.cpp:304
+msgid "Table Menu"
+msgstr ""
+
+#: ../gui.cpp:306
+msgid "Really delete table ?"
+msgstr ""
+
+#: ../gui.cpp:351
+msgid "Text Menu"
+msgstr ""
+
+#: ../gui.cpp:369
+msgid "Image Menu"
+msgstr ""
+
+#: ../callbacks.cpp:60
+msgid "File modified. Save it ?"
+msgstr ""
+
+#: ../callbacks.cpp:143
+msgid "You must set Zoom to 100% before printing."
+msgstr ""
+
+#: ../callbacks.cpp:261
+msgid "Tag Value :"
+msgstr ""
+
+#: ../callbacks.cpp:361
+msgid ""
+"  flwriter - Copyright (c) 2000-2003 O'ksi'D\n"
+"This application is an Open Source software.\n"
+"             http://www.oksid.ch"
+msgstr ""

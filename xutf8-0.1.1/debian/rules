@@ -1,0 +1,101 @@
+#!/usr/bin/make -f
+# -*- makefile -*- made with the aid of dh_make, by Craig Small
+# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
+# This version is for a hypothetical package that builds an
+# architecture-dependant package, as well as an architecture-independant
+# package.
+
+# Uncomment this to turn on verbose mode. 
+#export DH_VERBOSE=1
+
+CONFIGURE_FLAGS := --prefix=/usr --sysconfdir=/etc --enable-debug --mandir=/usr/share/man --enable-shared
+
+LIBXUTF         := libxutf8
+LIBXUTF_DEV     := libxutf8-dev
+SHARED_LIB      := libXutf8.so.0
+SONAME_LIB      := libXutf8.so.0.0.0
+STATIC_LIB	:= libXutf8.a
+
+LIBXUTF_TMP     := $(shell pwd)/debian/tmp
+LIBXUTF_DEV_TMP := $(shell pwd)/debian/$(LIBXUTF_DEV)
+
+BINDIR          := usr/bin
+DOCDIR          := usr/share/doc
+INCDIR          := usr/include
+LIBDIR          := usr/lib
+MANDIR          := usr/share/man
+
+INSTALL_R_FILE  := install -p -m 644 -o root -g root
+INSTALL_X_FILE  := install -p -m 755 -o root -g root
+INSTALL_DIR     := install -p -m 755 -o root -g root -d
+
+build: build-stamp
+build-stamp: configure
+	dh_testdir
+	./configure $(CONFIGURE_FLAGS)
+	$(MAKE)
+	touch $@
+
+configure: configure.in
+	autoconf
+
+clean:
+	dh_testdir
+	test ! -d $(LIBXUTF_TMP) || test -O $(LIBXUTF_TMP) || dh_testroot
+
+	-$(MAKE) distclean
+	rm -f *-stamp libXutf8*  config.h config.status config.cache
+	dh_clean
+
+# Build architecture-independent files here.
+binary-indep: 
+
+binary-arch: build
+#	dh_testversion
+	dh_testdir -a
+	dh_testroot -a
+	dh_clean -a -k
+
+	$(INSTALL_DIR)      $(LIBXUTF_TMP)/$(LIBDIR)
+	$(INSTALL_DIR)      $(LIBXUTF_TMP)/$(DOCDIR)/$(LIBXUTF)
+	$(INSTALL_R_FILE)   .libs/$(SHARED_LIB).0.0 $(LIBXUTF_TMP)/$(LIBDIR)
+	ln -ns	            $(SHARED_LIB).0.0 $(LIBXUTF_TMP)/$(LIBDIR)/$(SHARED_LIB)
+	$(INSTALL_R_FILE)   debian/copyright $(LIBXUTF_TMP)/$(DOCDIR)/$(LIBXUTF)/copyright
+	$(INSTALL_R_FILE)   debian/changelog $(LIBXUTF_TMP)/$(DOCDIR)/$(LIBXUTF)/changelog.Debian
+
+	$(INSTALL_DIR)      $(LIBXUTF_DEV_TMP)/$(LIBDIR)
+	$(INSTALL_DIR)      $(LIBXUTF_DEV_TMP)/$(BINDIR)
+	$(INSTALL_DIR)      $(LIBXUTF_DEV_TMP)/$(INCDIR)/libXutf8
+	$(INSTALL_DIR)      $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF)
+
+	ln -nsf $(LIBXUTF)  $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF_DEV)
+	cp -r documentation $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF)/documentation
+	chown -R root.root  $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF)/documentation
+	chmod    644        $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF)/documentation/*
+	$(INSTALL_DIR) 	    $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF)/examples
+	cp  test.c          $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF)/examples
+	chown -R root.root  $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF)/examples
+	chmod    644        $(LIBXUTF_DEV_TMP)/$(DOCDIR)/$(LIBXUTF)/examples/*
+
+	$(INSTALL_R_FILE)   .libs/$(STATIC_LIB) $(LIBXUTF_DEV_TMP)/$(LIBDIR)
+	ln -nsf             $(SHARED_LIB).0.0 $(LIBXUTF_DEV_TMP)/$(LIBDIR)/libXutf8.so
+	-cp -r *.h $(LIBXUTF_DEV_TMP)/$(INCDIR)/libXutf8/
+	chown -R root.root  $(LIBXUTF_DEV_TMP)/$(INCDIR)
+	chmod    644        $(LIBXUTF_DEV_TMP)/$(INCDIR)/libXutf8/*
+	chmod    755        $(LIBXUTF_DEV_TMP)/$(INCDIR)
+	chmod    755        $(LIBXUTF_DEV_TMP)/$(INCDIR)/libXutf8
+
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_installdeb -a
+	LD_LIBRARY_PATH=$(LIBXUTF_TMP)/$(LIBDIR) dh_shlibdeps -a
+	dh_gencontrol -u-isp
+	dh_md5sums -a
+	dh_builddeb -a
+
+source diff:
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary

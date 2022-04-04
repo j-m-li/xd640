@@ -1,0 +1,199 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0102 
+i18n_type 1 
+i18n_include <libintl.h> 
+i18n_function gettext 
+header_name {.h} 
+code_name {.cpp}
+Function {make_window()} {} {
+  Fl_Window {} {
+    label fladder open
+    xywh {335 207 225 205} visible
+  } {
+    Fl_Menu_Bar {} {open
+      xywh {0 0 230 20}
+    } {
+      submenu {} {
+        label Edit open
+        xywh {0 0 100 20}
+      } {
+        menuitem {} {
+          label Copy
+          xywh {0 0 100 20} shortcut 0x40063
+        }
+        menuitem {} {
+          label Paste
+          xywh {0 0 100 20} shortcut 0x40076
+        }
+      }
+      submenu {} {
+        label Display open
+        xywh {0 0 100 20}
+      } {
+        menuitem {} {
+          label {Group numbers}
+          callback cb_group
+          xywh {0 0 100 20} type Toggle
+        }
+      }
+      submenu {} {
+        label {?} open
+        xywh {0 0 100 20}
+      } {
+        menuitem {About...} {
+          label {About...} selected
+          xywh {0 0 100 20}
+        }
+      }
+    }
+    Fl_Button {} {
+      label DEL
+      user_data 1
+      xywh {50 55 65 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 4 labelcolor 3
+    }
+    Fl_Button {} {
+      label CE
+      user_data 2
+      callback cb_clear
+      xywh {120 55 50 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 4 labelcolor 3
+    }
+    Fl_Button {} {
+      label 7
+      user_data 7
+      callback cb_number
+      xywh {50 85 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3 align 32
+    }
+    Fl_Button {} {
+      label 8
+      user_data 8
+      xywh {85 85 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label 9
+      user_data 9
+      xywh {120 85 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label {/}
+      user_data 1
+      xywh {155 85 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 1 labelcolor 3
+    }
+    Fl_Button {} {
+      label sqrt
+      xywh {190 85 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 1 labelcolor 3
+    }
+    Fl_Button {} {
+      label MC
+      user_data 1
+      callback cb_memory
+      xywh {5 85 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 4 labelcolor 3
+    }
+    Fl_Button {} {
+      label C
+      user_data 3
+      callback cb_clear
+      xywh {175 55 45 25} box RSHADOW_BOX color 4 labelcolor 3
+    }
+    Fl_Button {} {
+      label MR
+      user_data 2
+      callback cb_memory
+      xywh {5 115 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 4 labelcolor 3
+    }
+    Fl_Button {} {
+      label 4
+      user_data 4
+      callback cb_number
+      xywh {50 115 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label 5
+      user_data 5
+      callback cb_number
+      xywh {85 115 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label 6
+      user_data 6
+      callback cb_number
+      xywh {120 115 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label {*}
+      xywh {155 115 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 1 labelcolor 3
+    }
+    Fl_Button {} {
+      label {%}
+      xywh {190 115 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 1 labelcolor 3
+    }
+    Fl_Button {} {
+      label MS
+      user_data 3
+      callback cb_memory
+      xywh {5 145 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 4 labelcolor 3
+    }
+    Fl_Button {} {
+      label 1
+      user_data 1
+      callback cb_number
+      xywh {50 145 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label 2
+      user_data 2
+      callback cb_number
+      xywh {85 145 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label 3
+      user_data 3
+      callback cb_number
+      xywh {120 145 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label {-}
+      xywh {155 145 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 1 labelcolor 3
+    }
+    Fl_Button {} {
+      label {1/x}
+      xywh {190 145 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 1 labelcolor 3
+    }
+    Fl_Button {} {
+      label {M+}
+      user_data 4
+      xywh {5 175 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 4 labelcolor 3
+    }
+    Fl_Button {} {
+      label 0
+      user_data 0
+      callback cb_number
+      xywh {50 175 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 3
+    }
+    Fl_Button {} {
+      label {+/-}
+      callback cb_sign
+      xywh {85 175 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 2
+    }
+    Fl_Button {} {
+      label {.}
+      xywh {120 175 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 2
+    }
+    Fl_Button {} {
+      label {+}
+      xywh {155 175 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 1 labelcolor 3
+    }
+    Fl_Button {} {
+      label {=}
+      xywh {190 175 30 25} box RSHADOW_BOX down_box ROUND_DOWN_BOX color 2 labelcolor 0
+    }
+    Fl_Box mem_flag {
+      label M
+      xywh {5 55 30 25} box SHADOW_BOX
+    }
+    Fl_Button display {
+      label {0.}
+      callback cb_display
+      xywh {5 25 215 25} box SHADOW_BOX down_box DOWN_BOX color 7 align 24 when 1
+    }
+  }
+} 

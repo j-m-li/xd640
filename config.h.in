@@ -1,3 +1,25 @@
 
 #define HAVE_FLTK_UTF 0
 
+/*
+ * Do we have various image libraries?
+ */
+
+#undef HAVE_LIBPNG
+#undef HAVE_LIBZ
+#undef HAVE_LIBJPEG
+
+/*
+ * Which header file do we include for libpng?
+ */
+
+#undef HAVE_PNG_H
+#undef HAVE_LIBPNG_PNG_H
+
+/*
+ * Do we have the png_xyz() functions?
+ */
+
+#undef HAVE_PNG_GET_VALID
+#undef HAVE_PNG_SET_TRNS_TO_ALPHA
+

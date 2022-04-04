@@ -1,0 +1,10 @@
+#!/bin/sh
+
+TYPE="$1"
+FILE=`echo $PATH | sed -e "s/:/\/fl_* /g"`
+
+FILES=`/bin/ls -1d $FILE/fl_* 2>/dev/null`
+
+for FL in $FILES ; do
+	$FL --info-$TYPE
+done

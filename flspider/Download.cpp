@@ -1,26 +1,42 @@
 /******************************************************************************
- *   "$Id: $"
+ *   "$Id:  $"
+ *
+ *                 Copyright (c) 2000  O'ksi'D
+ *
+ *                      All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
  *
  *
- *                 Copyright (c) 2001  O'ksi'D
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
+
 
 #include <FL/fl_ask.H>
 #include "Download.h"
@@ -109,9 +125,9 @@ void Xd6HtmlRequest::fill_form_buffer(CURL *curl, char **b, char *sep)
 }
 
 void Xd6HtmlRequest::fill_multipart_form(CURL *curl)
-{
-	HttpPost* post = NULL;
-	HttpPost* last = NULL;
+{/*
+	//HttpPost* post = NULL;
+	//HttpPost* last = NULL;
 	int i;
 	
 	for (i = 0; i < form->nb_elem; i++) {
@@ -146,6 +162,7 @@ void Xd6HtmlRequest::fill_multipart_form(CURL *curl)
 		}
 	}
 	curl_easy_setopt(curl, CURLOPT_HTTPPOST, post);
+*/
 }
 
 void Xd6HtmlRequest::fill_form(CURL *curl)
@@ -281,6 +298,7 @@ static void loader_cb(Xd6HtmlFrame *frame)
 
 void Xd6HtmlRequest::finish_download()
 {
+	usleep(1000);
 	status = DNL_FINISHED;
 	if (disp) {
 		disp->load(file, href);
@@ -409,6 +427,7 @@ void Download::stop()
 const char *Download::new_request(const char *url, const char *target,
 		Xd6HtmlTagForm *form, Xd6HtmlFrame *frame, Xd6HtmlDisplay *wi)
 {
+	char *loc;
 	Xd6HtmlRequest *req;
 	int i;
 	char *real_url;
@@ -430,11 +449,10 @@ const char *Download::new_request(const char *url, const char *target,
 		}
 		i++;
 	}
-	
-	snprintf(local_file, 1024,"%s/%p.data", tmp_dir, real_url);
+	loc = Xd6ConfigFile::temp();
 	req->href = real_url;
 	req->anchor = strdup(a);
-	req->file = strdup(local_file);
+	req->file = strdup(loc);
 	req->target = target ? strdup(target) : strdup("");
 	req->form = form;
 	req->frame = frame;
@@ -470,18 +488,18 @@ const char *Download::new_request(const char *url, const char *target,
 	
 	Fl::remove_timeout((Fl_Timeout_Handler) spool_cb, (void*)this);
 	Fl::add_timeout(0.1, (Fl_Timeout_Handler) spool_cb, (void*)this);
-	return local_file;
+	return loc;
 }
 
 const char *Download::request(const char *url, const char *target,
-		Xd6HtmlTagForm *form, Xd6HtmlFrame *frame, Xd6HtmlDisplay *wi = NULL)
+		Xd6HtmlTagForm *form, Xd6HtmlFrame *frame, Xd6HtmlDisplay *wi)
 {
 	const char *ret;
 		
 	if (!url) return NULL;
 
 	if (!strncmp("data:", url, 5)) {
-		ret = download_data(url);
+		ret = data_download(url);
 		if (ret && wi) {
 			wi->load(ret, NULL);
 		}

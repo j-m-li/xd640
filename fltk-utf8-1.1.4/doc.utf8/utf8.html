@@ -1,0 +1,60 @@
+<HTML>
+<BODY>
+
+<H1><A NAME="utf8">I - UTF-8 strings in FLTK-UTF8</A></H1>
+
+<P>This chapter covers the UTF-8 functions that are provided with FLTK-UTF8.
+
+
+<H2>FLTK UTF-8 Functions</H2>
+
+All standards widgets and functions have been modified to handle
+UTF-8 encoded text. No other encoding is supported, it means that
+you must convert all non UTF-8 text to UTF-8. 
+
+<P>FLTK-UTF8 provides the
+following types of specific UTF-8 functions:
+
+<UL>
+
+	<LI><A href="#text">Text drawing</A></LI>
+
+	<LI><A href="#font">Font managment</A></LI>
+
+	<LI><A href="#encoding">Encoding convertion</A></LI>
+
+	<LI><A href="#low">Low level file system</A></LI>
+
+
+</UL>
+
+<H3><A name="text">Text drawing</A></H3>
+
+<P>There is two functions to draw text. One for LEFT-TO-RIGHT
+text direction and the other for RIGHT-TO-LEFT.
+
+
+<H4><A name="fl_draw">void fl_draw(const char* c, int n, int x, int y)</A>
+</H4>
+
+<P>Draws the <CODE>n</CODE> first characters of the <CODE>c<C/CODE>
+UTF-8 encoded string. The left side of the first glyph starts at 
+the <CODE>x</CODE> pixel location. The left side of the second character
+starts at <CODE>x + fl_width(c[0])</CODE>.
+<CODE>y</CODE> is the location of glyphs base line.
+
+<H4><A name="fl_rtl_draw">void fl_rtl_draw(const char* c, int n, int x, int y)</A>
+</H4>
+
+<P>Draws the <CODE>n</CODE> first characters of the <CODE>c<C/CODE>
+UTF-8 encoded string. The right side of the first glyph starts at 
+the <CODE>x</CODE> pixel location.
+The right side of the second character
+starts at <CODE>x - fl_width(c[0])</CODE>.
+pixel location. <CODE>y</CODE> is the location of glyphs base line.
+
+
+
+
+</BODY>
+</HTML>

@@ -1,30 +1,46 @@
 /******************************************************************************
- *   "$Id: $"
- *
- *   This file is part of the FLE project. 
+ *   "$Id:  $"
  *
  *                 Copyright (c) 2000  O'ksi'D
  *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *                      All rights reserved.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
 
+
 #include "callbacks.h"
 #include "BigIcon.h"
+#include "IconTree.h"
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -56,12 +72,70 @@ static void save_state()
 		StatesValues.sort_name ? "1" : "0", NULL);
 	cfg_sec->add_item("view_icon", 
 		StatesValues.view_icon ? "1" : "0", NULL);
+	cfg_sec->add_item("view_tree", 
+		StatesValues.view_tree ? "1" : "0", NULL);
 	cfg_sec->add_item("view_detail", 
 		StatesValues.view_detail ? "1" : "0", NULL);
 	cfg_sec->add_item("show_hide", 
 		StatesValues.show_hide ? "1" : "0", NULL);
 
 	cfg->write_config_section(cfg_sec);
+}
+
+static char *get_tree_sel()
+{
+	IconTree *it = ((IconTree*)gui->icon_can);
+	int nb = it->item_max();
+	int i = 0;
+	Entry *e;
+
+	i = it->get_selection();
+	if (i >= 0 && i < nb) {
+		e = it->get_entry(i);
+		return e->url;
+	}
+	return NULL;
+}
+	
+
+static char *get_tree_selected()
+{
+	IconTree *it = ((IconTree*)gui->icon_can);
+	int nb = it->item_max();
+	int i = 0;
+	char *go = NULL;
+	Entry *e;
+	int mlen = 0;
+
+	while (i < nb) {
+		if (it->item_flags(i) & IconTree::FLAG_SELECTED) {
+			e = it->get_entry(i);
+			if (!go) {
+				mlen = strlen(e->url);
+				go = (char*) malloc(3*mlen + 5);
+				mlen = latin12url(e->url, mlen, go);
+				go[mlen] = 0;
+			} else {
+				int l ;
+				l = strlen(e->url);
+				strcat(go, "\r\n");
+				mlen += 2;
+				go = (char*) realloc(go, mlen + l + 5);
+				mlen += latin12url(e->url, l, go + mlen); 
+				go[mlen] = 0;
+			}
+		}
+		i++;
+	}
+	if (!go) {
+		i = it->get_selection();
+		if (i >= 0 && i < nb) {
+			e = it->get_entry(i);
+			go = strdup(e->url);
+		}	
+	}	
+
+	return go;
 }
 
 char *get_selected_urls()
@@ -73,10 +147,14 @@ char *get_selected_urls()
 	int index;
 	int alloc;
 
-	if (!gui || !gui->icon_can || !gui->icon_can->group) return NULL;
+	if (StatesValues.view_tree) {
+		return get_tree_selected();
+        }
+	if (!gui || !gui->icon_can || 
+		!((IconCanvas*)gui->icon_can)->group) return NULL;
 
-	a = gui->icon_can->group->array();
-	i = gui->icon_can->group->children();
+	a = ((IconCanvas*)gui->icon_can)->group->array();
+	i = ((IconCanvas*)gui->icon_can)->group->children();
 
 	alloc = 4096;
 	buf = (char*) malloc(alloc);
@@ -113,10 +191,15 @@ static const BigIcon *get_selected_icon()
 	Fl_Widget*const* a;
 	BigIcon *b;
 
-	if (!gui || !gui->icon_can || !gui->icon_can->group) return NULL;
+        if (StatesValues.view_tree) {
+                return NULL;
+        }
 
-	a = gui->icon_can->group->array();
-	i = gui->icon_can->group->children();
+	if (!gui || !gui->icon_can || 
+		!((IconCanvas*)gui->icon_can)->group) return NULL;
+
+	a = ((IconCanvas*)gui->icon_can)->group->array();
+	i = ((IconCanvas*)gui->icon_can)->group->children();
 
 	while (i > 0) {
 		i--;
@@ -201,14 +284,19 @@ void cb_rescan(Fl_Widget*, void*)
 	free(StatesValues.url);
 	StatesValues.url = strdup(buf);
 	gui->loc_inp->value(StatesValues.url);
-	gui->icon_can->rescan();
+	stat(StatesValues.url, &st);
+
+	if (StatesValues.view_tree) {
+		((IconTree*)gui->icon_can)->rescan();
+	} else {
+		((IconCanvas*)gui->icon_can)->rescan();
+	}
 
 	free(StatesValues.newurl);
 	StatesValues.newurl = NULL;
 	free(dir);
 	Fl::redraw();
 
-	stat(StatesValues.url, &st);
 	mod_time = st.st_mtime;
 	Fl::add_timeout(1, cb_directory, 0);
 }
@@ -220,11 +308,6 @@ void cb_newdir(Fl_Widget*, void*)
 		mkdir(dir, 0777);
 	}
 	cb_rescan(NULL, NULL);
-}
-
-void cb_pref(Fl_Widget*, void*)
-{
-	fl_message(_("Not yet Implemented."));	
 }
 
 void cb_exit(Fl_Widget*, void*)
@@ -253,14 +336,58 @@ void cb_sort(Fl_Widget *w, void *d)
 		StatesValues.sort_type = 0;
 		break;
 	case 4:
+		if (StatesValues.view_tree && gui && gui->icon_can) {
+			int x, y, w, h;
+			x = gui->icon_can->x();
+			y = gui->icon_can->y();
+			w = gui->icon_can->w();
+			h = gui->icon_can->h();
+			gui->remove(gui->icon_can);
+			delete(gui->icon_can);
+			gui->begin();
+			gui->icon_can = new IconCanvas(x, y, w, h);		
+			gui->end();
+		}
 		StatesValues.view_icon = 1;
 		StatesValues.view_detail = 0;
+		StatesValues.view_tree = 0;
 		break;
 	case 5:
-		StatesValues.view_detail = 1;
 		StatesValues.view_icon = 0;
+		StatesValues.view_detail = 0;
+		StatesValues.view_tree = 1;
+		if (gui && gui->icon_can) {
+			int x, y, w, h;
+			x = gui->icon_can->x();
+			y = gui->icon_can->y();
+			w = gui->icon_can->w();
+			h = gui->icon_can->h();
+			gui->remove(gui->icon_can);
+			delete(gui->icon_can);
+			gui->begin();
+			gui->icon_can = new IconTree(x, y, w, h);
+			gui->resizable(gui->icon_can);		
+			gui->end();
+		}
 		break;
 	case 6:
+		if (StatesValues.view_tree && gui && gui->icon_can) {
+			int x, y, w, h;
+			x = gui->icon_can->x();
+			y = gui->icon_can->y();
+			w = gui->icon_can->w();
+			h = gui->icon_can->h();
+			gui->remove(gui->icon_can);
+			delete(gui->icon_can);
+			gui->begin();
+			gui->icon_can = new IconCanvas(x, y, w, h);		
+			gui->end();
+		}
+		StatesValues.view_detail = 1;
+		StatesValues.view_icon = 0;
+		StatesValues.view_tree = 0;
+		break;
+	case 7:
 		StatesValues.show_hide = (char) !(StatesValues.show_hide);
 		break;
 	default:
@@ -273,14 +400,24 @@ void cb_sort(Fl_Widget *w, void *d)
 void cb_about(Fl_Widget*, void*)
 {
 	fl_message(
-	      _("  flfm - Copyright (c) 2000 O'ksi'D\n"
-		"This application is a GPL free software.\n"
-		"        http://oksid.ch"));
+	      _("  flfm - Copyright (c) 2000-2002 O'ksi'D\n"
+		"This application is an Open Source  software.\n"
+		"        http://www.oksid.ch"));
 }
 
 void cb_help(Fl_Widget*, void*)
 {
-	fl_message(_("Not yet Implemented."));	
+	char buf[2048];
+	char b[2048];
+	snprintf(buf, 2048, "%s/HTML/%s/%s/index.html",
+		cfg->global_paths->doc, cfg->lang, cfg->app_name);
+	if (!access(buf, 0)) {
+		snprintf(b, 2048, "flspider '%s' &", buf);
+	} else {
+		snprintf(b, 2048, "flspider '%s/HTML/en/%s/index.html' &",
+			cfg->global_paths->doc, cfg->app_name);
+	}
+	system(b);
 }
 
 void cb_exec(Fl_Widget*, void  *d)
@@ -289,6 +426,14 @@ void cb_exec(Fl_Widget*, void  *d)
 	char buf[2048];
 	char *b1, *b2;
 
+	
+        if (StatesValues.view_tree) {
+		b1 = get_tree_sel();
+		if (!b1) return;
+		snprintf(buf, 2048, "flfile --exec \"%s\" &", b1);
+		system(buf);
+		return;
+	}
 	b = get_selected_icon();
 	if (!b) return;
 	
@@ -307,6 +452,14 @@ void cb_open(Fl_Widget*, void  *d)
 	const BigIcon *b;
 	char buf[2048];
 	char *b1, *b2;
+
+        if (StatesValues.view_tree) {
+		b1 = get_tree_sel();
+		if (!b1) return;
+		snprintf(buf, 2048, "flfile --open \"%s\" &", b1);
+		system(buf);
+		return;
+	}
 	
 	b = get_selected_icon();
 	if (!b) return;
@@ -323,23 +476,36 @@ void cb_open(Fl_Widget*, void  *d)
 
 void cb_open_width(Fl_Widget*, void*)
 {
-	const BigIcon *b;
+	const BigIcon *b = NULL;
 	char buf[2048];
 	static char *last_cmd = NULL; 
+	char *b1 = get_tree_sel();
 	char *r;
 
-	b = get_selected_icon();
-	if (!b) return;
 	
 	if (!last_cmd) {
 		last_cmd = strdup("flnotepad");
 	}	
-	r = (char *)fl_input(_("Open \"%s%s\" with :"), last_cmd, 
+        if (StatesValues.view_tree) {
+		if (!b1) return;
+		r = (char *)fl_input(_("Open \"%s\" with :"), last_cmd, 
+			 b1 + 7);
+	} else {
+		b = get_selected_icon();
+		if (!b) return;
+		r = (char *)fl_input(_("Open \"%s%s\" with :"), last_cmd, 
 			StatesValues.url, b->label());
+	}
 
 	if (!r) return;
 	free(last_cmd);
 	last_cmd = strdup(r);
+
+        if (StatesValues.view_tree) {
+		snprintf(buf, 2048, "%s \"%s\" &", r, b1 + 7);
+		system(buf);
+		return;
+	}
 
 	snprintf(buf, 2048, "%s \"%s/%s\" &", r, 
 			StatesValues.url, b->label());
@@ -485,42 +651,57 @@ void cb_move_link_copy(Fl_Widget*, void *d)
 	char buf[1024];
 	int a = (int) d;
 	Fl_Widget *w = Fl::belowmouse();
-	const char *dir;
+	const char *dir = "";
 	static int pid = -1;
 	char *b1, *b2;
 
 	if (Fl::e_length < 2) return;
 	if (gui->loc_inp == w || gui->loc_inp->contains(w)) {
 		StatesValues.newurl = strdup(Fl::e_text);
-		printf("'%s'\n", StatesValues.newurl);
 		cb_rescan(NULL, NULL);
 		return;
-	}	
-	
-	if (w == gui->icon_can->group) {
-		dir = "";
-	} else if (gui->icon_can->group->contains(w)) {
-		BigIcon *b = (BigIcon*) w;
-		dir = b->label();
-	} else {
-		return;
 	}
-
-	b1 = (char*) malloc(strlen(StatesValues.url) * 3 + 1);
+	if (StatesValues.view_tree) {	
+		dir = "";
+		IconTree *it = ((IconTree*)gui->icon_can);
+		int n = it->get_selection();
+		if (n >= 0 && n < it->item_max()) {
+			if (!(it->item_flags(n) & Fl_Tree::FLAG_FOLDER)) return;
+			char *u = it->get_entry(n)->url;
+			b1 = (char*) malloc(strlen(u + 7) * 3 + 1);
+			latin12url(u + 7, strlen(u + 7), b1);
+			free(StatesValues.url);
+			StatesValues.url = strdup(u + 7);
+			gui->loc_inp->value(StatesValues.url);
+			chdir(StatesValues.url);
+		} else {
+			return;
+		}
+	} else {
+		if (w == ((IconCanvas*)gui->icon_can)->group) {
+			dir = "";
+		} else if (((IconCanvas*)gui->icon_can)->group->contains(w)) {
+			BigIcon *b = (BigIcon*) w;
+			dir = b->label();
+		} else {
+			return;
+		}
+		b1 = (char*) malloc(strlen(StatesValues.url) * 3 + 1);
+		latin12url(StatesValues.url, strlen(StatesValues.url), b1);
+	}
 	b2 = (char*) malloc(strlen(dir) * 3 + 1);
-	latin12url(StatesValues.url, strlen(StatesValues.url), b1);
 	latin12url(dir, strlen(dir), b2);
 	buf[0] = '\0';
 	switch(a) {
 	default:
 	case DND_COPY:
-		snprintf(buf, 2040, "flfile --copy \"file://%s/%s\" ", b1, b2);
+		snprintf(buf, 2040, "flfile --copy \"file:///%s/%s\" ", b1, b2);
 		break;
 	case DND_MOVE:
-		snprintf(buf, 2040, "flfile --move \"file://%s/%s\" ", b1, b2);
+		snprintf(buf, 2040, "flfile --move \"file:///%s/%s\" ", b1, b2);
 		break;
 	case DND_LINK:
-		snprintf(buf, 2040, "flfile --link \"file://%s/%s\" ", b1, b2);
+		snprintf(buf, 2040, "flfile --link \"file:///%s/%s\" ", b1, b2);
 		break;
 	}
 	free(b1);

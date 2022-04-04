@@ -1,26 +1,42 @@
 /******************************************************************************
- *   "$Id: $"
+ *   "$Id:  $"
+ *
+ *                 Copyright (c) 2000-2001  O'ksi'D
+ *
+ *                      All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
  *
  *
- *                 Copyright (c) 2000,2001  O'ksi'D
- *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
- *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
+
 
 
 #include "TextEditor.h"
@@ -28,7 +44,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <FL/Fl.h>
-#include "xd640/Xd6CheckButton.h"
+#include "FL/Fl_Check_Button.H"
 #include "xd640/Xd6SpellChoice.h"
 #include "xd640/Xd6FindDialog.h"
 #include <FL/Fl_Button.H>
@@ -59,7 +75,10 @@ void TextEditor::load(const char *f)
 {
 	FILE *fp;
 	int c;
-	int style = FONT_SIZE_3|PREFORMATED|FONT_MONOSPACE|IS_BLOCK;
+	Xd6XmlStl st; 
+	Xd6XmlStl *sstyle; 
+	Xd6XmlStl *dstyle; 
+	Xd6XmlStl *bstyle; 
 	Xd6HtmlBlock *b;
 	Xd6HtmlSegment *s;
 	char *t;
@@ -71,34 +90,52 @@ void TextEditor::load(const char *f)
                 delete(frame->blocks[--frame->nb_blocks]);
         }
 
+	st.copy(&st.def);
+	st.font_size = FONT_SIZE_3;
+	st.preformated = 1;
+	st.font = FONT_MONOSPACE;
+	st.is_inline = 0;
+	st.is_block = 1;
+	st.display = 0;
+	bstyle = st.def.get_style(&st);
+	st.is_inline = 1;
+	st.is_block = 0;
+	sstyle = st.def.get_style(&st);
+	st.display = 1;
+	dstyle = st.def.get_style(&st);
+
+	printf("%p %p %p\n", bstyle, sstyle, dstyle);
+
 	frame->add_block();
-	frame->blocks[0]->add_segment((char*)malloc(128), 0, style);
+	frame->blocks[0]->add_segment((char*)malloc(128), 0, sstyle);
 	b = frame->blocks[0];
+	b->stl = bstyle;
 	s = b->segs[b->nb_segs - 1];
 	t = s->text;
-	while ((c = fgetc(fp)) != EOF) {
+	while (((c = fgetc(fp)) != EOF)) {
 		if (c == '\n') {
 			s->text = (char*) realloc(s->text, s->len + 1);
 			frame->add_block();
 			b = frame->blocks[frame->nb_blocks - 1];
-			b->add_segment((char*)malloc(128), 0, style);
+			b->stl = bstyle;
+			b->add_segment((char*)malloc(128), 0, sstyle);
 			s = b->segs[b->nb_segs - 1];
 			t = s->text;
 		} else if (c == '\t') {
 			s->text = (char*) realloc(s->text, s->len + 1);
-			b->add_segment(strdup(""), 0, 0);
+			b->add_segment(strdup(""), 0, dstyle);
 			s = b->segs[b->nb_segs - 1];
 			delete(s);
 			s = new Xd6HtmlDisplay(b->nb_segs - 1, strdup("\t"), 1,
-				style|DISPLAY);
+				dstyle);
 			((Xd6HtmlDisplay*)s)->display = DISPLAY_TAB;
 			b->segs[b->nb_segs - 1] = s;
-			b->add_segment((char*)malloc(128), 0, style);
+			b->add_segment((char*)malloc(128), 0, sstyle);
 			s = b->segs[b->nb_segs - 1];
 			t = s->text;
 		} else {
 			if (s->len > 125) {
-				b->add_segment((char*)malloc(128), 0, style);
+				b->add_segment((char*)malloc(128), 0, sstyle);
 				s = b->segs[b->nb_segs - 1];
 				t = s->text;
 			}
@@ -112,14 +149,22 @@ void TextEditor::load(const char *f)
 
 void TextEditor::blank()
 {
+	Xd6XmlStl st; 
 	frame->cur_chr = NULL;
 	frame->sel_chr = NULL;
         while (frame->nb_blocks > 0) {
                 delete(frame->blocks[--frame->nb_blocks]);
         }
+
+	st.copy(&st.def);
+	st.font_size = FONT_SIZE_3;
+	st.preformated = 1;
+	st.font = FONT_MONOSPACE;
+	st.is_block = 0;
+	st.is_inline = 1;
+
         frame->add_block();
-        frame->blocks[0]->add_segment((char*)malloc(1), 0,
-                IS_INLINE|FONT_SIZE_3|FONT_MONOSPACE|PREFORMATED);
+        frame->blocks[0]->add_segment((char*)malloc(1), 0, st.get_style(&st));
         frame->measure();
         redraw();
 }

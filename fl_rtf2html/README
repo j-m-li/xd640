@@ -1,0 +1,14 @@
+***************************************************
+Modified by O'ksi'D to support unicode characters
+unrtf
+**************************************************
+
+This version of rtf2html was developed by Dmitry Porapov 
+<dpotapov@capitalsoft.com>, based on earlier work
+of Chuck Shotton.
+
+This version is known to work with Russian rtf files, although it 
+doesn't attempt to recode them.
+
+distributed under BSD-style license
+

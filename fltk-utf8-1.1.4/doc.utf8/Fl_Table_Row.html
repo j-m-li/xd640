@@ -1,0 +1,229 @@
+<html><body>
+<h2>class Fl_Table_Row</a></h2>
+<hr>
+<h3>Class Hierarchy</h3>
+<ul>
+  <pre>
+  Fl_Group
+     |
+     +----<a href="Fl_Table.html">Fl_Table</a>
+	     |
+	     +----<b>Fl_Table_Row</b>
+  </pre>
+</ul>
+
+<h3>Include Files</h3>
+<ul>
+  <pre>
+  #include &lt;FL/Fl_Table_Row.H&gt;
+  </pre>
+</ul>
+<h3>Description</h3>
+This class implements a simple table of rows and columns that
+specializes in the selection of rows. This widget is similar in
+behavior to a "mail subject browser", similar to that found in
+mozilla, netscape and outlook mail browsers.
+<p>
+Most methods of importance will be found in the <a href="Fl_Table.html">Fl_Table</a>
+widget, such as <a href="Fl_Table.html#rows">rows()</a> and <a href="Fl_Table.html#cols">cols()</a>.
+<p>
+To be useful it must be subclassed and at minimum the <a href="#draw_cell"><tt>draw_cell()</tt></a>
+method must be overridden to provide the content of the cells. This widget
+does <i>not</i> manage the cell's data content; it is up to the parent
+class's <tt>draw_cell()</tt> method override to provide this.
+<P>
+Events on the cells and/or headings generate callbacks when they are 
+clicked by the user.  You control when events are generated based on
+the values you supply for <a href="Fl_Table.html#when"><tt>when()</tt></a>.
+<P>
+<h3>Methods</h3>
+<center>
+<table width=90% summary="Fl_Browser_ methods">
+<tr align=left valign=top><td>
+  <li> <a href="#Fl_Table_Row">Fl_Table_Row</a>
+  <li> <a href="#~Fl_Table_Row">~Fl_Table_Row</a>
+  <li> <a href="#callback">callback</a>
+  <li> <a href="#draw_cell">draw_cell</a>
+  <li> <a href="#rows">rows</a>
+  <li> <a href="#row_selected">row_selected</a>
+  <li> <a href="#select_row">select_row</a>
+  <li> <a href="#select_all_rows">select_all_rows</a>
+</td></tr></table></center>
+<p>
+
+<h4><a name=Fl_Table_Row>
+Fl_Table_Row::Fl_Table_Row(int x, int y, int w, int h, const char *label = 0)
+</h4>
+<ul>
+    The constructor for the Fl_Table_Row.
+    This creates an empty table with no rows or columns,
+    with headers and row/column resize behavior disabled.
+</ul>
+
+<h4><a name=~Fl_Table_Row>
+Fl_Table_Row::~Fl_Table_Row()
+</h4>
+<ul>
+    The destructor for the Fl_Table_Row.
+    Destroys the table and its associated widgets.
+</ul>
+
+<h4><a name=draw_cell>
+virtual void draw_cell(TableContext context, int row, int col, int x, int y, int w, int h)
+</h4>
+<ul>
+    Subclass should override this method to handle drawing the cells.
+    This method will be called whenever the table is redrawn, once per
+    cell.
+    <p>
+    Only cells that are completely (or partially) visible will be
+    told to draw.
+    <p>
+    <tt>context</tt> will be one of the following:
+    <ul type=disc>
+        <table cellpadding=4 border=1>
+	  <tr>
+	    <td><tt>Fl_Table::CONTEXT_STARTPAGE</tt></td>
+	    <td> When table, or parts of the table, are about to be redrawn.  
+	         Use to initialize static data, such as font selections.  
+		 r/c will be zero, x/y/w/h will be the dimensions of the 
+		 table's entire data area.
+		 (Useful for locking a database before accessing; see
+		 also <a href="#visible_cells">visible_cells()</a>)</td>
+	  </tr><tr>
+	    <td><tt>Fl_Table::CONTEXT_ENDPAGE</tt></td>
+	    <td>When table has completed being redrawn.
+	        r/c will be zero, x/y/w/h dimensions of table's data area.
+		(Useful for unlocking a database after accessing)</td>
+	  </tr><tr>
+	    <td><tt>Fl_Table::CONTEXT_ROW_HEADER</tt></td>
+	    <td>Whenever a row header cell needs to be drawn.</td>
+	  </tr><tr>
+	    <td><tt>Fl_Table::CONTEXT_COL_HEADER</tt></td>
+	    <td>Whenever a column header cell needs to be drawn.</td>
+	  </tr><tr>
+	    <td><tt>Fl_Table::CONTEXT_CELL</tt></td>
+	    <td>Whenever a data cell in the table needs to be drawn.</td>
+	  </tr><tr>
+	    <td><tt>Fl_Table::CONTEXT_RC_RESIZE</tt></td>
+	    <td>Whenever table or row/column is resized or scrolled. 
+	        (Useful for fltk containers that need to resize or move 
+		the child fltk widgets.)</td>
+	  </tr>
+        </table>
+    </ul>
+    <p>
+    <tt>row</tt> and <tt>col</tt> will be set to the row and column number
+    the user clicked on. In the case of row headers, <tt>col</tt> will be 0.
+    In the case of column headers, <tt>row</tt> will be 0.
+    <p>
+    <tt>x/y/w/h</tt> will be the position and dimension of the cell.
+    <p>
+    A minimal <tt>draw_cell()</tt> override might look like the following.
+    It is up to the caller to handle drawing everything within the dimensions
+    of the cell, including handling the selection color.  Note all clipping
+    must be handled as well; this allows drawing outside the dimensions 
+    of the cell if so desired for 'custom effects'.
+    <pre><small>
+    void MyTable::draw_cell(TableContext context, int R=0, int C=0, int X=0, int Y=0, int W=0, int H=0)
+    {
+	static char s[40];
+	sprintf(s, "%d/%d", R, C);		// text for each cell
+	switch ( context )
+	{
+	    case CONTEXT_STARTPAGE:
+		fl_font(FL_HELVETICA, 16);
+		return;
+
+	    case CONTEXT_ROW_HEADER:
+	    case CONTEXT_COL_HEADER:
+		fl_push_clip(X, Y, W, H);
+		{
+		    fl_draw_box(FL_THIN_UP_BOX, X, Y, W, H, color());
+		    fl_color(FL_BLACK);
+		    fl_draw(s, X, Y, W, H, FL_ALIGN_CENTER);
+		}
+		fl_pop_clip();
+		return;
+
+	    case CONTEXT_CELL:
+		fl_push_clip(X, Y, W, H);
+		{
+		    // BG COLOR
+		    fl_color( row_selected(R) ? selection_color() : FL_WHITE);
+		    fl_rectf(X, Y, W, H);
+
+		    // TEXT
+		    fl_color(FL_BLACK);
+		    fl_draw(s, X, Y, W, H, FL_ALIGN_CENTER);
+
+		    // BORDER
+		    fl_color(FL_LIGHT2); 
+		    fl_rect(X, Y, W, H);
+		}
+		fl_pop_clip();
+		return;
+
+	    default:
+	        return;
+	}
+	//NOTREACHED
+    }
+    </small></pre>
+</ul>
+
+<h4><a name=callback></a>
+Fl_Callback* Fl_Table::callback() const<br>
+void Fl_Table::callback(Fl_Callback*, void* = 0)
+</h4>
+<ul>
+    Please see <A HREF="Fl_Table.html#callback">Fl_Table::callback()</A>
+    for info and usage.
+</ul>
+
+<h4><a name=rows>
+void Fl_Table_Row::rows(int nrows)<br>
+int Fl_Table_Row::rows()
+</h4>
+<ul>
+    The first form sets the number of rows in the table,
+    and the table is redrawn.
+    <p>
+    The second form returns the number of rows in the table.
+</ul>
+
+<h4><a name=row_selected>
+int Fl_Table_Row::row_selected(int row)<br>
+</h4>
+<ul>
+    Checks to see if 'row' is selected; returns 1 if selected, 0 if not.
+    You can change the selection of a row by clicking on it, or by using
+    <A HREF="#select_row">select_row(row, flag)</A>
+</ul>
+
+<h4><a name=select_row>
+int Fl_Table_Row::select_row(int row, int flag=1)<br>
+</h4>
+<ul>
+    Changes the selection state for 'row', depending on the value
+    of 'flag';  0=deselected, 1=select, 2=toggle existing state.
+    <P>
+    You can check if a row is selected with 
+    <A HREF="#row_selected">row_selected(row)</A>.
+</ul>
+
+<h4><a name=select_all_rows>
+int Fl_Table_Row::select_all_rows(int row, int flag=1)<br>
+</h4>
+<ul>
+    This convenience function changes the selection state 
+    for <I>all</I> rows based on 'flag'; 0=deselect, 1=select, 2=toggle existing state.
+</ul>
+
+<br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br> <br>

@@ -1,0 +1,79 @@
+#!/bin/sh
+
+LG=`echo $LANG | head -c 2`
+
+if test x$LG = x ;then
+  LG=`echo $LC_CTYPE | head -c 2`
+fi
+
+if test x$LG = x ;then
+  LG=C
+fi
+
+function help () 
+{
+	case "$LG" in
+	fr) 	echo A utiliser avec flwriter. ;;
+	*) 	echo Use it with flwriter. ;;
+	esac
+	exit 0;
+}
+
+checkit () 
+{
+	if test "x$1" = x; then exit 1; fi
+	CK=`head "$1" | grep -i '<html'`
+	if test "x$CK" = x; then
+		echo fl_html2html: BAD
+	else
+		echo fl_html2html: GOOD
+	fi
+	exit 0; 
+}
+
+function info () 
+{
+	case "$LG" in
+	fr) 	echo 'fl_html2html: "HTML simple" "*.{html,htm,HTML,HTM}"' ;;
+	*) 	echo 'fl_html2html: "Plain HTML" "*.{html,htm,HTML,HTM}"' ;;
+	esac
+	exit 0;
+}
+
+
+TEMP=`getopt -o h:: -l help::,info-xhtml::,check:: -n $0 -- "$@"`
+ACT=""
+eval set -- "$TEMP"
+while true ; do
+	case "$1" in
+		-h|--help) help; shift 2;;
+		--info-xhtml) info ; shift 2;;
+		--check) ACT=checkit ; shift 2;;
+		--)  shift; break ;;
+		*) exit 1 ;;
+	esac
+done	
+
+OUT="$2"
+IN="$1"
+
+if test "x$IN" = x ; then help; fi
+case "$ACT" in
+	checkit) checkit "$IN" ;;
+esac
+
+if test "x$OUT" = x ; then help; fi
+
+enc=`head "$IN" | awk  ' toupper($0) ~/CHARSET/ { 
+	match(tolower($0), /charset *\= *.*"/)  ; 
+	START = RSTART; 
+	LEN = RLENGTH; 
+	match(substr($0, RSTART, RLENGTH -1 ), /\=/); 
+	print substr($0, START + RSTART, LEN - RSTART - 1 ); } '`
+
+if test "x$enc" = x ; then enc=ISO-8859-1; fi
+
+iconv -f$enc -tUTF-8 -c "$IN" -o "$OUT" || /bin/cp "$1" "$2"
+
+tidy -q -m -n -utf8 -asxhtml "$OUT" 2> /dev/null
+

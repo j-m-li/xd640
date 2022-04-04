@@ -1,6 +1,39 @@
  X Desktop 640x480 16Mb
 =======================
-				Xd640
+
+ *                   Copyright (c) 2000-2003, O'ksi'D
+ *                      All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+
+               			Xd640
 			       -------
 
 
@@ -10,26 +43,35 @@ fleffect	: laucher effect
 flfile		: file utilities (link, remove, copy, properties)
 flfm		: file manager (flfile user interface)
 fllauncher	: menu bar
-flmail		: mail client (user interface to fetchmail)
-flnews		: news client (user interface to suck)
+flmail		: mail client 
+flnews		: news client 
 flnotepad	: plain text editor (UTF-8)
 flpaint		: bitmap picture editor (uncompressed GIF and Xpm)
 flppp		: Internet dialer
 flspider	: web browser (uses libcurl)
-flspread	: spread sheet (XML)
 flwriter	: word processor (XHTML)
 flshutdown	: computer shutdown dialog
 
 We use fltk-utf8 as the widget library. 
 FVWM 2 is our standard windows manager.
-Debian 2.2 is the default Linux distribution.
+Debian is our default Linux distribution.
 Test computer is a 486 DX/2 66MHz, 16Mb of RAM, 15" 640x480 256 colors screen.
 
 
 Requiered software to compile Xd640 :
-	- a standard GNU C++ developement environement.
+	- a standard GNU C++ development environement.
+	- X11R6 headers and development libraries
 	- Xutf8 	(http://www.oksid.ch/xutf8/index.html)
 	- fltk-utf8 	(http://www.oksid.ch/fltk-utf/index.html)
 	- openssl 	(http://www.openssl.org/)
 	- libcurl	(http://curl.haxx.se/)
-	- fetchmail	(http://www.tuxedo.org/~esr/fetchmail/)		
+	- FreeType 2	(http://www.freetype.org/)
+
+BUILD :
+	# cd xd640-*.*.*/
+	# automake
+	# autoconf
+	# ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man
+	# make
+	# make install
+

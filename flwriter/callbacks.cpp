@@ -1,27 +1,42 @@
 /******************************************************************************
- *   "$Id: $"
- *
- *   This file is part of the Xd640 project. 
+ *   "$Id:  $"
  *
  *                 Copyright (c) 2000-2002  O'ksi'D
  *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *                      All rights reserved.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
+
 
 #include "xd640/Xd6Std.h"
 #include "xd640/Xd6HtmlPrint.h"
@@ -86,6 +101,7 @@ void cb_save(Fl_Widget*, void*)
 			GUI::self->editor->view->frame->modified = 0;
 			GUI::self->editor->view->frame->to_html(
 				GUI::self->editor->file);
+			GUI::self->load(GUI::self->editor->file);
 		} else {
 			cb_save_as(NULL, NULL);
 		}
@@ -233,26 +249,58 @@ void cb_tag(Fl_Widget*, void*)
 	Xd6XmlTreeElement *e;
 	Xd6XmlAttribute *a;
 	const char *v;
-	int st = A_LINK|UNDERLINE|COLOR_BLUE;
+	Xd6XmlStl st;
+
+	st.clear_flags();
+	st.a_link = 1;
+	st.underline = 1;
+	st.fg_color = COLOR_BLUE;
+	st.flags[1] = (1 << 11) | (1 << 6) | (1 << 3);
+
 	if (!GUI::self) return;
 	v = fl_input(_("Tag Value :"));
 	if (!v) return;
+
 	GUI::self->editor->view->frame->modified = 1;
 	f = GUI::self->editor->view->frame->get_cursor_frame();
 	if (!f || !f->cur_chr) return;
+
 	f->modified = 1;
-	f->change_style(0, st);
+	f->change_style(&st);
+
 	e = new Xd6XmlTreeElement(NULL, 0);
 	a = new Xd6XmlAttribute("href", 4);
 	a->set_value(v, strlen(v));
 	e->add_attribute(a);
-	e->style = f->cur_seg->style|DISPLAY|st;
+	
+	st.copy(f->cur_seg->stl);
+	st.display = 1;
+	st.a_link = 1;
+	st.underline = 1;
+	st.fg_color = COLOR_BLUE;
+
+	e->stl = f->cur_seg->stl->get_style(&st);
+
+	st.copy(f->cur_seg->stl);
+	st.display = 0;
+	st.a_link = 0;
+	st.underline = 0;
+	st.fg_color = COLOR_BLACK;
+	f->cur_seg->stl = f->cur_seg->stl->get_style(&st);
+
 	s = new Xd6HtmlTagA(0, e, NULL);
-	f->cur_seg->style &= ~st;
 	f->insert_segment(s);
 	se = f->cur_seg;
 	se = f->cur_block->segs[se->id + 1];
-	se->style |= st;
+
+	st.copy(se->stl);
+	st.display = 1;
+	st.a_link = 1;
+	st.underline = 1;
+	st.fg_color = COLOR_BLUE;
+
+	se->stl =se->stl->get_style(&st);
+
 	f->cur_block->measure();
 	f->cur_block->create_lines();
 	f->create_pages();
@@ -273,6 +321,31 @@ void cb_spell(Fl_Widget*, void*)
 	GUI::self->editor->view->spell();
 }
 
+void cb_lang(Fl_Widget*, void*)
+{
+	Xd6ConfigFile *cfg;
+        Xd6ConfigFileSection *sec = NULL;
+        Xd6ConfigFileGroup *grp = NULL;
+        Xd6ConfigFileItem *itm = NULL;
+        const char *val = NULL;
+	const char *f;
+
+        cfg = new Xd6ConfigFile("xd640", "Utilities");
+        sec = cfg->get_xd640_section();
+        grp = sec->add_group("spell", cfg->locale);
+        itm = grp->get_create_item("dictionary", cfg->locale);
+	val = itm->get_value();
+	if (!val) val = "/usr/share/dict";
+	f = fl_file_chooser("Dictionary ...", "*.utf8", val);
+
+	if (f) {
+		itm->set_value(f);
+		cfg->write_xd640_section(sec);
+	}
+	delete(cfg);
+}
+
+
 void cb_keyboard(Fl_Widget*, void*)
 {
 	static Xd6VirtualKeyboard *k = NULL;
@@ -285,9 +358,9 @@ void cb_keyboard(Fl_Widget*, void*)
 void cb_about(Fl_Widget*, void*)
 {
         fl_message(
-              _("  flwriter - Copyright (c) 2000-2002 O'ksi'D\n"
-                "This application is a GPL free software.\n"
-                "        http://oksid.ch"));
+              _("  flwriter - Copyright (c) 2000-2003 O'ksi'D\n"
+                "This application is an Open Source software.\n"
+                "             http://www.oksid.ch"));
 
 }
 

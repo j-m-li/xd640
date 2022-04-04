@@ -1,26 +1,42 @@
-/******************************************************************************* *   $Id: icons.cpp,v 1.1 2000/08/05 19:11:21 nickasil Exp $
- *
- *   This file is part of the Xd640 project.
+/******************************************************************************
+ *   "$Id:  $"
  *
  *                 Copyright (c) 2000-2002  O'ksi'D
  *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 2 of the License, or
- *   (at your option) any later version.
+ *                      All rights reserved.
  *
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program; if not, write to the Free Software
- *   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+ *      Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the following disclaimer.
+ *
+ *      Redistributions in binary form must reproduce the above copyright
+ *      notice, this list of conditions and the following disclaimer in the
+ *      documentation and/or other materials provided with the distribution.
+ *
+ *      Neither the name of O'ksi'D nor the names of its contributors
+ *      may be used to endorse or promote products derived from this software
+ *      without specific prior written permission.
+ *
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER 
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *   Author : Jean-Marc Lienher ( http://oksid.ch )
  *
  ******************************************************************************/
+
 
 #include "icon.h"
 #include <libintl.h>
@@ -87,10 +103,11 @@ int Icon::handle(int e) {
         static int bx = 0, by = 0;
         static int px = -10, py = -10;
         static int button1 = 0;
+	static char was_dragging = 0;
 	const Fl_Menu_Item *m;
         char val[25];
 	static char beenhere = 0;
-	
+
 	if (!beenhere) {
 		beenhere = 1;
 		Fl::selection(*this, " ", 1);
@@ -134,6 +151,9 @@ int Icon::handle(int e) {
 				dragging = 1;
 				dnd_drag();
 				Fl::dnd();
+				Fl::event_clicks(0);
+				Fl::event_is_click(0);
+				was_dragging = 1;
 				dragging = 0;
 			}
 			return 1;
@@ -205,11 +225,16 @@ int Icon::handle(int e) {
 			Fl::event_y_root() - y(), 0, 0, menu);
 		menu->picked(m);
 		return 1;
+        case FL_DND_LEAVE:
         case FL_DND_ENTER:
         case FL_DND_DRAG:
-        case FL_DND_LEAVE:
+		was_dragging = 0;
                 return !dragging;
         case FL_DND_RELEASE:
+		if (was_dragging) {
+			was_dragging = 0;
+			return 0;
+		}
 		is_drop = !dragging;
 		return !dragging;
 	case FL_DROP:
@@ -219,6 +244,7 @@ int Icon::handle(int e) {
 	default:
 		break;
 	}
+	was_dragging = 0;
 	return 0;
 }
 
@@ -236,6 +262,8 @@ void Icon::create()
 	char buf[1024];
 	const char *locale;
 	int X, Y;
+	
+	type = 0;
 
 	fl_open_display();
 
@@ -293,7 +321,6 @@ void Icon::create()
 			type = TYPE_Application;
 		}
 	}
-	
 	switch(type) {
 	case TYPE_FSDevice:
 		itm = NULL; 
@@ -383,7 +410,6 @@ Xd6IconWindow *Icon::make_icon(const char *file)
         	if (s.st_size < 10) return NULL;
 	}
 	ic = new Xd6IconWindow(name, this, 32, 32);
-
 	return ic;
 }
 
@@ -584,7 +610,7 @@ void Icon::umount_cb(Fl_Widget* w, void* d)
 
 	if (val) {
 		char buf[2048];
-		snprintf(buf, 2048, "umount %s", val);
+		snprintf(buf, 2048, "umount %s; eject %s", val, val);
 		system(buf);
 	}
 	ic->show();

@@ -1,2 +1,0 @@
-?package(xd640):needs=X11 section=Apps/Editors\
-  title="flwriter" command="/usr/bin/flwriter"

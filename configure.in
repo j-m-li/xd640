@@ -1,0 +1,158 @@
+dnl -*- sh -*-
+dnl the "configure" script is made from this by running GNU "autoconf"
+dnl
+dnl "$Id: configure.in,v 1.2 2000/06/25 21:41:32 easysw Exp $"
+dnl
+dnl Configuration script for Xd640.
+dnl
+
+dnl Make sure we have the template for the makefile...
+AC_INIT(Makedefs.in)
+AC_CONFIG_HEADER(config.h)
+
+dnl What OS?
+uname=`uname`
+if test "$uname" = "IRIX64"; then
+    uname="IRIX"
+fi
+
+AC_ARG_ENABLE(gl, [  --enable-gl             turn on OpenGL support [default=yes]])
+
+dnl Checks for programs...
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_RANLIB
+AC_PATH_PROG(AR,ar)
+AC_PATH_PROG(RM,rm)
+AC_PATH_PROG(XGETTEXT, xgettext)
+AC_PATH_PROG(FETCHMAIL, fetchmail)
+
+dnl Check for libraries...
+AC_PATH_X
+AC_PATH_XTRA
+if test "$x_libraries" = "/usr/lib"; then
+	echo "Ignoring X library directory \"$x_libraries\" requested by configure."
+	x_libraries="NONE"
+fi
+if test ! "$x_libraries" = "NONE" -a ! "$x_libraries" = ""; then
+	LDFLAGS="$LDFLAGS -L$x_libraries"
+	if test "$uname" = "SunOS"; then
+		LDFLAGS="$LDFLAGS -R$x_libraries"
+	fi
+fi
+if test "$x_includes" = "/usr/include"; then
+	echo "Ignoring X include directory \"$x_includes\" requested by configure."
+	x_includes="NONE"
+fi
+if test ! "$x_includes" = "NONE" -a ! "$x_includes" = ""; then
+	CFLAGS="$CFLAGS -I$x_includes"
+	CXXFLAGS="$CXXFLAGS -I$x_includes"
+fi
+AC_CHECK_LIB(socket,socket,
+if test "$uname" != "IRIX"; then
+	LIBS="-lsocket $LIBS"
+else
+	echo "Not using -lsocket since you are running IRIX."
+fi)
+AC_CHECK_LIB(nsl,gethostbyaddr,
+if test "$uname" != "IRIX"; then
+	LIBS="-lnsl $LIBS"
+else
+	echo "Not using -lnsl since you are running IRIX."
+fi)
+
+dnl Check for OpenGL unless disabled...
+GLLIB=
+
+if test x$enable_gl != xno; then
+    AC_CHECK_HEADER(GL/gl.h,
+        AC_CHECK_LIB(GL, glXMakeCurrent, AC_DEFINE(HAVE_GL) GLLIB="-lGL", \
+            AC_CHECK_LIB(MesaGL,glXMakeCurrent, AC_DEFINE(HAVE_GL) GLLIB=" -lMesaGL",,\
+                -lX11 -lXext $X_EXTRA_LIBS -lm), \
+            -lX11 -lXext $X_EXTRA_LIBS -lm)
+    )
+    AC_CHECK_HEADER(GL/glu.h,
+        AC_DEFINE(HAVE_GL_GLU_H)
+        if test x$ac_cv_lib_GL_glXMakeCurrent = xyes; then
+            GLLIB="-lGLU $GLLIB"
+        fi
+        if test x$ac_cv_lib_MesaGL_glXMakeCurrent = xyes; then
+            GLLIB="-lMesaGLU $GLLIB"
+        fi
+    )
+fi
+
+AC_SUBST(GLLIB)
+
+AC_CHECK_LIB(crypto, CRYPTO_add_lock)
+AC_CHECK_LIB(ssl, SSL_connect)
+AC_CHECK_LIB(curl, curl_easy_setopt)
+
+HAVE_LIB_CURL=
+if test "$ac_cv_lib_curl_curl_easy_setopt" = "yes"; then
+	HAVE_LIB_CURL=1
+fi
+AC_SUBST(HAVE_LIB_CURL)
+
+LIBS="-lX11 $LIBS $GLLIB"
+AC_CHECK_LIB(m,pow)
+AC_CHECK_LIB(Xutf8, XUtf8IsNonSpacing)
+AC_CHECK_LIB(fltk-utf8, fl_ucs2utf)
+
+FLTK=
+HAVE_FLTK_UTF=
+AC_CHECK_LIB(fltk-utf8, fl_utflen, FLTK="-lfltk-utf8" HAVE_FLTK_UTF=1 , )
+if test "x$FLTK" == "x"; then
+	AC_CHECK_LIB(fltk, numericsort, FLTK="-lfltk" LIBS="-lfltk $LIBS", )
+fi
+if test "x$FLTK" == "x"; then
+	echo " "
+	echo "you must install Xutf8 and fltk-utf8 before compiling Xd640."
+	exit 1
+fi
+
+AC_SUBST(HAVE_FLTK_UTF)
+XD=
+AC_CHECK_LIB(xd640, is_xd6, XD="-lxd640" LIBS="-lxd640 $LIBS", )
+if test "x$XD" == "x"; then
+	echo " "
+	echo "you must install xd640-lib before compiling Xd640."
+	exit 1
+fi
+
+dnl add warnings to compiler switches:
+dnl do this last so messing with switches does not break tests
+if test -n "$GXX"; then
+    CFLAGS="-Wall -fno-rtti $CFLAGS"
+    CXXFLAGS="-Wall -Wno-return-type -fno-rtti $CXXFLAGS"
+
+    # See if GCC supports -fno-exceptions...
+    echo "Testing if GCC supports -fno-exceptions..."
+    OLDCFLAGS="$CFLAGS"
+    CFLAGS="$CFLAGS -fno-exceptions"
+    AC_TRY_COMPILE(,,
+	CXXFLAGS="$CXXFLAGS -fno-exceptions"
+	echo "Congratulations - your GCC supports exceptions; disabling them for FLTK...",
+	CFLAGS="$OLDCFLAGS"
+	echo "GCC does not support exceptions...")
+
+    # See if we are running Solaris; if so, try the -fpermissive option...
+    if test $uname = SunOS; then
+	echo "Testing if GCC supports -fpermissive..."
+
+	OLDCFLAGS="$CFLAGS"
+	CFLAGS="$CFLAGS -fpermissive"
+	AC_TRY_COMPILE(,,
+	    CXXFLAGS="$CXXFLAGS -fpermissive"
+	    echo "Enabling -fpermissive to work around X header bugs...",
+	    CFLAGS="$OLDCFLAGS"
+	    echo "The -fpermissive option is not required by your GCC...")
+    fi
+fi
+
+dnl Output the makefile and configuration file...
+AC_OUTPUT(Makedefs)
+
+dnl
+dnl End of configure script.
+dnl

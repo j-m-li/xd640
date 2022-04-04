@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="Home" />
+	<i n="Name" l="fr" 	v="Répertoire personnel " />
+
+	<i n="Exec" v="flfm" /> 
+	<i n="Icon" v="filesystems/folder_home" />
+	<i n="Type" v="Application" />
+	<i n="Terminal" v="0" />
+	<i n="TerminalOptions" v="" />
+	<i n="Path" v="~/" />
+</s>
+</xd640cfg>
+

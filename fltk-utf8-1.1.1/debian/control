@@ -1,0 +1,27 @@
+Source: fltk-utf8
+Section: main
+Priority: optional
+Maintainer: Jean-Marc Lienher <oksid@bluewin.ch>
+Standards-Version: 3.1.0
+
+Package: libfltk-utf8
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, libxutf8
+Description: The UTF-8 Fast Light Toolkit, a GUI toolkit inspired by libForms
+ This is a very nice LGPL'd graphic user interface toolkit originally based on
+ libForms. 
+
+Package: libfltk-utf8-dev
+Section: devel
+Architecture: any
+Depends: libfltk-utf8 (>= ${Source-Version}), libc-dev, libstdc++-dev 
+Conflicts: libfltk1-dev
+Description: The UTF-8 Fast Light Toolkit, and the Fluid user interface designer
+ This includes the static libraries and header files to build libfltk programs.
+ Fltk is an attractive, fast, and flexible graphic user interface toolkit, that
+ supports both X and Windows 95. It was originally based on libForms so it
+ should be easy to port Forms programs to Fltk.
+ .
+ It also includes a very nice user interface designer to write UI code for you.
+ .

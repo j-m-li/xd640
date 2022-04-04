@@ -1,0 +1,121 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2000-12-08 17:48+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#: ../properties.cpp:55
+#, c-format
+msgid "%ld Bytes"
+msgstr ""
+
+#. *****************************************************************
+#: ../properties.cpp:138
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: ../properties.cpp:139
+msgid "Full Name:"
+msgstr "Nom complet:"
+
+#: ../properties.cpp:141
+msgid "File Name:"
+msgstr "Nom:"
+
+#: ../properties.cpp:143
+msgid "File Type:"
+msgstr "Type de fichier:"
+
+#: ../properties.cpp:145
+msgid "File Size:"
+msgstr "Taille du fichier:"
+
+#: ../properties.cpp:149
+msgid "File Created on:"
+msgstr "Fichier créé le:"
+
+#: ../properties.cpp:152
+msgid "File Modified on:"
+msgstr "Fichier modifié le:"
+
+#: ../properties.cpp:155
+msgid "File Accessed on:"
+msgstr "Dernier accès le:"
+
+#: ../properties.cpp:159
+msgid "Content:"
+msgstr "Contenu:"
+
+#. *****************************************************************
+#: ../properties.cpp:166
+msgid "Permissions"
+msgstr "Permissions"
+
+#: ../properties.cpp:169
+msgid "File Permissions"
+msgstr "Permissions du fichier"
+
+#: ../properties.cpp:175
+msgid "User"
+msgstr "Utilisateur"
+
+#. file_user->box(FL_FLAT_BOX);
+#. file_user->begin();
+#: ../properties.cpp:180 ../properties.cpp:197 ../properties.cpp:214
+msgid "Read"
+msgstr "Lect."
+
+#. file_user_read->align(FL_ALIGN_RIGHT);
+#: ../properties.cpp:182 ../properties.cpp:199 ../properties.cpp:216
+msgid "Write"
+msgstr "Ecrit."
+
+#: ../properties.cpp:184 ../properties.cpp:201 ../properties.cpp:218
+msgid "Exec"
+msgstr "Exéc."
+
+#: ../properties.cpp:186
+msgid "Set UID"
+msgstr "Set UID"
+
+#: ../properties.cpp:192 ../properties.cpp:230
+msgid "Group"
+msgstr "Groupe"
+
+#: ../properties.cpp:203
+msgid "Set GID"
+msgstr "Set GID"
+
+#: ../properties.cpp:209
+msgid "Other"
+msgstr "Autres"
+
+#: ../properties.cpp:220
+msgid "Sticky"
+msgstr "Sticky"
+
+#: ../properties.cpp:225
+msgid "File ownership"
+msgstr "Appartenance du fichier"
+
+#: ../properties.cpp:229
+msgid "Owner"
+msgstr "Utilisateur"
+
+#: ../properties.cpp:237
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../properties.cpp:239
+msgid "OK"
+msgstr "OK"

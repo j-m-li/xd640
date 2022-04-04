@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="Internet dialup" />
+	<i n="Name" l="fr" 	v="Connexion à Internet" />
+
+	<i n="Exec" v="flppp" /> 
+	<i n="Icon" v="flppp" />
+</s>
+</xd640cfg>

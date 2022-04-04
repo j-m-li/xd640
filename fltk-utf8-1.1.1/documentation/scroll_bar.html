@@ -1,0 +1,78 @@
+<HTML>
+  <BODY>
+    <HR break>
+    <H2>Scroll bar visibility</H2>
+    <HR>
+
+    <P>
+    Scroll bars appear at the right and bottom of the widget if visible.  They
+    are used to reveal portions of the widget not currently visible.  The
+    vertical scroll bar departs somewhat from traditional scroll bars by
+    actually moving the selection bar.
+    </P>
+
+    <H4>FLVS_NONE</H4>
+    <UL>
+      No scroll bars will be/are visible.  This will override AUTOMATIC and ALWAYS.
+    </UL>
+
+    <H4>FLVS_HORIZONTAL</H4>
+    <UL>
+      Only the Horizontal scroll bar will be/is visible.  Use AUTOMATIC and
+      ALWAYS to determine when this scroll bar will be visible.  The default
+      is AUTOMATIC.  This is equivalent to (FLVS_HORIZONTAL | FLVS_AUTOMATIC).
+    </UL>
+
+    <H4>FLVS_VERTICAL</H4>
+    <UL>
+      Only the Vertical scroll bar will be/is visible.  Use AUTOMATIC and
+      ALWAYS to determine when this scroll bar will be visible.  The default
+      is AUTOMATIC.  This is equivalent to (FLVS_VETICAL | FLVS_AUTOMATIC).
+    </UL>
+
+    <H4>FLVS_BOTH</H4>
+    <UL>
+      Both the Horizontal and Vertical scroll bars will be/are visible.
+      Use AUTOMATIC and ALWAYS to determine when these scroll bars will be
+      visible.  The default is AUTOMATIC.   This is equivalent to
+      (FLVS_BOTH | FLVS_AUTOMATIC) or (FLVS_HORIZONTAL | FLVS_VERTICAL |
+      FLVS_AUTOMATIC).
+    </UL>
+
+    <H4>FLVS_AUTOMATIC</H4>
+    <UL>
+      The scroll bars are visible only when needed.  Scroll bars are
+      <I>needed</I> whenever a portion of the widget would be obscured.
+      This is the default and is optional.  For this to work you must also
+      specify at least one of FLVS_HORIZONTAL, FLVS_VERTICAL, or FLVS_BOTH.
+    </UL>
+
+    <H4>FLVS_ALWAYS</H4>
+    <UL>
+      The scroll bars are always visible.  For this to work you must also
+      specify which scroll bar(s) will always be visible by or'ing at least
+      one of: FLVS_HORIZONTAL, FLVS_VERTICAL, or FLVS_BOTH.
+    </UL>
+
+    <H4>FLVS_HORIZONTAL_ALWAYS</H4>
+    <UL>
+      The horizontal scroll bar will be/is always on.  This is equivalent to
+      (FLVS_HORIZONTAL | FLVS_ALWAYS).
+    </UL>
+
+    <H4>FLVS_VERTICAL_ALWAYS</H4>
+    <UL>
+      The vertical scroll bar will be/is always on.  This is equivalent to
+      (FLVS_VERTICAL | FLVS_ALWAYS).
+    </UL>
+
+    <H4>FLVS_BOTH_ALWAYS</H4>
+    <UL>
+      The horizontal and vertical scroll bars will be/are always on.  This is
+      equivalent to (FLVS_BOTH | FLVS_ALWAYS).
+    </UL>
+
+  </BODY>
+</HTML>
+
+

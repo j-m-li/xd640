@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="flwriter" />
+	<i n="Exec" v="flwriter %f" /> 
+	<i n="Icon" v="flwriter" />
+	<i n="Type" v="Application" />
+</s>
+</xd640cfg>
+

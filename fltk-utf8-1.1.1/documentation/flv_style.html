@@ -1,0 +1,255 @@
+<HTML>
+  <BODY>
+
+<HR break>
+    <H2>class Flv_Style</H2>
+<HR>
+
+<H3>Class Hierarchy</H3>
+    <UL>
+      <PRE><B>Flv_Style</B></PRE>
+    </UL>
+
+<H3>Include Files</H3>
+    <UL>
+      <PRE>#include &lt;FL/Flv_Style.H&gt;;</PRE>
+    </UL>
+
+<H3>Description</H3>
+<UL>
+      The <TT>Flv_Style</TT> class was designed to track bits of information about how
+      an item looks and/or feels. The <TT>Flv_Style</TT> class is not a visible
+      widget. Instead it is used to affect how a widget will appear. 
+</UL>
+
+<H3>Conventions</H3>
+<UL>
+    <P>The default value listed for each property, is the value that global_style
+    will obtain when initialized.  All other styles will have no defaults and
+    all properties will be undefined.</p>
+  
+    <P>The lists of values, such as <TT>FL_RED</TT>, are not nesasarily inclusive of the
+    available values. You should consult the appropriate FLTK documentation
+    for a complete list of values.</p>
+  
+    <P>Each &quot;property&quot; consists of a section of four (4) functions.
+    The four functions always adhere to the following convention:</p>
+  
+
+    <H4><I>type</I> Flv_Style::<i>property</i>(void)</H4>
+    <UL>
+      This function will retrieve the value of the property.  The returned value is 
+      always read-only and reflects the current value of the property.  The value
+      returned will be undefined if the property is not defined.
+    </UL>
+
+    <H4><I>type</I> Flv_Style::<i>property</I>(<I>type</I> v)</H4>
+    <UL>
+      This function will set the value of the property to the value of v if possible.  
+      Either way, the returned value is also always read-only and reflects the current
+      value of the property.  The returned value will always be valid because the property
+      will always be defined after calling this function.
+    </UL>
+
+    <H4>void clear_<i>property</i>(void)</H4>
+    <UL>
+      This function will make the value of the property undefined.  Undefined properties
+      should not be read.
+    </UL>
+
+    <H4>bool <i>property</I>_defined(void)</H4>
+    <UL>
+      This function return <TT>true</TT> if the property has a defined value and 
+      <TT>false</TT> if the property has an undefined value.  Use this function to 
+      determine if the contents of the property are valid to read.
+    </UL>
+</UL>
+
+<H3>Methods</H3>
+    <CENTER>
+      <TABLE width="90%">
+        <TR>
+          <TD align=left valign=top>
+            <LI><A href="#Flv_Style.Flv_Style">Flv_Style</A></LI>
+            <LI><A href="#Flv_Style.align">align</A></LI>
+            <LI><A href="#Flv_Style.all_clear">all_clear</A></LI>
+            <LI><A href="#Flv_Style.all_defined">all_defined</A></LI>
+            <LI><A href="#Flv_Style.background">background</A></LI>
+            <LI><A href="#Flv_Style.clear_all">clear_all</A></LI>
+          <TD align=left valign=top>
+            <LI><A href="#Flv_Style.font">font</A></LI>
+            <LI><A href="#Flv_Style.font_size">font_size</A></LI>
+            <LI><A href="#Flv_Style.foreground">foreground</A></LI>
+            <LI><A href="#Flv_Style.frame">frame</A></LI>
+            <LI><A href="#Flv_Style.height">height</A></LI>
+            <LI><A href="#Flv_Style.locked">locked</A></LI>
+          <TD align=left valign=top>
+            <LI><A href="#Flv_Style.resizable">resizable</A></LI>
+            <LI><A href="#Flv_Style.width">width</A></LI>
+            <LI><A href="#Flv_Style.operator_equals">=</A></LI>
+            <LI><A href="#Flv_Style.cell_style">cell_style</A></LI>
+          </TD>
+        </TR>
+      </TABLE>
+    </CENTER>
+
+    <H4><A name="Flv_Style.Flv_Style">Flv_Style::Flv_Style()</A><BR>
+      Flv_Style::Flv_Style( int value )</H4>
+    <UL>
+      The constructor initializes an <TT>Flv_Style</TT> with no style information defined
+      and with a value of value or 0.
+    </UL>
+
+    <H4><A name="Flv_Style.all_clear">bool Flv_Style::all_clear(void)</A></H4>
+    <UL>
+      The all_clear function returns true if no style information is defined and
+      false if any style information is defined.
+    </UL>
+
+    <H4><A name="Flv_Style.align">const Fl_Align &Flv_Style::align(void) const</A><BR>
+      const Fl_Align &Flv_Style::align(const Fl_Align &n)<BR>
+      void Flv_Style::clear_align(void)<BR>
+      bool Flv_Style::align_defined(void) const</H4>
+    <UL>
+      The align property may be used to determine in what alignment a row or cell
+      should be drawn.&nbsp; This property is not directly used by any of the existing
+      code.&nbsp;&nbsp; The default value is <TT>FL_ALIGN_CLIP</TT> (This will center
+      horizontally and vertically).&nbsp; Other valid values are: <TT>FL_ALIGN_CENTER, FL_ALIGN_TOP, FL_ALIGN_BOTTOM, FL_ALIGN_LEFT, FL_ALIGN_RIGHT, FL_ALIGN_INSIDE, FL_ALIGN_CLIP, FL_ALIGN_WRAP, FL_ALIGN_TOP_LEFT, FL_ALIGN_TOP_RIGHT, FL_ALIGN_BOTTOM_LEFT, FL_ALIGN_BOTTOM_RIGHT, FL_ALIGN_LEFT_TOP, FL_ALIGN_RIGHT_TOP, FL_ALIGN_LEFT_BOTTOM, FL_ALIGN_RIGHT_BOTTOM,
+      FL_ALIGN_NOWRAP</TT>
+    </UL>
+
+    <H4><A name="Flv_Style.all_defined">bool Flv_Style::all_defined(void)</A></H4>
+    <UL>
+      The all_defined method may be used to determine if all style elements are defined.
+      It will return true if they are all defined and false if they are not.
+    </UL>
+
+    <H4><A name="Flv_Style.background">Fl_Color Flv_Style::background(void) const</A><BR>
+      Fl_Color Flv_Style::background(Fl_Color n)<BR>
+      void Flv_Style::clear_background(void)<BR>
+      bool Flv_Style::background_defined(void) const</H4>
+    <UL>
+      The background property is used to determine what color the background will
+      be drawn in.&nbsp; It is used by the default row and cell drawing code to fill
+      in this color.&nbsp; The default color is style dependant but is equivalent to <i>color()</i>.&nbsp;
+      The colors common to both version are: <TT>FL_BLACK, FL_RED, FL_GREEN, FL_YELLOW, FL_BLUE, FL_MAGENTA, FL_CYAN, FL_WHITE, FL_GRAY_RAMP, FL_GRAY, FL_COLOR_CUBE, FL_INACTIVE_COLOR</TT></p>
+      <P>The additional 1.x version colors are: <TT>FL_SELECTION_COLOR, FL_FREE_COLOR, FL_NUM_FREE_COLOR, FL_GRAY0, FL_DARK3, FL_DARK2, FL_DARK1, FL_LIGHT1, FL_LIGHT2, FL_LIGHT3</TT></p>
+      <P>The additional 2.x version colors are: <TT>FL_NO_COLOR, FL_INACTIVE_COLOR, FL_BLUE_SELECTION_COLOR</TT><br>
+    
+    </UL>
+
+    <H4><A name="Flv_Style.clear_all">clear_allvoid Flv_Style::clear_all(void)</A></H4>
+    <UL>
+      The clear_all method, makes all style information undefined.&nbsp; This is
+      equivalent to callin clear_<i>n</i>() where <i>n</i> is the name of each each
+      property in the style.
+    </UL>
+
+    <H4><A name="Flv_Style.font">const Fl_Font &Flv_Style::font(void) const</A><BR>
+      const Fl_Font &Flv_Style::font(const Fl_Font &n)<BR>
+      void Flv_Style::clear_font(void)<BR>
+      bool Flv_Style::font_defined(void) const</H4>
+    <UL>
+      The font property is used to determine in what font face text will be
+      drawn.&nbsp; It is used by the default row and cell drawing code to set this
+      value&nbsp; for you.&nbsp; The default font is style dependant but is equivalent
+      to <i>text_font()</i>.&nbsp; The FLTK fonts are <TT>FL_COURIER, FL_HELVETICA,
+      FL_TIMES, FL_SYMBOL, FL_SCREEN, FL_ZAPF_DINGBATS.</TT>&nbsp; Some of these
+      include bold and/or italics versions.&nbsp;
+    </UL>
+
+    <H4><A name="Flv_Style.font_size">int Flv_Style::font_size(void)const</A><BR>
+      int Flv_Style::font_size(int n)<BR>
+      void Flv_Style::clear_font_size(void)<BR>
+      bool Flv_Style::font_size_defined(void) const</H4>
+    <UL>
+      The font_size property is used to determine what size text should be drawn
+      in.&nbsp; It is used by the default row and cell drawing code to set the value
+      for you.&nbsp; Font sizes are in points.&nbsp; A point is 1/72 of an inch.&nbsp;
+      The default value is style dependant but is equivalent to <i>text_size().</i>
+    </UL>
+
+    <H4><A name="Flv_Style.foreground">Fl_Color Flv_Style::foreground(void) const</A><BR>
+      Fl_Color Flv_Style::foreground(Fl_Color n)<BR>
+      void Flv_Style::clear_foreground(void)<BR>
+      bool Flv_Style::foreground_defined(void) const</H4>
+    <UL>
+      The foreground property is used to determine what color foreground
+      information should be drawn in.&nbsp; It is used by the default row and cell
+      drawing code to set this value for you.&nbsp; The default color is style
+      dependant but is equivalent to <i>text_color()</i>.&nbsp; (See background for a
+      list of colors)
+    </UL>
+
+    <H4><A name="Flv_Style.frame">const Fl_Boxtype &Flv_Style::frame(void) const</A><BR>
+      const Fl_Boxtype &Flv_Style::frame(const Fl_Boxtype &n) <BR>
+      void Flv_Style::clear_frame(void)<BR>
+      bool Flv_Style::frame_defined(void) const</H4>
+    <UL>
+      The frame property is used to determine what style of&nbsp; frame should be
+      drawn around a row or cell.&nbsp; The default frame style is: <TT>FL_FLAT_BOX</TT>.&nbsp;
+      Some other common frame styles are: <TT>FL_UP_BOX, FL_DOWN_BOX, FL_THIN_UP_BOX,
+      FL_THIN_DOWN_BOX, FL_NO_BOX</TT>
+    </UL>
+
+    <H4><A name="Flv_Style.height">int Flv_Style::height(void) const</A><BR>
+      int Flv_Style::height(int n )<BR>
+      void Flv_Style::clear_height(void)<BR>
+      bool Flv_Style::height_defined(void) const</H4>
+    <UL>
+      The height property is used to determine the height of a row or cell.&nbsp;
+      It is only meaningful as a row property or as a cell property of a complex
+      table.&nbsp; The value is ignored for all other contexts (col_style).&nbsp; The
+      default height is the height of text drawn at <i>text_size()</i> point
+      size.&nbsp;&nbsp;
+    </UL>
+
+    <H4><A name="Flv_Style.locked">bool Flv_Style::locked(void) const</A><BR>
+      bool Flv_Style::locked(bool n)<BR>
+      void Flv_Style::clear_locked(void)<BR>
+      bool Flv_Style::locked_defined(void) const</H4>
+    <UL>
+      The locked property is used to determine whether editing is allowed in a row
+      or cell.&nbsp; The default value of this property is <TT>true</TT>. (There is no
+      current implementation that uses this)
+    </UL>
+
+    <H4><A name="Flv_Style.resizable">bool Flv_Style::resizable(void) const</A><BR>
+      bool Flv_Style::resizable(bool n)<BR>
+      void Flv_Style::clear_resizable(void)<BR>
+      bool Flv_Style::resizable_defined(void) const</H4>
+    <UL>
+      The resizable property is used to determine if resizing is allowed for a
+      column or row.&nbsp; The default value for this property is <TT>true</TT>.&nbsp;
+      (There is no current implementation that uses this)
+    </UL>
+
+    <H4><A name="Flv_Style.width">int Flv_Style::width(void) const</A><BR>
+      int Flv_Style::width(int n)<BR>
+      void Flv_Style::clear_width(void)<BR>
+      bool Flv_Style::width_defined(void) const</H4>
+    <UL>
+      The width property is used to determine the width a column should drawn or
+      for a complex table the width of a cell.&nbsp; The property is ignored in all
+      other contexts (row_style)&nbsp; The default value of this property is <i>40</i>.
+    </UL>
+
+    <H4><A name="Flv_Style.operator_equals">const Flv_Style &Flv_Style::operator=(const Flv_Style &n)</A></H4>
+    <UL>
+      The assignment operator is used to perform a &quot;defined&quot;
+      assignment.&nbsp; That is, the value of the style after assignment will be any
+      currently defined styles plus any styles defined in n.&nbsp; The styles in n
+      take precedence if defined. For the example a=b; if a has align and background
+      defined and b as background and foreground defined, after the assignment a will
+      have a's original align and b's background and foreground colors.&nbsp; No other
+      information will be defined for a.
+    </UL>
+
+    <H4><A name="Flv_Style.cell_style">Flv_Style_List Flv_Style::cell_style</A></H4>
+    <UL>
+      The cell_style variable is only meaningful, in the current implementations,
+      for rows.&nbsp; Each row style is able to maintain a list of cell styles for
+      that row.
+    </UL>
+  </BODY>
+</HTML>

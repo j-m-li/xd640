@@ -1,0 +1,322 @@
+<HTML><BODY>
+<HR break>
+<H2><A name=Fl_Adjuster>class Flv_List</A></H2>
+<HR>
+<H3>Class Hierarchy</H3>
+  <UL>
+    <PRE><B>Flv_List</B></PRE>
+  </UL>
+<H3>Include Files</H3>
+  <UL>
+    <PRE>#include &lt;FL/Flv_List.H&gt;</PRE>
+  </UL>
+<H3>Description</H3>
+  The <TT>Flv_List</TT> widget is designed to display a list of items.&nbsp; These
+  items can be of any complexity.&nbsp; For instance, the Flv_Table widget is just
+  a list with a bunch of columns.&nbsp; Below is an example of the list using
+  dynamic styles for row backgrounds.
+  <P ALIGN=CENTER><IMG SRC="images/flv_list.png"></P>
+  <P>The Flv_List widget has the following features:
+  <UL>
+    <LI>Optional title</LI>
+    <LI>Supports optional row headers and/or footers</LI>
+    <LI>Optional horizontal and vertical scroll bars</LI>
+    <LI>Dynamic row heights, global row heights, and individual row heights</LI>
+    <LI>Trickle down style information (default, global and row)
+      including alignment, background color, font name, font size,
+      foreground color, frame style, height, width,
+      resizable, edit locked</LI>
+    <LI>Optional row grids</LI>
+    <LI>Optional selectable range</LI>
+    <LI>Optional row resizing w/mouse in full grid</LI>
+    <LI>Dynamic or settable rows per page</LI>
+    <LI>No data stored in widget</LI>
+    <LI>Supports ~2 billion rows</LI>
+    <LI>Absolute row references</LI>
+    <LI>For text values draw_row is trivial to implement</LI>
+  </UL>
+  <P>
+
+<H3>Methods</H3>
+    <CENTER>
+      <TABLE width="90%">
+        <TR>
+          <TD align=left valign=top>
+            <LI><A href="#Flv_List.Flv_List">Flv_List</A></LI>
+            <LI><A href="#Flv_List.add_selection_style">add_selection_style</A></LI>
+            <LI><B>*</B><A href="#Flv_List.draw_row">draw_row</A></LI>
+            <LI><A href="#Flv_List.feature">feature</A></LI>
+            <LI><A href="#Flv_List.full_resize">full_resize</A></LI>
+            <LI><A href="#Flv_List.get_default_style">get_default_style</A></LI>
+            <LI><A href="#Flv_List.get_row">get_row</A></LI>
+            <LI><A href="#Flv_List.get_style">get_style</A></LI>
+            <LI><A href="#Flv_List.handle">handle</A></LI>
+            <LI><A href="#Flv_List.has_scrollbar">has_scrollbar</A></LI>
+          <TD align=left valign=top>
+            <LI><A href="#Flv_List.multi_select">multi_select</A></LI>
+            <LI><A href="#Flv_List.persist_select">persist_select</A></LI>
+            <LI><A href="#Flv_List.row">row</A></LI>
+            <LI><A href="#Flv_List.rows">rows</A></LI>
+            <LI><A href="#Flv_List.rows_per_page">rows_per_page</A></LI>
+            <LI><A href="#Flv_List.row_divider">row_divider</A></LI>
+            <LI><A href="#Flv_List.row_footer">row_footer</A></LI>
+            <LI><A href="#Flv_List.row_header">row_header</A></LI>
+            <LI><A href="#Flv_List.row_height">row_height</A></LI>
+            <LI><A href="#Flv_List.row_offset">row_offset</A></LI>
+          <TD align=left valign=top>
+            <LI><A href="#Flv_List.row_resizable">row_resizable</A></LI>
+            <LI><A href="#Flv_List.row_selected">row_selected</A></LI>
+            <LI><A href="#Flv_List.row_width">row_width</A></LI>
+            <LI><A href="#Flv_List.scrollbar_width">scrollbar_width</A></LI>
+            <LI><A href="#Flv_List.select_start_row">select_start_row</A></LI>
+            <LI><A href="#Flv_List.top_row">top_row</A></LI>
+            <LI><A href="#Flv_List.global_style">global_style</A></LI>
+            <LI><A href="#Flv_List.row_style">row_style</A></LI>
+          </TD>
+        </TR>
+      </TABLE>
+    </CENTER>
+
+
+    <H4><A name="Flv_List.Flv_List">Flv_List( int X, int Y, int W, int H, const char *l=0 )</A><BR>
+       ~Flv_List()</H4>
+    <UL>
+      The constructor builds an Flv_List widget at a specific point within the
+      parent.
+    </UL>
+
+    <H4><A name="Flv_List.add_selection_style">void add_selection_style( Flv_Style &s, int R, int C=0 )</A></H4>
+    <UL>
+      The <TT>add_selection_style</TT> function will add the current selection
+      style information to style s.  <TT>R</TT> is the row that you are
+      retrieving the selection style for.  <TT>C</TT> is ignored for an
+      <TT>Flv_List</TT>.  Currently it sets the background color to the
+      selection color if the row is selected.  It also enforces block
+      selection.  You can override this to provide a different way to add
+      selection information.  If you do override this you should only apply
+      the style if you determine row <TT>R</TT> is selected.
+    </UL>
+
+    <H4><A name="Flv_List.draw_row">virtual void draw_row( int Offset, int X, int Y, int W, int H, int R )</A></H4>
+    <UL>
+      This function draws a basic row.  You will
+      always need to override this to provide row content.  The default
+      function provided will draw the cell border, clear the cell and set-up
+      the foreground drawing information such as color and font.  In your
+      inherited version, if you call this, you will typically only need alignment
+      information to draw the row.  An example row would be:
+      <UL><PRE>
+    ...::draw_row( int Offset, int X, int Y, int W, int H, int R )
+{
+  Flv_Style s;
+  Flv_List::draw_row( Offset, X, Y, W, H, R );
+  get_style( s, R );
+  fl_draw(get_value(R), X-Offset, Y, W, H, s.align() );
+}
+      </PRE></UL>
+    </UL>
+
+    <H4><A name="Flv_List.feature">Flv_Feature feature(void)</A><BR>
+       Flv_Feature feature(Flv_Feature v)<BR>
+       Flv_Feature feature_add(Flv_Feature v)<BR>
+       Flv_Feature feature_remove(Flv_Feature v)<BR>
+       bool feature_test(Flv_Feature v)</H4>
+    <UL>
+      The <TT>feature</TT> functions are designed to manipulate visual
+      <A href="widget_features.html">features</A> of the widget.  <TT>feature</TT>
+      will set the list a features specifically to whatever parameter <TT>v</TT>
+      is set to.  <TT>feature_add</TT> will set the features in <TT>v</TT>
+      to on.  If the feature is already on it is ignored. <TT>feature_remove</TT>
+      will set the features in <TT>v</TT> to off. <TT>feature_test</TT>
+      will test if the set of features <TT>v</TT> are <I>all</I> turned on.
+      There are numerous convenience functions that exist for testing if a
+      feature is on also.
+    </UL>
+
+    <H4><A name="Flv_List.full_resize">bool full_resize(void)</A></H4>
+    <UL>
+      The <TT>full_resize</TT> function is a feature convenience function that
+      test whether <TT>FLVF_FULL_RESIZE</TT> is on.  Full resize allows
+      resizing anywhere in the widget at a row or column boundary.  When full
+      resize is not set, resizing can only occur at the ends of columns, rows,
+      and titles.  For an <TT>Flv_List</TT> you <I>must</I> turn this on
+      in addition to turning on the appropriate resizable properties.
+    </UL>
+
+    <H4><A name="Flv_List.get_default_style">void get_default_style( Flv_Style &s )</A></H4>
+    <UL>
+      The <TT>get_default_style</TT> function is a guaranteed full style
+      retrieval function.  That means style <TT>s</TT> will have all information
+      defined.  Furthermore it will be defined with whatever the default
+      values are.
+    </UL>
+
+    <H4><A name="Flv_List.get_row">int get_row( int x, int y )</A></H4>
+    <UL>
+      The <TT>get_row</TT> function will return what row contains the
+      <TT>x</TT> and <TT>y</TT> coordinates.
+    </UL>
+
+    <H4><A name="Flv_List.get_style">virtual void get_style(Flv_Style &s, int R, int C=0)</A></H4>
+    <UL>
+      The <TT>get_style</TT> function is a guaranteed full style retrieval
+      function.  That means style <TT>s</TT> will have all information defined.
+      It is defined in the following manner:  Default style, global style,
+      row <TT>R</TT> style.  For an <TT>Flv_List</TT> class parameter <TT>C</TT>
+      is ignored.
+    </UL>
+
+    <H4><A name="Flv_List.handle">int handle(int event)</A></H4>
+    <UL>
+      This is the default event handling loop.  You will need to override this
+      if you need to respond to events in a new way.
+    </UL>
+
+    <H4><A name="Flv_List.has_scrollbar">Flv_ShowScrollbar has_scrollbar(void)</A><BR>
+       Flv_ShowScrollbar has_scrollbar( Flv_ShowScrollbar v )</H4>
+    <UL>
+      These functions are designed to get or set the
+      <A href="scroll_bar.html">visibility</A> of the
+      horizontal and vertical scrollbars.
+    </UL>
+
+    <H4><A name="Flv_List.multi_select">bool multi_select(void)</A></H4>
+    <UL>
+      This function is a convenience function that determines if the
+      FLVF_MULTI_SELECT feature has been set.  This function returns <I>true</I>
+      if the feature is set and <I>false</I> if the feature is not set.
+    </UL>
+
+    <H4><A name="Flv_List.persist_select">bool persist_select(void)</A></H4>
+    <UL>
+      This function is a feature convenience function that determines if the
+      FLVF_PERSIST_SELECT feature has been set.  The function returns <I>true</I>
+      if the feature is set and <I>false</I> if the feature is not set.
+    </UL>
+
+    <H4><A name="Flv_List.row">int row(void)</A><BR>
+       int row(int n)</H4>
+    <UL>
+      These functions return the current row.  The second function will actually
+      set the row.  Bounds checking is done automatically.  There are three
+      special rows: row -1 is the row header, row -2 is the row footer, and
+      row -3 is the widget title.
+    </UL>
+
+    <H4><A name="Flv_List.rows">int rows(void)</A><BR>
+       int rows(int n)</H4>
+    <UL>
+      These functions return the total number of rows.  The second function will
+      actually set the number of rows before returning the value.
+    </UL>
+
+    <H4><A name="Flv_List.rows_per_page">int rows_per_page(void)</A><BR>
+       int rows_per_page( int n )</H4>
+    <UL>
+       These functions return the number of rows the widget should advance
+       when <I>paging</I> through the rows.  If n=0 the number of rows per
+       page is automatically calculated.
+    </UL>
+
+    <H4><A name="Flv_List.row_divider">bool row_divider(void)</A></H4>
+    <UL>
+      This is a feature convenience function that determines if row
+      dividers/grid lines have been turned on.  It returns true if the lines
+      are visible.
+    </UL>
+
+    <H4><A name="Flv_List.row_footer">bool row_footer(void)</A></H4>
+    <UL>
+      This is a feature convenience function that determines if the row footers
+      have been turned on.  It returns true if the row footers are visible.
+    </UL>
+
+    <H4><A name="Flv_List.row_header">bool row_header(void)</A></H4>
+    <UL>
+      This is a feature convenience function that determines if the row headers
+      have been turned on.  It returns true if the row headers are visible.
+    </UL>
+
+    <H4><A name="Flv_List.row_height">virtual int row_height( int n )</A><BR>
+       virtual int row_height( int n, int R )</H4>
+    <UL>
+      These functions return the height of row <TT>n</TT>.  The second function
+      will actually set the height of row <TT>n</TT>.  By default this function
+      uses style information to track individual row heights.  The value
+      returned will be the trickle down row height (i.e. default style,
+      global style, row style).
+    </UL>
+
+    <H4><A name="Flv_List.row_offset">int row_offset(void)</A><BR>
+       int row_offset( int n )</H4>
+    <UL>
+      These functions return the current row offset.  The second function
+      will actually set the row offset.  The row offset determines the left
+      visible edge will be.
+    </UL>
+
+    <H4><A name="Flv_List.row_resizable">bool row_resizable( int r )</A><BR>
+       bool row_resizable( bool n, int r )</H4>
+    <UL>
+      These functions return whether or not a row may be resized.  This function
+      uses style information to track this information.  The value returned
+      will be the trickle down values (i.e. default style, global style, row
+      style).
+    </UL>
+
+    <H4><A name="Flv_List.row_selected">bool row_selected(int n)</A></H4>
+    <UL>
+      This function returns <I>true</I> if row <TT>n</TT> is selected.
+    </UL>
+
+    <H4><A name="Flv_List.row_width">int row_width(void)</A><BR>
+       int row_width( int n )</H4>
+    <UL>
+      This function returns the current width of the row.  The second function
+      actually sets the value of the row width.  If <TT>n</TT> is set to 0 the
+      row width will be automatic.  Currently all table widgets will override
+      this value when the widgets are drawn.
+    </UL>
+
+    <H4><A name="Flv_List.scrollbar_width">int scrollbar_width(void)</A><BR>
+       int scrollbar_width(int n)</H4>
+    <UL>
+      These functions return the visible width of the scroll bars.  The second
+      function will actually set the width before returning the value.
+      The default value is 17.
+    </UL>
+
+    <H4><A name="Flv_List.select_start_row">int select_start_row(void)</A><BR>
+       int select_start_row(int n)</H4>
+    <UL>
+      These functions return the first selected row.  The second function will
+      actually set which row is first selected.  The first selected row may be
+      before or after the current row.
+    </UL>
+
+    <H4><A name="Flv_List.top_row">int top_row(void)</A></H4>
+    <UL>
+      This function return the number of the first visible row in the grid.
+    </UL>
+
+    <H4><A name="Flv_List.global_style">Flv_Style global_style</A></H4>
+    <UL>
+      This style contains any global widget styles.  For instance to make
+      all rows and/or columns resizable use: global_style.resizable(true);
+      For a complete list of style properties see the
+      <A href="flv_style.html">Flv_Style</A> reference.
+    </UL>
+
+    <H4><A name="Flv_List.row_style">Flv_Style_List row_style</A></H4>
+    <UL>
+      This contains a list of styles that have been defined for any rows.  In
+      practice you should use the find or skip_to functions to determine if
+      a row has a style defined.  In general you will use get_style(style,row)
+      which will return the value being used for a row.  For a complete list of
+      list properties and methods see the <A href="flv_style_list.html">
+      Flv_Style_List</A> reference.  This is also where the list of cell styles
+      is maintained for table based widgets.
+    </UL>
+
+  </BODY>
+</HTML>

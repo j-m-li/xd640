@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="flmail" />
+	
+	<i n="Comment" 		v="" />
+
+	<i n="Exec" v="flmail" /> 
+	<i n="Icon" v="exec" />
+	<i n="EmptyIcon" v="" />
+	<i n="Type" v="Application" />
+	<i n="Terminal" v="0" />
+	<i n="TerminalOptions" v="" />
+	<i n="Path" v="" />
+	<i n="BgImage" v="" />
+	<i n="DocPath" v="" />
+	<i n="URL" v="" />
+	<i n="Patterns" v="" />
+	<i n="MimeType" v="" />
+	<i n="UnmountIcon" v="" />
+	<i n="MountPoint" v="" />
+	<i n="Dev" v="" />
+	<i n="FSType" v="" />
+	<i n="SortOrder" v="" />
+</s>
+</xd640cfg>
+

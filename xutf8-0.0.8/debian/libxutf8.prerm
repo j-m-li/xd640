@@ -1,0 +1,7 @@
+#! /bin/sh
+
+set -e
+
+if [ \( "$1" = "upgrade" -o "$1" = "remove" \) -a -L /usr/doc/libXutf8 ]; then
+        rm -f /usr/doc/libXutf8
+fi

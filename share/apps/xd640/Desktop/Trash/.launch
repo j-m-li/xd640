@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="Trash" />
+	<i n="Name" l="fr"	v="Poubelle" />
+
+	<i n="Icon" v="filesystems/trashcan_full" />
+	<i n="EmptyIcon" v="filesystems/trashcan_empty" />
+</s>
+</xd640cfg>
+

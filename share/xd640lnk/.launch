@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" v="Xd640 Default Menu" />
+	<i n="SortOrder" 
+v="
+Applications/,
+Internet/,
+System/,
+Games/,
+xterm
+" />
+
+</s>
+</xd640cfg>
+

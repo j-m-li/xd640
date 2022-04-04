@@ -1,0 +1,36 @@
+This is Debian prepackaged version of UTF-8 FLTK - UTF-8 The Fast Light Toolkit,
+a GUI toolkit inspired by libForms.  It was originally packaged by
+Gregory S. Stark <gsstark@mit.edu> on Sat, 30 May 1998 11:54:56 -0400.
+
+Pristine source was downloaded from: http://www.fltk.org
+
+    FLTK is copyright 1998-1999 by Bill Spitzak (spitzak@d2.com) and
+    others, including:
+
+        Craig P. Earls (cpearls@mit.edu)
+	Curtis Edwards (curtise@fa.disney.com)
+	Gustavo Hime (hime@centroin.com.br)
+	Matthias Melcher (matthias@mediaone.net)
+	Vincent Penne (vincent.penne@wanadoo.fr)
+        Michael Sweet (mike@easysw.com)
+	Carl Thompson (clip@home.net)
+
+    UTF-8 FLTK is copyright 2000-2001 by O'ksi'D
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public License
+    as published by the Free Software Foundation; either version 2 of
+    the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+
+    You should have received a copy of the GNU Library General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+    USA.
+
+On Debian systems, the full text of this license can be found in
+/usr/share/common-licenses/LGPL.

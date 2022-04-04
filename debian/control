@@ -1,0 +1,12 @@
+Source: xd640-core
+Section: main
+Priority: optional
+Maintainer: Jean-Marc Lienher <oksid@bluewin.ch>
+Standards-Version: 3.1.0
+
+Package: xd640-core
+Section: x11
+Architecture: any
+Depends: libfltk-utf8
+Description: X Desktop 640x480 is a suite of applications.
+ .

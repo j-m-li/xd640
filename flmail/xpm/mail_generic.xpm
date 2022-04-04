@@ -1,0 +1,27 @@
+/* XPM */
+static char *mail_generic_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1",
+"  c #000000",
+". c #808000",
+"X c #c0c000",
+"o c #ffffc0",
+"O c #ffffff",
+/* pixels */
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"                ",
+"  oOoOoOoOoOoO  ",
+" X oOoOoOoOoO X ",
+" oX oOoOoOoO XO ",
+" OoX oOoOoO XOo ",
+" oOo. oOoO .OoO ",
+" Oo.oX oO XO.Oo ",
+" o.oOoX  XOoO.O ",
+" .oOoOoOoOoOoO. ",
+" oOoOoOoOoOoOoO ",
+"                ",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO"
+};

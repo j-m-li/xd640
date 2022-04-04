@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+if [ "$1" = configure ] ; then
+	ldconfig
+	if [ -d /usr/doc -a ! -e /usr/doc/libXutf8 -a -d /usr/share/doc/libXutf8 ]
+	then
+		ln -sf ../share/doc/libXutf8 /usr/doc/libXutf8
+	fi
+fi
+
+#DEBHELPER#

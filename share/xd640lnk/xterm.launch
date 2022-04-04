@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="X Terminal" />
+	<i n="Name" l="fr" 	v="Terminal X" />
+
+	<i n="Exec" v="xterm -ls -sb -sl 1000 -bg black -fg gray" /> 
+	<i n="Icon" v="terminal" />
+	<i n="Type" v="Application" />
+	<i n="Terminal" v="0" />
+	<i n="TerminalOptions" v="" />
+	<i n="Path" v="" />
+</s>
+</xd640cfg>
+

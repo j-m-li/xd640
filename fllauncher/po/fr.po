@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2000-12-01 16:35+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#: ../gui.cpp:328
+msgid ""
+"  flchest - Copyright (c) 2000 O'ksi'D\n"
+"This application is a GPL free software.\n"
+"        http://oksid.ch"
+msgstr ""
+"  flchest - Copyright (c) 2000 O'ksi'D\n"
+"Cette application est un logiciel libre GPL.\n"
+"        http://oksid.ch"
+
+#: ../gui.cpp:806
+msgid "Change Orientation"
+msgstr "Changer l'orientation"
+
+#: ../gui.cpp:807
+msgid "About"
+msgstr "A-propos"
+
+#: ../gui.cpp:808
+msgid "Exit"
+msgstr "Quitter"

@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+if [ "$1" = configure ] ; then
+	ldconfig
+	if [ -d /usr/doc -a ! -e /usr/doc/libfltk-utf8 -a -d /usr/share/doc/libfltk-utf8 ]
+	then
+		ln -sf ../share/doc/libfltk-utf8 /usr/doc/libfltk-utf8
+	fi
+fi
+
+#DEBHELPER#

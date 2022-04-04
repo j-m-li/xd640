@@ -1,0 +1,12 @@
+#! /bin/sh
+
+set -e
+
+if [ "$1" = "configure" ]; then
+	if [ -d /usr/doc -a ! -e /usr/doc/libfltk-utf8-dev -a -d /usr/share/doc/libfltk-utf8-dev ]
+	then
+		ln -sf ../share/doc/libfltk-utf8-dev /usr/doc/libfltk-utf8-dev
+	fi
+fi
+
+#DEBHELPER#

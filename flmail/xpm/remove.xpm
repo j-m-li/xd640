@@ -1,0 +1,27 @@
+/* XPM */
+static char *remove_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 5 1",
+"  c #400000",
+". c #800000",
+"X c #c00000",
+"o c #ff0000",
+"O c #ffffff",
+/* pixels */
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOoOOO",
+"OOOOooOOOOOoXXOO",
+"OOOoXXooOOoXX OO",
+"OOOOO.XXoXXX OOO",
+"OOOOOO.XXXX OOOO",
+"OOOOOOOoXXoOOOOO",
+"OOOOOOoXXXoOOOOO",
+"OOOOOoX O.XoOOOO",
+"OOOOOo OOO.XOOOO",
+"OOOOoXOOOOO.XOOO",
+"OOOOo OOOOOOXOOO",
+"OOOOoOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO",
+"OOOOOOOOOOOOOOOO"
+};

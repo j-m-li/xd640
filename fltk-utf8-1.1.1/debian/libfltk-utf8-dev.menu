@@ -1,0 +1,2 @@
+?package(libfltk-utf8-dev):needs=X11 section=Apps/Programming\
+  title="fluid" command="/usr/bin/fluid"

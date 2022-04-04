@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="X paint" />
+
+	<i n="Exec" v="xpaint %f" /> 
+	<i n="Icon" v="xpaint" />
+	<i n="Type" v="Application" />
+	<i n="Terminal" v="0" />
+	<i n="TerminalOptions" v="" />
+	<i n="Path" v="" />
+</s>
+</xd640cfg>
+

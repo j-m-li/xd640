@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2002-02-16 19:50+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#: ../PppGui.cpp:212
+msgid "flppp: pppd dialup interface"
+msgstr ""
+
+#: ../PppGui.cpp:213
+msgid "flppp"
+msgstr ""
+
+#: ../PppGui.cpp:222 ../PppGui.cpp:304
+msgid "Disconnected."
+msgstr ""
+
+#: ../PppGui.cpp:223
+msgid "Connect"
+msgstr ""
+
+#: ../PppGui.cpp:225
+msgid "Disconnect"
+msgstr ""
+
+#: ../PppGui.cpp:233
+msgid "pppd is not yet configured, please run pppconfig before flppp."
+msgstr ""

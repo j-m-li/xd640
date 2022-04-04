@@ -1,0 +1,3 @@
+
+#define HAVE_FLTK_UTF 0
+

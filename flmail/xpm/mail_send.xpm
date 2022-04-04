@@ -1,0 +1,28 @@
+/* XPM */
+static char *mail_send_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1",
+"  c #000000",
+". c #000080",
+"X c #808000",
+"o c #c0c000",
+"O c #ffffc0",
+"+ c #ffffff",
+/* pixels */
+"           +++++",
+" OXO+O+Oo  +++++",
+" +OXO+Oo O +++++",
+" O+OXOo O+ +++++",
+" +O+OX O+O ..+++",
+" O+Oo O+O+....++",
+" +Oo O+O+......+",
+" O+ O+O+........",
+" +O +O+O+O....++",
+" O+o +O+O+....++",
+" +O+o +O+O....++",
+" O+O+X +O+....++",
+" +O+X+o +O +++++",
+" O+X+O+o + +++++",
+" +X+O+O+o  +++++",
+"           +++++"
+};

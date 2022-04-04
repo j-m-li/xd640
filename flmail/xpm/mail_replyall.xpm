@@ -1,0 +1,32 @@
+/* XPM */
+static char *mail_replyall_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 10 1",
+"  c #000000",
+". c #000080",
+"X c #0000ff",
+"o c #808000",
+"O c #c0c000",
+"+ c #a0a0a0",
+"@ c #c3c3c3",
+"# c #dcdcdc",
+"$ c #ffffc0",
+"% c #ffffff",
+/* pixels */
+"           %%%%%",
+" $o$%$%$O  %%%%%",
+" %$o$%.O $ %%%%%",
+" $%$o.. $% %%%%%",
+" %$%..........%%",
+" $%............%",
+" %$ ..X.........",
+" $%$ XX       ..",
+" %$%XXXXXXXXXX .",
+" $%XXXXXXXXXXXX ",
+" %$.XXXXXXXXXXXX",
+" $%@.XX.......XX",
+" %$%o.X #@ %%..X",
+" $%o%@.@ # %%%.X",
+" %o%$%+%O  %%%..",
+"          %%%..."
+};

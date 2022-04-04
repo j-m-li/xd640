@@ -1,0 +1,69 @@
+<HTML><BODY>
+<H1 ALIGN=center><A NAME=intro>1 - Introduction to FLVW</A></H1>
+The FLTK Virtual Widgets are a LGPL'd set C++ class widgets for FLTK.&nbsp;&nbsp;<H2>History of
+FLVW</H2>
+I'd been using FLTK off an on for about a year, and often found the need for a
+table style widget.&nbsp; The first example was a program name FMan that allows
+searching Unix manpages.&nbsp; I'd written a poor version based on the
+Fl_Browser classes that I was never really happy with.&nbsp; After writing FMan
+I seemed to get busy doing other things and didn't do a lot of FLTK
+programming.&nbsp; About a year later I noticed on the FLTK lists one day some
+references to FLTK 2.0 cvs being available for download in the bazar.&nbsp; I
+downloaded it, fired up the essai style and got all warm and fuzzy.&nbsp; At
+that point I decided I wanted to fix FMan to use 2.0 with styles and
+schemes.&nbsp; After getting it to compile, I just wasn't happy with the
+&quot;table&quot; widgets I had thrown together.&nbsp; Instead of fixing those,
+I decided I could really use a full blown widget for other projects as
+well.&nbsp; One of my primary concerns from the beginning was how I could
+display spreadsheet data and database data and still have a functional
+widget.&nbsp; The storage behind the two types of widgets seemed so different
+and yet they looked almost identical.&nbsp; I also used on a fairly regular
+basis True Grid under the Windows platform, and the panel widget under Borland
+C++ Builder.&nbsp; I really wanted something that could provide a credible
+substitute for all of those.&nbsp; A light went on, and I started writing the
+FLTK Virtual Widgets.
+<p>Virtual Widgets in a nutshell are widgets where absolutely NO application
+data is stored in the widget.&nbsp; This means as a user of the Virtual Widgets
+you MUST create a child class and write your own function(s).&nbsp; After the
+initial release it became apparent that for basic drawing I could make the
+function you had to write very trivial.&nbsp; The fact that no data is stored in
+the widgets is actually crucial to success for database and spreadsheet widgets
+where the amount of data being managed is often much larger than available
+memory.&nbsp; For instance a virtual widget will happily handle a 2 row table or
+a 2 billion row table with no increase in memory required for the widget!&nbsp;</p>
+<H2>Features</H2>
+FLVW was designed to dynamically or statically linked.&nbsp; It's a relatively
+light widget (at least for what it does).&nbsp; Here are some of the core
+features that FLVW has:
+<ul>
+  <li>No data are stored in the widgets</li>
+  <li>Support for &quot;<a href="stylebasics.html">Trickle Down Virtual Styles</a>&quot;
+    (These are not 2.0 styles)</li>
+  <li>Support for dynamic row (and column where applicable) sizes</li>
+  <li>Support for fixed headers and footers in rows (and columns where
+    applicable)</li>
+  <li>Other features...</li>
+</ul>
+<H2>Licensing</H2>
+FLVW comes with complete free source code. FLVW is available under the 
+terms of the <A href=#licensing>GNU Library General Public License</A>.&nbsp;<H2>Building and Installing
+FLVW Under UNIX</H2>
+In most cases you can just type &quot;make&quot;.  This will run configure with 
+the default of no options and then compile everything.
+<H2>Internet Resources</H2>
+FLVW is available for download from:
+<p>WWW</p>
+<blockquote>
+  <p>&quot;<a href="http://fwidget.netpedia.net/index.html">http://fwidget.netpedia.net</a>&quot;</p>
+</blockquote>
+<DL>
+<DT>FTP</DT>
+<DD>(there are no ftp sites)
+</DD>
+<dt>&nbsp;</dt>
+</DL>
+<H2>Reporting Bugs</H2>
+ To report a bug in FLVW, send an email to &quot;<a href="mailto://lcharlto@mail.coin.missouri.edu">lcharlto@mail.coin.missouri.edu</a>&quot;. 
+Please include the FLVW version, operating system &amp; version, and 
+compiler that you are using when describing the bug or problem.
+</BODY></HTML>

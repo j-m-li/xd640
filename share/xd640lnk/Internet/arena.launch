@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="Arena" />
+
+	<i n="Exec" v="arena %u" /> 
+	<i n="Icon" v="arena" />
+	<i n="Type" v="Application" />
+	<i n="Terminal" v="0" />
+	<i n="TerminalOptions" v="" />
+	<i n="Path" v="" />
+</s>
+</xd640cfg>
+

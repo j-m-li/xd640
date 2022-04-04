@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2000-12-08 14:03+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#: ../fldesk.cpp:69
+msgid "Link"
+msgstr "Créer un lien"
+
+#: ../fldesk.cpp:81
+#, c-format
+msgid "Link_[%d]"
+msgstr "Lien_[%d]"
+
+#: ../icon.cpp:249
+msgid ">Unknown<"
+msgstr ">Inconnu<"
+
+#: ../icon.cpp:662
+msgid "Mount"
+msgstr "Monter"
+
+#: ../icon.cpp:663
+msgid "Unmount"
+msgstr "Démonter"
+
+#: ../icon.cpp:664 ../icon.cpp:672 ../icon.cpp:675
+msgid "Open"
+msgstr "Ouvrir"
+
+#: ../icon.cpp:665 ../icon.cpp:669 ../icon.cpp:676
+msgid "Edit icon"
+msgstr "Editer l'icon"
+
+#: ../icon.cpp:666 ../icon.cpp:670 ../icon.cpp:677
+msgid "Remove icon"
+msgstr "Enlever l'icon"
+
+#: ../icon.cpp:668
+msgid "Execute"
+msgstr "Exécuter"
+
+#: ../icon.cpp:673
+msgid "Empty trash"
+msgstr "Vider la poubelle"

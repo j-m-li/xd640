@@ -1,0 +1,163 @@
+<HTML><BODY>
+<H1 ALIGN=center>3<A NAME=basics> - Virtual Style Basics</A></H1>
+ This chapter will teach you the basics of &quot;Trickle down Virtual
+Styles&quot;.&nbsp; Virtual styles as implemented for FLVW have little to do
+with styles from FLTK 2.x series styles/schemes.&nbsp; They are style aware,
+that means whatever I think it means. :) 
+<H2>The Problem</H2>
+<p>When creating the Virtual Widgets, I needed a way to specify attributes for
+cells that was fairly memory efficient.&nbsp; For a 2 billion by 2 billion row
+table, it just wasn't feasible to store style information for every cell.&nbsp;
+I found that in general a couple of style formats occurred over and over.&nbsp;
+One, I generally needed a style for the widget, besides that I found that
+specific rows and columns often would need a different style.&nbsp; For instance
+headers and footers often had a different formatting than the basic cells.&nbsp;
+Total columns and rows would often have a different style.&nbsp; Again I faced
+the problem that for even a single row or column, storing style information on a
+cell by cell basis was going to be a problem for large data-sets.</p>
+<H2>The Solution</H2>
+The solution I settled on was a two part solution.&nbsp; Part one required the
+definition of style information and more importantly, a way to tell whether a
+particular bit of style information had been defined and of course a way to
+clear it.&nbsp; Part two required being able to access a set of styles
+efficiently, both randomly (the way a user might) and sequentially (the way
+drawing does).&nbsp; As another design goal, I wanted the use of styles, however
+they were implemented, to be trivial for the end-user.&nbsp; Two classes came
+from this, <a href="flv_style.html">Flv_Style</a> and <a href="flv_style_list.html">Flv_Style_List</a>.&nbsp;
+<p>Flv_Style maintains a set of &quot;style&quot; information.&nbsp; In a
+nutshell, style information is just the way something looks and in some cases
+behaves.&nbsp; This includes; the alignment of drawing, the background color,
+the font, the font size, the foreground color, the row height, if a cell can be
+edited, if a cell can be resized, and the column width.&nbsp; Complex styles
+also include the x and y position of a cell.</p>
+<p>Flv_Style_List maintains a set of styles.&nbsp; It does this by creating a
+sparse array, using a value to determine where in the array a style is. The list
+includes a random access method: find, and a sequential access method: skip_to.&nbsp;
+The list also contains a special operator, the [] operator, which is a
+guaranteed access operator.&nbsp; What that means is that if you access style
+value x and style x already exists, that's the style that is returned.&nbsp; If
+however you access style value x and style x doesn't exist, the list will create
+it, insert it in the appropriate place, with no style information defined, and
+return a reference to that newly created style.</p>
+<p>The implementation of these includes global_style which is a single style,
+row_style which is a list of styles, and if appropriate column_style which is
+also a list of styles.&nbsp; Individual cell styles may be accessed via
+cell_style included in the row_style.</p>
+<H2>How do I use it?</H2>
+<p>Before using any bit of style information, you should first test to determine
+if it in fact is defined.&nbsp; This should be done for lists as well as
+individual styles.&nbsp; The exception to this is any time you are setting a
+style value.&nbsp; If you are setting a style value, you probably don't care if
+anything is defined or not, you simply want to set it to a specific value.&nbsp;
+</p>
+<p>In the following examples the variable x will be a dynamically created
+widget.</p>
+<p>You would set the global_style foreground color like so:</p>
+<blockquote>
+  <p><kbd>x-&gt;global_style.foreground(FL_RED);</kbd></p>
+</blockquote>
+<p>and use the global_style foreground color like so:</p>
+<blockquote>
+  <p><kbd>value = <i>default_foreground_color</i>;<br>
+  if (x-&gt;global_style.foreground_defined())<br>
+  &nbsp; value = x-&gt;global_style.foreground();</kbd></p>
+</blockquote>
+<p>Note: in the example you would be supplying the variable
+default_foreground_color.&nbsp; It is not a part of the style implementations.</p>
+<p>Setting row_style 5's frame type to a raised box:</p>
+<blockquote>
+  <p><kbd>x-&gt;row_style[5].frame(FL_THIN_UP_BOX);</kbd></p>
+</blockquote>
+<p>Accessing row_style[5]'s frame type:</p>
+<blockquote>
+  <p><kbd>value = <i>default_frame_style</i>;<br>
+  if (x-&gt;row_style.find(5))<br>
+  &nbsp; if (x-&gt;row_style[5].frame_defined())<br>
+  &nbsp;&nbsp;&nbsp; value = x-&gt;row_style[5].frame()</kbd></p>
+</blockquote>
+<p>Note: in the example, you would be supplying a variable default_frame_style.&nbsp;
+It is not a part of the style implementation.</p>
+<p>Notice that setting values is much easier than retrieving them.&nbsp; This is
+because normally you will find yourself setting values and letting the widget
+take care of accessing the values when it draws.&nbsp; The above examples are
+the complete correct way to access or set values.&nbsp; You may however be able
+to &quot;short circuit&quot; the process.&nbsp; For instance, if you want to add
+4 to row -1's height, the following is acceptable:</p>
+<p>v = 20;&nbsp; // default value<br>
+if (x<kbd>-&gt;</kbd>row_style[-1].height_defined())<br>
+&nbsp; v = <kbd>x-&gt;</kbd>row_style[-1].height();<br>
+x<kbd>-&gt;</kbd>row_style[-1].height(v+4);<br>
+</p>
+<p>Note that we did not check to see if row_style -1 already existed.&nbsp; The
+reason is that whether it exists or not, when we get done, it will.&nbsp; We
+still need to check if the height is defined.&nbsp; </p>
+<p>Normally there will already be a default value for something.&nbsp; In the
+above example, we chose a height of 20 as the default value.&nbsp; But normally
+it would already have a height.&nbsp; To gain access to the
+&quot;pre-defined&quot; style defaults, you could change the above code to:</p>
+<blockquote>
+  <p><kbd>Flv_Style s;<br>
+  v = 20;&nbsp; // default value<br>
+  x-&gt;get_style(-1,s);<br>
+  if (s.height_defined())<br>
+  &nbsp; v = s.height()<br>
+  x-&gt;row_style[-1].height(v+4);</kbd></p>
+</blockquote>
+<p>That doesn't appear to be much of an improvement!&nbsp; It's not.&nbsp;
+But,... if you NEVER allow global_style information to be undefined (You have to
+do it in code somewhere) you could change it to:</p>
+<blockquote>
+  <p><kbd>Flv_Style s;<br>
+  x-&gt;get_style(-1,s);<br>
+  x-&gt;row_style[-1].height(s.height()+4);</kbd></p>
+</blockquote>
+<p>Get style will get the &quot;trickle-down&quot; value for a style.&nbsp; In
+the above example for Flv_List this means, first undefine all style information
+in s, apply any defined global_style information to s, and then apply any
+defined row_style information for row -1 to s.</p>
+<p>If you are dealing with an Flv_Table with using the following code:</p>
+<blockquote>
+  <p><kbd>Flv_Style s;<br>
+  x-&gt;get_style(<i>row</i>, <i>col</i>, s);<br>
+  </kbd></p>
+</blockquote>
+<p>the &quot;trickle-down&quot; value is determined in the following way:&nbsp;
+First undefine all style information in s, next apply any defined global_style
+information to s, next apply any defined row_style information for row <i>row</i>
+to s, next apply any col_style information for column <i>col</i> to s, and last
+apply any defined cell_style information for row <i>row</i> and column <i>col</i>
+to s.&nbsp; </p>
+<p>If a row, column, or cell style does not exist in the list, all style
+information is considered to be undefined.</p>
+<p>For the most complex example consider the following cell_style
+operations.&nbsp; To set the cell_style foreground to FL_RED for cell (5,7):</p>
+<blockquote>
+  <p><kbd>x</kbd><kbd>-&gt;row_style[5].cell_style[7].foreground(FL_RED);</kbd></p>
+</blockquote>
+<p>To retrieve the cell_style foreground color for cell (5,7):</p>
+<blockquote>
+  <p><kbd>value = <i>default_foreground_color;</i><br>
+  if (x-&gt;row_style.find(5))<br>
+  &nbsp; if (x-&gt;row_style[5].cell_style.find(7))<br>
+  &nbsp;&nbsp;&nbsp; if (x-&gt;row_style[5].cell_style.find(7).foreground_defined())<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value =
+  x-&gt;row_style[5].cell_style[7].foreground();<br>
+  </kbd></p>
+</blockquote>
+<p>Note: you must define the default_foreground_color in your application, it is
+not part of this library.</p>
+<p>If you simply want to know what the foreground color for cell (5,7) was you
+would:</p>
+<blockquote>
+  <p><kbd>Flv_Style s;<br>
+  x-&gt;get_style(5,7,s);<br>
+  value = s.foreground();<br>
+  </kbd></p>
+</blockquote>
+<p>Again the above example assumes that you will NEVER undefine any global_style
+properties.</p>
+<H2>How do I undefine a style property?</H2>
+<p>There are a series of clear_ functions defined that allow you to undefine any
+single property.&nbsp; There is allso a clear_all function to undefine all
+properties for a style.</p>
+</BODY></HTML>

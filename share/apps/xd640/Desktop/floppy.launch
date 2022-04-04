@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xd640cfg >
+<xd640cfg>
+<s n="Desktop Entry">
+	<i n="Name" 		v="Floppy" />
+	<i n="Name" l="fr"	v="Disquette" />
+
+	<i n="Icon" v="devices/3floppy_mount" />
+	<i n="UnmountIcon" v="devices/3floppy_unmount" />
+	<i n="Type" v="FSDevice" />
+	<i n="MountPoint" v="/floppy" />
+	<i n="FSType" v="Default" />
+</s>
+</xd640cfg>
+

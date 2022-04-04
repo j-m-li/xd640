@@ -1,0 +1,57 @@
+xd640-core (0.0.12-2) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Thu, 2 May 2002 15:22:45 +0100
+
+xd640-core (0.0.12-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Thu, 2 May 2002 15:22:45 +0100
+
+xd640-core (0.0.11-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Fri, 22 Feb 2002 15:22:45 +0100
+
+xd640-core (0.0.10-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Fri, 15 Feb 2002 15:22:45 -0800
+
+xd640-core (0.0.9-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Thu, 31 Jan 2002 15:22:45 -0800
+
+xd640-core (0.0.8-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Sun, 20 Jan 2002 15:22:45 -0800
+
+xd640-core (0.0.7-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Sat, 22 Dec 2001 15:22:45 -0800
+
+xd640-core (0.0.6-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Fri, 16 Dec 2001 15:22:45 -0800
+
+xd640-core (0.0.5-1) frozen unstable; urgency=low
+
+  * New upstream
+
+ -- Jean-Marc Lienher <oksid@bluewin.ch>  Sat, 20 Oct 2001 15:22:45 -0800
+
+Local variables:
+mode: debian-changelog
+End:

@@ -1,0 +1,247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2002-02-16 19:44+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+#: ../copy.cpp:51
+msgid "Copying :"
+msgstr ""
+
+#. *****************************************************************
+#: ../copy.cpp:59 ../link.cpp:57 ../main.cpp:228 ../move.cpp:48
+#: ../properties.cpp:175 ../properties.cpp:270 ../unlink.cpp:56
+msgid "Cancel"
+msgstr ""
+
+#: ../copy.cpp:134
+#, c-format
+msgid ""
+"file \"%s\" already exists,\n"
+"do you want to overwrite it ?"
+msgstr ""
+
+#: ../copy.cpp:232 ../copy.cpp:283
+#, c-format
+msgid ""
+"Cannot copy non-regular file \n"
+"\"%s\"."
+msgstr ""
+
+#: ../link.cpp:81
+#, c-format
+msgid ""
+"Do you really want to LINK\n"
+"\"%s\" to \n"
+"\"%s\" ?"
+msgstr ""
+
+#: ../main.cpp:44
+msgid ""
+"Usage : flfile [OPTION] [TARGET]\n"
+"\n"
+"  --exec\t\texecute TARGET url\n"
+"  --delete\t\tdelete urls passed to the standard input\n"
+"  --copy\t\tcopy urls passed to the standard \n"
+"\t\t\t \tinput to TARGET directory url\n"
+"  --move\t\tmove urls passed to the standard\n"
+" \t\t\t \tinput to TARGET directory url\n"
+"  --link\t\tsymlink urls passed to the standard\n"
+" \t\t\t \tinput to TARGET directory url\n"
+"  --properties\t\tdisplay properties of urls passed\n"
+"\t\t\t \tto the standard input\n"
+"  --help\t\tdisplay this help and exit\n"
+msgstr ""
+
+#: ../main.cpp:225
+msgid "No"
+msgstr ""
+
+#: ../main.cpp:226 ../unlink.cpp:74
+msgid "Yes"
+msgstr ""
+
+#: ../main.cpp:227 ../properties.cpp:272
+msgid "OK"
+msgstr ""
+
+#: ../main.cpp:232
+msgid "flfile cannot run as \"root\" !\n"
+msgstr ""
+
+#: ../main.cpp:238
+msgid "flfile cannot run with privileges !\n"
+msgstr ""
+
+#: ../move.cpp:68
+msgid ""
+"Destination file exists.\n"
+"Please, delete it before."
+msgstr ""
+
+#: ../move.cpp:76
+msgid ""
+"Cannot move files between diffrent filesystems.\n"
+"Please use copy and delete."
+msgstr ""
+
+#: ../properties.cpp:62
+#, c-format
+msgid "%ld Bytes"
+msgstr ""
+
+#: ../properties.cpp:179
+msgid "Nb selected files:"
+msgstr ""
+
+#: ../properties.cpp:181
+#, c-format
+msgid "%d files"
+msgstr ""
+
+#: ../properties.cpp:185
+msgid "Total size:"
+msgstr ""
+
+#. *****************************************************************
+#: ../properties.cpp:196
+msgid "Statistics"
+msgstr ""
+
+#: ../properties.cpp:197
+msgid "Full Name:"
+msgstr ""
+
+#: ../properties.cpp:199
+msgid "File Name:"
+msgstr ""
+
+#: ../properties.cpp:201
+msgid "File Type:"
+msgstr ""
+
+#: ../properties.cpp:203
+msgid "File Size:"
+msgstr ""
+
+#: ../properties.cpp:207
+msgid "File Created on:"
+msgstr ""
+
+#: ../properties.cpp:210
+msgid "File Modified on:"
+msgstr ""
+
+#: ../properties.cpp:213
+msgid "File Accessed on:"
+msgstr ""
+
+#: ../properties.cpp:217
+msgid "Content:"
+msgstr ""
+
+#. *****************************************************************
+#: ../properties.cpp:224
+msgid "Permissions"
+msgstr ""
+
+#: ../properties.cpp:227
+msgid "File Permissions"
+msgstr ""
+
+#: ../properties.cpp:232
+msgid "User"
+msgstr ""
+
+#: ../properties.cpp:235 ../properties.cpp:244 ../properties.cpp:253
+msgid "Read"
+msgstr ""
+
+#: ../properties.cpp:236 ../properties.cpp:245 ../properties.cpp:254
+msgid "Write"
+msgstr ""
+
+#: ../properties.cpp:237 ../properties.cpp:246 ../properties.cpp:255
+msgid "Exec"
+msgstr ""
+
+#: ../properties.cpp:238
+msgid "Set UID"
+msgstr ""
+
+#: ../properties.cpp:241 ../properties.cpp:263
+msgid "Group"
+msgstr ""
+
+#: ../properties.cpp:247
+msgid "Set GID"
+msgstr ""
+
+#: ../properties.cpp:250
+msgid "Other"
+msgstr ""
+
+#: ../properties.cpp:256
+msgid "Sticky"
+msgstr ""
+
+#: ../properties.cpp:259
+msgid "File ownership"
+msgstr ""
+
+#: ../properties.cpp:262
+msgid "Owner"
+msgstr ""
+
+#: ../properties.cpp:327
+#, c-format
+msgid "Do you really want to change permissions on \"%s\"?"
+msgstr ""
+
+#: ../properties.cpp:342
+#, c-format
+msgid "Do you really want to change group from \"%s\" to \"%s\"?"
+msgstr ""
+
+#: ../properties.cpp:366
+#, c-format
+msgid "Do you really want to change owner from \"%s\" to \"%s\"?"
+msgstr ""
+
+#: ../properties.cpp:390
+#, c-format
+msgid "Do you really want to rename \"%s\" to \"%s\"?"
+msgstr ""
+
+#: ../unlink.cpp:48
+msgid "Deleting :"
+msgstr ""
+
+#: ../unlink.cpp:72
+#, c-format
+msgid ""
+"Do you really want to DELETE\n"
+"\"%s\" ?"
+msgstr ""
+
+#: ../unlink.cpp:73 ../unlink.cpp:91 ../unlink.cpp:98
+msgid "Abort"
+msgstr ""
+
+#: ../unlink.cpp:74
+msgid "Yes to all"
+msgstr ""
+
+#: ../unlink.cpp:91 ../unlink.cpp:99
+msgid "Continue"
+msgstr ""

@@ -34,7 +34,7 @@ APIVERSION="$MAJOR_VERSION.$MINOR_VERSION"
 
 ### BEGIN fltk-utf8-config
 
-prefix=/usr
+prefix=/usr/local
 exec_prefix=${prefix}
 exec_prefix_set=no
 bindir=${exec_prefix}/bin
@@ -50,16 +50,16 @@ CC="gcc"
 POSTBUILD=":"
 
 # flags for C++ compiler:
-CFLAGS=" -I/usr/X11R6/include"
-CXXFLAGS=" -I/usr/X11R6/include"
-LDFLAGS=" -L/usr/X11R6/lib "
-LDLIBS="-lXtst -ldl -lpthread -lm  -lXext -lX11  -lpng  -ljpeg -lz"
+CFLAGS=""
+CXXFLAGS=""
+LDFLAGS=" "
+LDLIBS="-lXtst -ldl -lpthread -lm  -lXext -lX11  -lsupc++ -lpng  -lz"
 
 # libraries to link with:
 LIBNAME="../lib/libfltk-utf8.a"
 DSONAME="libfltk-utf8.so.1.1"
 DSOLINK="-Wl,-rpath,${exec_prefix}/lib"
-IMAGELIBS="-lpng  -ljpeg -lz"
+IMAGELIBS="-lpng  -lz"
 SHAREDSUFFIX=""
 
 usage ()

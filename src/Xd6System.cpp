@@ -100,7 +100,7 @@ void Xd6SystemHide()
 
 static void cb_timeout(void *data)
 {
-	int pid = (int) data;
+	int pid = *((int*) &data);
 	int ret;
 	int status;
 	XWindowAttributes a;

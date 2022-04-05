@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-21 14:32+0200\n"
+"POT-Creation-Date: 2022-04-05 09:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,8 +22,8 @@ msgid "Copying :"
 msgstr ""
 
 #. *****************************************************************
-#: ../copy.cpp:76 ../link.cpp:74 ../main.cpp:245 ../move.cpp:65
-#: ../properties.cpp:191 ../properties.cpp:286 ../unlink.cpp:73
+#: ../copy.cpp:76 ../link.cpp:74 ../move.cpp:65 ../properties.cpp:191
+#: ../properties.cpp:286 ../unlink.cpp:73
 msgid "Cancel"
 msgstr ""
 
@@ -64,18 +65,6 @@ msgid ""
 "  --properties\t\tdisplay properties of urls passed\n"
 "\t\t\t \tto the standard input\n"
 "  --help\t\tdisplay this help and exit\n"
-msgstr ""
-
-#: ../main.cpp:242
-msgid "No"
-msgstr ""
-
-#: ../main.cpp:243 ../unlink.cpp:91
-msgid "Yes"
-msgstr ""
-
-#: ../main.cpp:244 ../properties.cpp:288
-msgid "OK"
 msgstr ""
 
 #: ../main.cpp:249
@@ -206,6 +195,10 @@ msgstr ""
 msgid "Owner"
 msgstr ""
 
+#: ../properties.cpp:288
+msgid "OK"
+msgstr ""
+
 #: ../properties.cpp:343
 #, c-format
 msgid "Do you really want to change permissions on \"%s\"?"
@@ -239,6 +232,10 @@ msgstr ""
 
 #: ../unlink.cpp:90 ../unlink.cpp:108 ../unlink.cpp:115
 msgid "Abort"
+msgstr ""
+
+#: ../unlink.cpp:91
+msgid "Yes"
 msgstr ""
 
 #: ../unlink.cpp:91

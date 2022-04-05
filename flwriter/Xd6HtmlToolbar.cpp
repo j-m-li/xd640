@@ -213,7 +213,7 @@ void Xd6HtmlToolbar::cb_family(Fl_Widget *w, void *data)
 
 	st.clear_flags();
 	st.flags[1] = (1 << 1);
-	st.font = (int) data;
+	st.font = *((int*) &data);
 
 	t->editor->view->frame->change_style(&st);
 	t->editor->view->redraw();
@@ -227,7 +227,7 @@ void Xd6HtmlToolbar::cb_size(Fl_Widget *w, void *data)
 
 	st.clear_flags();
 	st.flags[1] = (1 << 2);
-	st.font_size = (int) data;
+	st.font_size = *((int*) &data);
 
 	t->editor->view->frame->change_style(&st);
 	t->editor->view->redraw();

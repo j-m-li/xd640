@@ -30,7 +30,6 @@
 // Expands all unprintable characters to ^X or \nnn notation
 // Aligns them against the inside of the box.
 
-#define min(a,b) ((a)<(b)?(a):(b))
 #include <FL/fl_draw.H>
 #include <FL/Fl_Image.H>
 #define MAXBUF 1024
@@ -41,6 +40,7 @@
 #include <FL/Fl_Device.H>
 #include <FL/Fl.H>
 
+#define min(a,b) ((a)<(b)?(a):(b))
 FL_EXPORT Fl_Fltk fltk;
 FL_EXPORT Fl_Device * fl=&fltk;
 

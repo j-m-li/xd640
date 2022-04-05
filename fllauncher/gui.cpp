@@ -324,7 +324,7 @@ Fl_Pixmap* UserInterface::load_icon(const char* file)
  */
 void UserInterface::cb_item(Fl_Widget* w, void* d)
 {
-	int i = (int)d;
+	int i = *((int*)&d);
 
 	// exit menu item
 	if (i == 3) {

@@ -239,10 +239,10 @@ int main(int argc, char **argv)
 	}
 	
 	fl_message_font(font, size);
-	Fl::txt_no = _("No");
-	Fl::txt_yes = _("Yes");
-	Fl::txt_ok = _("OK");
-	Fl::txt_cancel = _("Cancel");
+	//Fl::txt_no = _("No");
+	//Fl::txt_yes = _("Yes");
+	//Fl::txt_ok = _("OK");
+	//Fl::txt_cancel = _("Cancel");
 
 
 	if (!geteuid()) {

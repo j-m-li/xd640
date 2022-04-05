@@ -78,7 +78,7 @@ public:
 	int event_is_inside(int x, int y);
 	static Xd6HtmlDisplay *create(int id, Xd6XmlTreeElement *elem,
 				Xd6HtmlFrame *u);
-	static void Xd6HtmlDisplay::pre_process(Xd6XmlTreeElement *e, 
+	static void pre_process(Xd6XmlTreeElement *e, 
 				Xd6HtmlFrame *u);
 	
 	void redraw(void);

@@ -339,7 +339,7 @@ int GUI::dnd_move()
 
 void GUI::dnd_cb(Fl_Widget *w, void *d)
 {
-	dnd_action = (int)d;
+	dnd_action = *((int*)&d);
 }
 
 int GUI::dnd_release(int a)

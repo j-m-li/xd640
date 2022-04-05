@@ -123,7 +123,7 @@ Fl_Menu_Item choices[] = {
 };
 
 void align_cb(Fl_Widget*, void* v) {
-  thescroll->scrollbar.align(int(v));
+  thescroll->scrollbar.align(*((int*)(&v)));
   thescroll->redraw();
 }
 

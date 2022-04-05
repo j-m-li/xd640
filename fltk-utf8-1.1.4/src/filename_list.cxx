@@ -67,7 +67,7 @@ int fl_filename_list(const char *d, dirent ***list,
   // The vast majority of UNIX systems want the sort function to have this
   // prototype, most likely so that it can be passed to qsort without any
   // changes:
-  return scandir(d, list, 0, (int(*)(const void*,const void*))sort);
+  //return scandir(d, list, 0, (int(*)(void*,void*))sort);
 #else
   // This version is when we define our own scandir (WIN32 and perhaps
   // some Unix systems) and apparently on IRIX:

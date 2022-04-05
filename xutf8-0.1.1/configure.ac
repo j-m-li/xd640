@@ -2,6 +2,9 @@
 AC_PREREQ(2.13)
 AC_INIT(Xutf8.h.in)
 
+AC_CONFIG_MACRO_DIRS([m4])
+
+
 AM_INIT_AUTOMAKE(libXutf8, 1.0.0)
 
 XUTF_MAJOR_VERSION=1
@@ -70,8 +73,9 @@ AC_CHECK_LIB(X11, Xutf8DrawString,  ,)
 
 HAVE_LIBC_ICONV=0
 AC_CHECK_LIB(c, iconv, \
-        HAVE_LIBC_ICONV=1 ,\
-        )
+ 
+       HAVE_LIBC_ICONV=1 ,)
+
 AC_SUBST(HAVE_LIBC_ICONV)
 
 AC_OUTPUT(Makefile Xutf8.h)

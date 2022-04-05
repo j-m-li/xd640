@@ -33,13 +33,13 @@
 %version 1.1.4
 %description FLTK is a cross-platform GUI toolkit for C++.
 
-$prefix=/usr
+$prefix=/usr/local
 $exec_prefix=${prefix}
 $bindir=${exec_prefix}/bin
 $datadir=${prefix}/share
 $includedir=${prefix}/include
 $libdir=${exec_prefix}/lib
-$mandir=/usr/share/man
+$mandir=${prefix}/man
 
 $CAT1EXT=1
 $CAT3EXT=3

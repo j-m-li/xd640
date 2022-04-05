@@ -317,7 +317,7 @@ void cb_exit(Fl_Widget*, void*)
 
 void cb_sort(Fl_Widget *w, void *d)
 {
-	int itm = (int) d;
+	int itm = *((int*) &d);
 
 	switch (itm) {
 	case 1:
@@ -649,7 +649,7 @@ void cb_move_link_copy(Fl_Widget*, void *d)
 {
 	FILE *fp;
 	char buf[1024];
-	int a = (int) d;
+	int a = *((int*) &d);
 	Fl_Widget *w = Fl::belowmouse();
 	const char *dir = "";
 	static int pid = -1;

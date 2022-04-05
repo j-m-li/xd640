@@ -15,6 +15,7 @@ if test "$uname" = "IRIX64"; then
     uname="IRIX"
 fi
 
+
 dnl Checks for programs...
 AC_PROG_CC
 AC_PROG_CXX
@@ -124,9 +125,13 @@ if test -n "$GCC"; then
             ;;
     esac
 fi
-LIBS="-lX11 $LIBS $GLLIB"
+LIBS="-lXutf8 -lXtst -lX11 $LIBS $GLLIB"
+CFLAGS="$CFLAGS -I/usr/local/include"
+CXXFLAGS="$CXXFLAGS -I/usr/local/include"
+LDFLAGS="$LDFLAGS -L/usr/local/lib"
+
 AC_CHECK_LIB(m,pow)
-AC_CHECK_LIB(fltk_xutf8, XUtf8Tolower)
+AC_CHECK_LIB(fltk-utf8, XUtf8Tolower)
 
 FLTK=
 HAVE_FLTK_UTF=
@@ -147,7 +152,7 @@ XD="-lxd640"
 LIBS="-lxd640 $LIBS"
 LDFLAGS="$LDFLAGS -L../lib"
 CFLAGS="$CFLAGS -I.. -I../xd640"
-CXXFLAGS="$CXXFLAGS -I.. -I../xd640"
+CXXFLAGS="$CXXFLAGS -fPIC -I.. -I../xd640"
 DSONAME="libxd640.so.1"
 DSOCOMMAND="\$(CXX) -Wl,-soname,libxd640.so.1 -I../include \$(LDLIBS) -shared $DEBUGFLAG -o"
 

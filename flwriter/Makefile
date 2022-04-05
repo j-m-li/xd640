@@ -59,9 +59,9 @@ $(PROG):	$(OBJS)
 	$(CXX) $(LDFLAGS) $(DEFS) -o $(PROG) $(OBJS) $(LIBS) 
 
 flwriter-static: $(OBJS)
-	$(CXX) -static $(LDFLAGS) $(DEFS) -o flwriter-static  $(OBJS) $(LIBS)
+	$(CXX) -static $(LDFLAGS) $(DEFS) -o flwriter-static  $(OBJS) $(LIBS) -lxcb -lXdmcp -lXau -lpthread -ldl
 	strip  flwriter-static
-	gzip -9 flwriter-static
+	#gzip -9 flwriter-static
 
 test:
 	$(CXX) $(LDFLAGS) $(DEFS) -o test test.cpp $(LIBS) 

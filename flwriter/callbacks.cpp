@@ -190,7 +190,7 @@ void cb_find(Fl_Widget*, void*)
 
 void cb_zoom(Fl_Widget*, void* v)
 {
-	int z = (int) v;
+	int z = *((int*) &v);
 	if (!GUI::self) return;
 	if (GUI::self->editor->page_width == -1) {
 		GUI::self->editor->page_width =

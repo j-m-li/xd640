@@ -1,11 +1,10 @@
  X Desktop 640x480 16Mb
 =======================
 
+Xd640
+-----
 
-               			Xd640
-			       -------
-
-
+```
 flclock		: a clock
 fldesk		: desktop icons
 fleffect	: laucher effect
@@ -20,13 +19,14 @@ flppp		: Internet dialer
 flspider	: web browser (uses libcurl)
 flwriter	: word processor (XHTML)
 flshutdown	: computer shutdown dialog
+```
 
 We use fltk-utf8 as the widget library. 
 FVWM 2 is our standard windows manager.
 Debian is our default Linux distribution.
 Test computer is a 486 DX/2 66MHz, 16Mb of RAM, 15" 640x480 256 colors screen.
 
-
+```
 Requiered software to compile Xd640 :
 	- a standard GNU C++ development environement.
 	- X11R6 headers and development libraries
@@ -35,6 +35,7 @@ Requiered software to compile Xd640 :
 	- openssl 	(http://www.openssl.org/)
 	- libcurl	(http://curl.haxx.se/)
 	- FreeType 2	(http://www.freetype.org/)
+```
 
 BUILD UNDER Debian 11:
 ---------------------

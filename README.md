@@ -4,6 +4,8 @@
 Xd640
 -----
 
+![](https://www.lienher.org/jean-marc/xd640/img/flwriter.jpg)
+
 ```
 flclock		: a clock
 fldesk		: desktop icons

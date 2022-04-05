@@ -141,8 +141,8 @@
  * Possibly missing sprintf-style functions:
  */
 
-#define HAVE_VSNPRINTF 0
-#define HAVE_SNPRINTF 0
+#define HAVE_VSNPRINTF 1
+#define HAVE_SNPRINTF 1
 
 /*
  * String functions...

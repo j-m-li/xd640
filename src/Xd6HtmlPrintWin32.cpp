@@ -148,12 +148,12 @@ void Xd6HtmlPrint::block_to_ps(Xd6HtmlBlock *b)
 {
 	int i;
 	for (i = 0; i < b->nb_lines; i++) {
-		line_to_ps(b->lines[i], b->left, b->top);
+		line_to_ps(b, b->lines[i], b->left, b->top);
 	} 
 
 }
 
-void Xd6HtmlPrint::line_to_ps(Xd6HtmlLine *l, int X, int Y)
+void Xd6HtmlPrint::line_to_ps(Xd6HtmlBlock *b, Xd6HtmlLine *l, int X, int Y)
 {
 	int i;
 
@@ -178,7 +178,7 @@ void Xd6HtmlPrint::seg_to_ps(Xd6HtmlSegment *s, int X, int Y)
 	int i = 0;
 
 	
-	if (s->style & DISPLAY) {
+	if (s->stl->display) {
 		((Xd6HtmlDisplay*)s)->print(this, X, Y); 
 		return;
 	}
@@ -190,7 +190,7 @@ void Xd6HtmlPrint::seg_to_ps(Xd6HtmlSegment *s, int X, int Y)
 	s->set_font();
 	s->set_color();
 
-	if (s->style & RTL_DIRECTION) {
+	if (s->stl->rtl_direction) {
 		i = s->len;
 		while (i > 0) {
 			int l;
@@ -212,7 +212,7 @@ void Xd6HtmlPrint::seg_to_ps(Xd6HtmlSegment *s, int X, int Y)
 			i += l;
 		}
 	}
-	if (s->style & UNDERLINE) {
+	if (s->stl->underline) {
 		int co = fl_color();
 		HDC f = fl_gc;
 		fl_gc = hDC;
@@ -272,7 +272,7 @@ int Xd6HtmlPrint::char_to_ps(char *text, int len, int X, int Y, int *wi)
 
 	unsigned short u = ucs;
 	fl_draw(NULL, 0, 0, 0); // select object
-	GetTextExtentPoint32W(hDC, &u, 1, &s);
+	GetTextExtentPoint32W(hDC, (LPWSTR)&u, 1, &s);
 	W = s.cx / ratio;
 	
 	if (w < 1) {

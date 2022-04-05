@@ -79,11 +79,13 @@ void Xd6HtmlView::new_frame(int W, int H)
 	frame = new Xd6HtmlFrame(0);
 	frame->parent_widget = this;
 	frame->resize(W, H);
-
+#ifndef WIN32
 	XVisualInfo vinfo;
 	XVisualInfo *vinfo_ret;
+#endif
 	int numitems = 0;
 	fl_open_display();
+#ifndef WIN32
 	vinfo.depth = 4;
 	vinfo_ret = XGetVisualInfo(fl_display, VisualNoMask/*VisualDepthMask*/,
 				&vinfo, &numitems);
@@ -98,6 +100,7 @@ void Xd6HtmlView::new_frame(int W, int H)
 	if (depth > 4) {
 		frame->create_off_screen();
 	}
+#endif
 	parser = new Xd6XmlParser();
 	printer = new Xd6HtmlPrint(frame, "output.ps");
 
@@ -638,7 +641,11 @@ void Xd6HtmlView::spell()
 	cancel.show();
  
 	snprintf(buf, 1024, "%s/.xd640/dict", cfg->home_dir);
+#ifdef WIN32
+	fl_mkdir(buf, 0);
+#else
 	fl_mkdir(buf, S_IWUSR|S_IXUSR|S_IRUSR);
+#endif
 	snprintf(buf, 1024, "%s/.xd640/dict/personal.utf8", cfg->home_dir);
 	delete(cfg);
 	pword_file = fopen(buf, "a+");
@@ -684,7 +691,11 @@ void Xd6HtmlView::add_to_dict(const char *w)
 	cfg = new Xd6ConfigFile("xd640", "Utilities");
 
 	snprintf(buf, 2048, "%s/.xd640/dict", cfg->home_dir);
+#ifdef WIN32
+	fl_mkdir(buf, 0);
+#else
 	fl_mkdir(buf, S_IWUSR|S_IXUSR|S_IRUSR);
+#endif
 	snprintf(buf, 2048, "%s/.xd640/dict/personal.utf8", cfg->home_dir);
 	pword_file = fopen(buf, "a");
 	fprintf(pword_file, "%s\n", w);

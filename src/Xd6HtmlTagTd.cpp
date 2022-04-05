@@ -190,7 +190,7 @@ void Xd6HtmlTagTd::print(Xd6HtmlPrint *p, int X, int Y)
 			if ((b->top + y + ln->top) / p->frm->page_height ==
 				p->page_nb)
 			{ 
-                        	p->line_to_ps(ln,  b->left + x, b->top + y);
+                        	p->line_to_ps(b, ln,  b->left + x, b->top + y);
 			}
                 }
 	}

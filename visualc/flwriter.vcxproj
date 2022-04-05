@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{30EC9510-CE48-4A03-901C-180302E06EA5}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\flwriter___Win32_Debug\</OutDir>
+    <IntDir>.\flwriter___Win32_Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\bin</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PreprocessorDefinitions>_WINSOCKAPI_;HAVE_PNG_H;HAVE_LIBPNG;HAVE_LIBZ;WIN32;_DEBUG;_WINDOWS;PACKAGE="flwriter";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\flwriter___Win32_Debug\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\flwriter___Win32_Debug\flwriter.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\flwriter___Win32_Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\flwriter___Win32_Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>..;../fltk-utf8-1.1.4/png/;../fltk-utf8-1.1.4/zlib/;../fltk-utf8-1.1.4/.;../Xd640;../visualc/</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\flwriter___Win32_Debug\flwriter.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x100c</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\flwriter___Win32_Debug\flwriter.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>libcd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>../bin/flwriterd.exe</OutputFile>
+      <AdditionalDependencies>;fltkd.lib;wsock32.lib;odbc32.lib;odbccp32.lib;imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../fltk-utf8-1.1.4/lib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>PACKAGE="flwriter";_WINSOCKAPI_;HAVE_PNG_H;HAVE_LIBPNG;HAVE_LIBZ;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\flwriter.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalIncludeDirectories>..;../fltk-utf8-1.1.4/png/;../fltk-utf8-1.1.4/zlib/;../fltk-utf8-1.1.4/.;../Xd640;../visualc/</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\flwriter.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x100c</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\flwriter.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <OutputFile>../bin/flwriter.exe</OutputFile>
+      <AdditionalDependencies>fltkutf8images.lib;zlib.lib;libpng.lib;libjpg.lib;fltkutf8.lib;wsock32.lib;odbc32.lib;odbccp32.lib;imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../fltk-utf8-1.1.4/lib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\flwriter\callbacks.cpp" />
+    <ClCompile Include="..\flwriter\gui.cpp" />
+    <ClCompile Include="..\flwriter\Mailing.cpp" />
+    <ClCompile Include="..\flwriter\main.cpp" />
+    <ClCompile Include="..\flwriter\Xd6HtmlEditor.cpp" />
+    <ClCompile Include="..\flwriter\Xd6HtmlToolbar.cpp" />
+    <ClCompile Include="..\src\Xd6Base64.cpp" />
+    <ClCompile Include="..\src\Xd6Cancel.cpp" />
+    <ClCompile Include="..\src\Xd6CfgParser.cpp" />
+    <ClCompile Include="..\src\Xd6ConfigFile.cpp" />
+    <ClCompile Include="..\src\Xd6DefaultFonts.cpp" />
+    <ClCompile Include="..\src\Xd6FindDialog.cpp" />
+    <ClCompile Include="..\src\Xd6Font2Ps.cpp" />
+    <ClCompile Include="..\src\Xd6Gif.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlBlock.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlDisplay.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlDownload.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlFrame.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlFrame_Drawings.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlFrame_Edit.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlFrame_Export.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlFrame_Handlers.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlLine.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlPrintWin32.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlScroll.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlSegment.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlTagA.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlTagButton.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlTagForm.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlTagImg.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlTagInputText.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlTagTable.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlTagTd.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlToRtf.cpp" />
+    <ClCompile Include="..\src\Xd6HtmlView.cpp" />
+    <ClCompile Include="..\src\Xd6IconWindowWin32.cpp" />
+    <ClCompile Include="..\src\Xd6Jpeg.cpp" />
+    <ClCompile Include="..\src\Xd6MathMl.cpp" />
+    <ClCompile Include="..\src\Xd6Png.cpp" />
+    <ClCompile Include="..\src\Xd6SpellChoice.cpp" />
+    <ClCompile Include="..\src\Xd6StdWin32.cpp" />
+    <ClCompile Include="..\src\Xd6SvgTag.cpp" />
+    <ClCompile Include="..\src\Xd6Tabulator.cpp" />
+    <ClCompile Include="..\src\Xd6TextParser.cpp" />
+    <ClCompile Include="..\src\Xd6VirtualKeyboard.cpp" />
+    <ClCompile Include="..\src\Xd6XmlDtd.cpp" />
+    <ClCompile Include="..\src\Xd6XmlParser.cpp" />
+    <ClCompile Include="..\src\Xd6XmlStyle.cpp" />
+    <ClCompile Include="..\src\Xd6XmlTree.cpp" />
+    <ClCompile Include="..\src\Xd6XmlUtils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\flwriter\callbacks.h" />
+    <ClInclude Include="..\flwriter\gui.h" />
+    <ClInclude Include="..\flwriter\Mailing.h" />
+    <ClInclude Include="..\flwriter\Xd6HtmlEditor.h" />
+    <ClInclude Include="..\flwriter\Xd6HtmlToolbar.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

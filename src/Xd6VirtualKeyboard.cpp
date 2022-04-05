@@ -315,7 +315,7 @@ void Xd6VirtualKeyboard::cb_base(Fl_Widget *w, void *d)
 	Xd6VirtualKeyboard *self;
 	self = (Xd6VirtualKeyboard*)w->parent();
 	
-	self->base = *((int*) &d);
+	self->base = (int) d;
 	self->update();
 }
 
@@ -323,7 +323,7 @@ void Xd6VirtualKeyboard::cb_off(Fl_Widget *w, void *d)
 {
 	Xd6VirtualKeyboard *self;
 	self = (Xd6VirtualKeyboard*)w->parent();
-	self->offset = *((int*) &d);
+	self->offset = (int) d;
 	self->update();
 }
 
@@ -333,7 +333,7 @@ void Xd6VirtualKeyboard::cb_button(Fl_Widget *w, void *d)
 	static char buf[8];
 	Xd6VirtualKeyboard *self;
 	self = (Xd6VirtualKeyboard*)w->parent();
-	l = fl_ucs2utf(*((int*) &d), buf);
+	l = fl_ucs2utf((int)d, buf);
 	if (l < 1) l = 1;
 	buf[l] = 0;
 	Fl::e_text = buf;

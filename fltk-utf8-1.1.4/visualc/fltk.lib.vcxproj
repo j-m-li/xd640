@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>fltk</ProjectName>
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{456B8050-FFE8-4B26-B83D-D74F9661F20F}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>../visualc;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FL_STATIC;WIN32;_DEBUG;_WINDOWS;WIN32_LEAN_AND_MEAN;VC_EXTRA_LEAN;WIN32_EXTRA_LEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\Debug\fltk.lib.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\fltk.lib.bsc</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>..\lib\fltkutf8d.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../visualc;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FL_STATIC;WIN32;NDEBUG;_WINDOWS;WIN32_LEAN_AND_MEAN;VC_EXTRA_LEAN;WIN32_EXTRA_LEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <UndefinePreprocessorDefinitions>_DLL;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\fltk.lib.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\fltk.lib.bsc</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>..\lib\fltkutf8.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\filename_absolute.cxx" />
+    <ClCompile Include="..\src\filename_expand.cxx" />
+    <ClCompile Include="..\src\filename_ext.cxx" />
+    <ClCompile Include="..\src\filename_isdir.cxx" />
+    <ClCompile Include="..\src\filename_list.cxx" />
+    <ClCompile Include="..\src\filename_match.cxx" />
+    <ClCompile Include="..\src\filename_setext.cxx" />
+    <ClCompile Include="..\src\Fl.cxx" />
+    <ClCompile Include="..\src\flstring.c" />
+    <ClCompile Include="..\src\Fl_abort.cxx" />
+    <ClCompile Include="..\src\Fl_add_idle.cxx" />
+    <ClCompile Include="..\src\Fl_Adjuster.cxx" />
+    <ClCompile Include="..\src\fl_arc.cxx" />
+    <ClCompile Include="..\src\fl_arci.cxx" />
+    <ClCompile Include="..\src\Fl_arg.cxx" />
+    <ClCompile Include="..\src\fl_ask.cxx" />
+    <ClCompile Include="..\src\Fl_Bitmap.cxx" />
+    <ClCompile Include="..\src\Fl_Box.cxx" />
+    <ClCompile Include="..\src\fl_boxtype.cxx" />
+    <ClCompile Include="..\src\Fl_Browser.cxx" />
+    <ClCompile Include="..\src\Fl_Browser_.cxx" />
+    <ClCompile Include="..\src\Fl_Browser_load.cxx" />
+    <ClCompile Include="..\src\Fl_Button.cxx" />
+    <ClCompile Include="..\src\fl_call_main.c" />
+    <ClCompile Include="..\src\Fl_Chart.cxx" />
+    <ClCompile Include="..\src\Fl_Check_Browser.cxx" />
+    <ClCompile Include="..\src\Fl_Check_Button.cxx" />
+    <ClCompile Include="..\src\Fl_Choice.cxx" />
+    <ClCompile Include="..\src\Fl_Clock.cxx" />
+    <ClCompile Include="..\src\fl_color.cxx" />
+    <ClCompile Include="..\src\Fl_Color_Chooser.cxx" />
+    <ClCompile Include="..\src\Fl_compose.cxx" />
+    <ClCompile Include="..\src\Fl_Counter.cxx" />
+    <ClCompile Include="..\src\fl_cursor.cxx" />
+    <ClCompile Include="..\src\fl_curve.cxx" />
+    <ClCompile Include="..\src\Fl_Dial.cxx" />
+    <ClCompile Include="..\src\fl_diamond_box.cxx" />
+    <ClCompile Include="..\src\Fl_display.cxx" />
+    <ClCompile Include="..\src\fl_dnd.cxx" />
+    <ClCompile Include="..\src\Fl_Double_Window.cxx" />
+    <ClCompile Include="..\src\fl_draw.cxx" />
+    <ClCompile Include="..\src\fl_draw_image.cxx" />
+    <ClCompile Include="..\src\fl_draw_pixmap.cxx" />
+    <ClCompile Include="..\src\fl_engraved_label.cxx" />
+    <ClCompile Include="..\src\Fl_File_Browser.cxx" />
+    <ClCompile Include="..\src\Fl_File_Chooser.cxx" />
+    <ClCompile Include="..\src\Fl_File_Chooser2.cxx" />
+    <ClCompile Include="..\src\fl_file_dir.cxx" />
+    <ClCompile Include="..\src\Fl_File_Icon.cxx" />
+    <ClCompile Include="..\src\Fl_File_Input.cxx" />
+    <ClCompile Include="..\src\fl_font.cxx" />
+    <ClCompile Include="..\src\Fl_get_key.cxx" />
+    <ClCompile Include="..\src\Fl_get_system_colors.cxx" />
+    <ClCompile Include="..\src\Fl_grab.cxx" />
+    <ClCompile Include="..\src\Fl_Group.cxx" />
+    <ClCompile Include="..\src\Fl_Help_View.cxx" />
+    <ClCompile Include="..\src\Fl_Image.cxx" />
+    <ClCompile Include="..\src\Fl_Input.cxx" />
+    <ClCompile Include="..\src\Fl_Input_.cxx" />
+    <ClCompile Include="..\src\fl_labeltype.cxx" />
+    <ClCompile Include="..\src\Fl_Light_Button.cxx" />
+    <ClCompile Include="..\src\fl_line_style.cxx" />
+    <ClCompile Include="..\src\Fl_lock.cxx" />
+    <ClCompile Include="..\src\Fl_Menu.cxx" />
+    <ClCompile Include="..\src\Fl_Menu_.cxx" />
+    <ClCompile Include="..\src\Fl_Menu_add.cxx" />
+    <ClCompile Include="..\src\Fl_Menu_Bar.cxx" />
+    <ClCompile Include="..\src\Fl_Menu_Button.cxx" />
+    <ClCompile Include="..\src\Fl_Menu_global.cxx" />
+    <ClCompile Include="..\src\Fl_Menu_Window.cxx" />
+    <ClCompile Include="..\src\Fl_Multi_Label.cxx" />
+    <ClCompile Include="..\src\fl_oval_box.cxx" />
+    <ClCompile Include="..\src\fl_overlay.cxx" />
+    <ClCompile Include="..\src\fl_overlay_visual.cxx" />
+    <ClCompile Include="..\src\Fl_Overlay_Window.cxx" />
+    <ClCompile Include="..\src\Fl_own_colormap.cxx" />
+    <ClCompile Include="..\src\Fl_Pack.cxx" />
+    <ClCompile Include="..\src\Fl_Pixmap.cxx" />
+    <ClCompile Include="..\src\fl_plastic.cxx" />
+    <ClCompile Include="..\src\Fl_Positioner.cxx" />
+    <ClCompile Include="..\src\Fl_Preferences.cxx" />
+    <ClCompile Include="..\src\Fl_Progress.cxx" />
+    <ClCompile Include="..\src\Fl_Ps.cxx" />
+    <ClCompile Include="..\src\fl_rect.cxx" />
+    <ClCompile Include="..\src\Fl_Repeat_Button.cxx" />
+    <ClCompile Include="..\src\Fl_Return_Button.cxx" />
+    <ClCompile Include="..\src\Fl_Roller.cxx" />
+    <ClCompile Include="..\src\fl_rounded_box.cxx" />
+    <ClCompile Include="..\src\fl_round_box.cxx" />
+    <ClCompile Include="..\src\Fl_Round_Button.cxx" />
+    <ClCompile Include="..\src\Fl_Scroll.cxx" />
+    <ClCompile Include="..\src\Fl_Scrollbar.cxx" />
+    <ClCompile Include="..\src\fl_scroll_area.cxx" />
+    <ClCompile Include="..\src\fl_set_font.cxx" />
+    <ClCompile Include="..\src\fl_set_fonts.cxx" />
+    <ClCompile Include="..\src\fl_shadow_box.cxx" />
+    <ClCompile Include="..\src\Fl_Shared_Image.cxx" />
+    <ClCompile Include="..\src\fl_shortcut.cxx" />
+    <ClCompile Include="..\src\fl_show_colormap.cxx" />
+    <ClCompile Include="..\src\Fl_Single_Window.cxx" />
+    <ClCompile Include="..\src\Fl_Slider.cxx" />
+    <ClCompile Include="..\src\fl_symbols.cxx" />
+    <ClCompile Include="..\src\Fl_Table.cxx" />
+    <ClCompile Include="..\src\Fl_Table_Row.cxx" />
+    <ClCompile Include="..\src\Fl_Tabs.cxx" />
+    <ClCompile Include="..\src\Fl_Text_Buffer.cxx" />
+    <ClCompile Include="..\src\Fl_Text_Display.cxx" />
+    <ClCompile Include="..\src\Fl_Text_Editor.cxx" />
+    <ClCompile Include="..\src\Fl_Tile.cxx" />
+    <ClCompile Include="..\src\Fl_Tiled_Image.cxx" />
+    <ClCompile Include="..\src\Fl_Tooltip.cxx" />
+    <ClCompile Include="..\src\Fl_Tree.cxx" />
+    <ClCompile Include="..\src\fl_utf8.cxx" />
+    <ClCompile Include="..\src\Fl_Valuator.cxx" />
+    <ClCompile Include="..\src\Fl_Value_Input.cxx" />
+    <ClCompile Include="..\src\Fl_Value_Output.cxx" />
+    <ClCompile Include="..\src\Fl_Value_Slider.cxx" />
+    <ClCompile Include="..\src\fl_vertex.cxx" />
+    <ClCompile Include="..\src\Fl_visual.cxx" />
+    <ClCompile Include="..\src\Fl_Widget.cxx" />
+    <ClCompile Include="..\src\Fl_Window.cxx" />
+    <ClCompile Include="..\src\Fl_Window_fullscreen.cxx" />
+    <ClCompile Include="..\src\Fl_Window_hotspot.cxx" />
+    <ClCompile Include="..\src\Fl_Window_iconize.cxx" />
+    <ClCompile Include="..\src\Fl_Wizard.cxx" />
+    <ClCompile Include="..\src\Fl_x.cxx" />
+    <ClCompile Include="..\src\Fl_XBM_Image.cxx" />
+    <ClCompile Include="..\src\Fl_XPM_Image.cxx" />
+    <ClCompile Include="..\src\numericsort.c" />
+    <ClCompile Include="..\src\scandir.c" />
+    <ClCompile Include="..\src\vsnprintf.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

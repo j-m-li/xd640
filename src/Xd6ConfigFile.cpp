@@ -76,30 +76,37 @@ static void clean_dir(char *folder)
 		name = dir[n]->d_name;
 		if (name) {
 			int p = strtol(name, NULL, 10);
+#ifndef WIN32
 			if (p > 0 && kill(p, 0) == - 1 && errno == ESRCH) {
 				char buf[1024];
 				snprintf(buf, 1024, "%s/%s", folder, name);
 				unlink_files(buf);
 				fl_rmdir(buf);
 			}
+#endif
 		}
 	}
 }
 
 char *Xd6ConfigFile::temp(void)
 {
+
 	static long fid = 0;
 	static char *home = NULL;
 	char buf[1024];
 
 	if (!home) {
 		home = getenv("HOME");
+#ifdef WIN32
+		home = "/Windows/temp/";
+#else
 		if (!home || fl_access(home, W_OK)) {
 			home = "/tmp";
 			if (fl_access(home, W_OK)) {
 				home = "/";
 			}
 		}
+#endif
 		snprintf(buf, 1024, "%s/.xd640", home);
 		fl_mkdir(buf, 0700);
 		snprintf(buf, 1024, "%s/.xd640/apps", home);
@@ -377,9 +384,9 @@ static void check_path(const char *p)
 		while (o < len) {
 			if (!f) f = p[o];
 			if (p[o] == '/' || p[o] == '\\') {
-				_wmkdir(buf);
+				_wmkdir((const wchar_t*)buf);
 				if (f == '.') {
-					SetFileAttributesW(buf, 
+					SetFileAttributesW((LPWSTR)buf, 
 						FILE_ATTRIBUTE_HIDDEN);
 				}
 				buf[i] = '\\';
@@ -396,9 +403,9 @@ static void check_path(const char *p)
 			i++;
 			buf[i] = 0;
 		}
-		_wmkdir(buf);
+		_wmkdir((const wchar_t*)buf);
 		if (f == '.') {
-			SetFileAttributesW(buf, FILE_ATTRIBUTE_HIDDEN);
+			SetFileAttributesW((LPWSTR)buf, FILE_ATTRIBUTE_HIDDEN);
 		}
 	}
 #else	
@@ -464,7 +471,7 @@ Xd6ConfigFile::Xd6ConfigFile(const char *name, const char *category)
 			i++;
 		}
 		buf[i] = 0;
-		ret = RegOpenKeyExW(HKEY_CURRENT_USER, buf, 0, KEY_QUERY_VALUE,
+		ret = RegOpenKeyExW(HKEY_CURRENT_USER, (LPWSTR)buf, 0, KEY_QUERY_VALUE,
 			&key);
 		i = 0;
 		ptr = "Personal";
@@ -474,7 +481,7 @@ Xd6ConfigFile::Xd6ConfigFile(const char *name, const char *category)
 			i++;
 		}
 		buf[i] = 0;
-		ret = RegQueryValueExW(key, buf,
+		ret = RegQueryValueExW(key, (LPWSTR)buf,
 			NULL, NULL, (unsigned char*)home, &size);
 		RegCloseKey(key);
 	}
@@ -482,8 +489,8 @@ Xd6ConfigFile::Xd6ConfigFile(const char *name, const char *category)
 		unsigned short buf[1024];
 		int i = 0;
 		char *ptr = home;
-		ret = ExpandEnvironmentStringsW((unsigned short*)home, 
-				buf, 1024);
+		ret = ExpandEnvironmentStringsW((LPWSTR)(unsigned short*)home, 
+				(LPWSTR)buf, 1024);
 		while (i < ret) {
 			int l;
 			l = fl_ucs2utf((unsigned int)buf[i], ptr);

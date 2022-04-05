@@ -64,6 +64,10 @@ int main(int argc, char **argv, char **environ)
 	cfg_sec = cfg->get_config_section(cfg->app_name);
 
 	// GNU gettext initialization
+#ifndef LC_MESSAGES
+#define LC_MESSAGES 0
+
+#endif
 	setlocale(LC_MESSAGES, "");
 	bindtextdomain(PACKAGE, LOCALEDIR);
 	textdomain(PACKAGE);

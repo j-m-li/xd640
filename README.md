@@ -68,3 +68,13 @@ BUILD UNDER Debian 11:
 If you want to install the software to an other location use this in place
 of "./configure" :
 	# ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man
+
+![](img/desktop.jpg)
+![](img/flfile_perm.jpg)
+![](img/flfile_stat.jpg)
+![](img/flfm_detail.jpg)
+![](img/flfm_icon.jpg)
+![](img/fllauncher.jpg)
+![](img/flwriter.jpg)
+![](img/interxim.jpg)
+![](img/utf8.jpg)
